@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'CerebriSansPro';
+  src: url('CerebriSansPro-Regular.otf') format('opentype'),
+       url('CerebriSansPro-Bold.otf') format('opentype'),
+       url('CerebriSansPro-Italic.otf') format('opentype'),
+       url('CerebriSansPro-Thin.otf') format('opentype');
+  font-weight: 400
+  font-style: normal;
+}
+
+.bold-text {
+  font-family: 'CerebriSansPro';
+  font-weight: bold;
+}
+
+.italic-text {
+  font-family: 'CerebriSansPro';
+  font-style: italic;
+}
+
+.thin-text {
+  font-family: 'CerebriSansPro';
+  font-weight: 100; 
+}
+
+.style-1 {
+   background-color: #8CFF00;
+   color: #7300FF;
+}
+
+.style-2 {
+   background-color: #7300FF;
+   color: #8CFF00;
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+   font-family: "CerebriSansPro", fallback_font_family, sans-serif;
+   background-color: #fafafa;
+   color: #111;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  padding: 15px;
+}
+
+#controls {
+  display: flex;
+  margin-right: 30px;
+  column-gap: 40px;
+  font-size: 24px;
+}
+
+footer {
+  margin-top: 5rem;
+  text-align: center;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="23.7817 2.797 625.1515 147.459" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="147.152" y1="2.797" x2="147.152" y2="116.369" id="gradient-2">
+      <stop offset="0" style="stop-color: rgb(45.098% 0% 100%)"/>
+      <stop offset="1" style="stop-color: rgb(26.91% 0% 72.22%)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="55.232" y1="37.322" x2="55.232" y2="118.749" id="gradient-4">
+      <stop offset="0" style="stop-color: rgb(45.098% 0% 100%)"/>
+      <stop offset="1" style="stop-color: rgb(26.91% 0% 72.22%)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="218.847" y1="36.968" x2="218.847" y2="118.174" id="gradient-1">
+      <stop offset="0" style="stop-color: rgb(45.098% 0% 100%)"/>
+      <stop offset="1" style="stop-color: rgb(26.91% 0% 72.22%)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="120.418" y1="108.732" x2="120.418" y2="148.452" id="gradient-3">
+      <stop offset="0" style="stop-color: rgb(45.098% 0% 100%)"/>
+      <stop offset="1" style="stop-color: rgb(26.91% 0% 72.22%)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="468.37" y1="20.986" x2="468.37" y2="150.463" id="gradient-0">
+      <stop offset="0" style="stop-color: rgb(45.098% 0% 100%)"/>
+      <stop offset="1" style="stop-color: rgb(26.91% 0% 72.22%)"/>
+    </linearGradient>
+  </defs>
+  <path style="opacity: 1; fill-rule: evenodd; fill: url('#gradient-2');" d="M 105.946 98.965 C 120.736 67.769 149.41 2.797 149.998 2.797 C 162.283 8.644 175.929 15.119 188.358 21.041 C 173.339 52.845 158.333 84.621 143.342 116.369 C 131.679 110.685 106.174 100.078 105.946 98.965"/>
+  <path style="opacity: 1; fill-rule: evenodd; fill: url('#gradient-4');" d="M 78.929 37.322 C 78.929 37.322 87.241 47.622 86.652 48.505 C 71.265 57.718 55.451 68.676 40.533 78.587 C 55.897 87.811 71.054 97.375 85.991 107.274 C 85.355 110.031 80.489 118.008 78.93 118.749 C 60.906 107.453 42.811 96.272 24.645 85.207 C 23.494 80.601 23.494 76.04 24.645 71.526 C 42.948 60.618 78.929 37.322 78.929 37.322"/>
+  <path style="opacity: 1; fill-rule: evenodd; fill: url('#gradient-1');" d="M 194.124 36.968 C 212.797 48.219 231.335 59.695 249.733 71.392 C 250.757 75.433 250.907 79.646 250.174 83.749 C 231.919 95.672 213.377 107.151 194.565 118.174 C 191.429 114.751 188.994 111.147 187.063 107.14 C 202.51 97.514 217.811 87.656 232.962 77.571 L 187.063 48.442 C 189.073 44.381 191.206 40.924 194.124 36.968"/>
+  <path style="opacity: 1; fill-rule: evenodd; fill: url('#gradient-3');" d="M 101.882 108.732 C 114.317 114.452 126.676 120.337 138.954 126.385 C 128.299 134.078 117.408 141.437 106.295 148.452 C 104.343 135.27 102.871 122.021 101.882 108.732"/>
+  <text style="fill: url('#gradient-0'); font-family: 'Cerebri Sans Pro'; font-size: 130px; white-space: pre;" x="287.812" y="118.255">Zenify</text>
+</svg>
