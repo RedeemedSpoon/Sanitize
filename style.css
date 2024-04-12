@@ -10,6 +10,10 @@ a {
   color: inherit;
 }
 
+li {
+  list-style-type: none;
+}
+
 .purple-color {
    color: #7300FF;
 }
@@ -27,9 +31,9 @@ a {
 }
 
 body {
-   font-family: sans-serif;
-   background-color: #fafafa;
-   color: #111;
+  font-family: "Open Sans", sans-serif;
+  background-color: #fafafa;
+  color: #111;
 }
 
 header {
@@ -77,6 +81,35 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   row-gap: 25px;
-  text-align: center
+}
+
+#features li{
+  margin : 20px 0;
+}
+
+#benefits{
+  display: flex;
+  justify-content: center;
+  column-gap: 50px;
+  row-gap: 100px;
+  flex-wrap: wrap;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  text-align: center;
+  row-gap: 30px;
+}
+
+.box img {
+  height : 100px;
+}
+
+#faq > * {
+  margin: 25px 0;
 }
