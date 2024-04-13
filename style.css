@@ -33,8 +33,9 @@ li {
 
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: #fafafa;
-  color: #111;
+  background-image: url("./assets/background.jpg");
+  background-position: center;
+  background-size: contain;
 }
 
 header {
@@ -56,7 +57,7 @@ header {
 }
 
 footer {
-  margin: 5rem 0 1rem 0;
+  margin: 5rem 0 -3rem 0;
   text-align: center;
   font-size: 12px;
 }
@@ -68,7 +69,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to left top, #afff4d 0%, #62b300 100%);
+  background: linear-gradient(to left top, rgba(175, 255, 80, 0.75) 25%, rgba(100, 180, 0, 0.85) 75%);
   font-size: 28px;
   row-gap: 50px;
 }
@@ -76,13 +77,19 @@ footer {
 .introduction > p {
   text-align: center;
   max-width: 600px;
-  font-size: 24px;
+  font-size: 25px;
 }
 
-.main {
+#main {
+  background-color: #f9f9f9;
+  z-index: 1
+}
+
+#content {
   display: flex;
   flex-direction: column;
-  margin: 3rem 25rem;
+  margin: 0 25rem;
+  padding: 5rem 10px;
   align-items: left;
   row-gap: 25px;
 }
@@ -98,7 +105,7 @@ footer {
 }
 
 #benefits,
-#Installation {
+#installation {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -156,6 +163,35 @@ footer {
   height : 125px;
 }
 
-#faq > * {
-  margin: 25px 0;
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  margin: 80px 10px;
+  padding: 18px 12px;
+  border-radius: 10px;
+  background-color: #8CFF00;
+}
+
+.btn > img {
+  height : 50px;
+}
+
+.btn > p {
+  font-size: 25px;
+}
+
+#faq {
+  width: 50%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  border: #1A1B26 3px solid;
+  border-radius: 25px;
+}
+
+.question {
+  padding: 20px 10px;
 }
