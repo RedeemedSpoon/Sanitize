@@ -15,20 +15,15 @@ li {
   margin: 15px 0;
 }
 
-.purple-color {
-   color: #7300FF;
+hr {
+  border : 3px solid #7300FF;
+  border-radius: 50%;
 }
 
-.green-color {
-   color: #8CFF00;
-}
-
-.purple-backgound {
-   background-color: #7300FF;
-}
-
-.green-background {
-  background-color: #8CFF00;
+h1 {
+  color: #7300FF;
+  font-weight: 700;
+  font-size: 30px;
 }
 
 @keyframes scroll {
@@ -64,6 +59,7 @@ header {
   margin-right: 30px;
   column-gap: 40px;
   font-size: 24px;
+  color: #7300FF;
 }
 
 footer {
@@ -72,19 +68,23 @@ footer {
   font-size: 12px;
 }
 
-.introduction {
+#introduction {
   width 100vw;
   height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  row-gap: 40px;
+  color: #7300FF;
   background: linear-gradient(to left top, rgba(175, 255, 80, 0.85) 25%, rgba(100, 180, 0, 0.90) 75%);
-  font-size: 27px;
-  row-gap: 50px;
 }
 
-.introduction > p {
+#introduction h1 {
+  font-size: 40px;
+}
+
+#introduction p {
   text-align: center;
   max-width: 600px;
   font-size: 25px;
@@ -98,10 +98,13 @@ footer {
 #content {
   display: flex;
   flex-direction: column;
-  align-items: left;
   padding: 5rem 10px;
   margin: 0 20vw;
   row-gap: 25px;
+}
+
+#content > div {
+  margin : 35px 50px;
 }
 
 #features,
@@ -121,22 +124,23 @@ footer {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  column-gap: 50px;
+  column-gap: 35px;
   row-gap: 50px;
 }
 
 .part {
   display: grid;
   grid-template-columns: 400px 400px;
-  grid-template-rows: 50px 300px;
+  grid-template-rows: 50px 260px;
   justify-items: center;
-  align-items: center;
-  column-gap: 50px;
-  row-gap: 25px;
+  column-gap: 100px;
+  row-gap: 50px;
 }
 
 .part img {
   grid-area:  1 / 2 / 2 / 2;
+  transform: rotate(7.5deg);
+  height: 11vw;
 }
 
 .part h3 {
@@ -150,7 +154,8 @@ footer {
 }
 
 .alt img {
-  grid-area : 1 / 1 / 1 / 1
+  grid-area : 1 / 1 / 1 / 1;
+  transform: rotate(-7.5deg);
 }
 
 .alt h3 {
@@ -165,7 +170,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 375px;
+  max-width: 360px;
   text-align: center;
   row-gap: 30px;
 }
@@ -208,6 +213,25 @@ footer {
   padding: 20px 10px;
 }
 
+.question > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  user-select: none;
+}
+
+#faq hr {
+  border: 2px solid #111; 
+}
+
 .question p {
   display: none;
 }
+
+.arrow {
+  position: relative;
+  display: inline-block;
+  transform: rotate(180deg);
+  transition: transform 0.5s ease-in-out;
+}
+
