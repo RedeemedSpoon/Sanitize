@@ -28,14 +28,13 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-      <script src="./script.js" async defer></script>
    </head>
    <body>
       <header>
          <a href="index.html"><img src="./assets/zenify.svg" alt="Zenify" height="40px" style="margin-left: 10px"/></a>
          <div id="controls">
-            <a href="#">&#8593; Next</a>
-            <a href="#">&#8595; Previous</a>
+            <a>&#8595; Next</a>
+            <a>&#8593;Previous</a>
          </div>
       </header>
       <main>
@@ -43,7 +42,7 @@
             <img src="./assets/logo.svg" alt="Logo" height="100px" /> 
             <h1>Tame the Web, Enhance your Journey.</h1>
             <p>Zenify is your all-in-one extension for a distraction-free, customized browsing experience. Block annoyances, focus on content, and tweak websites to fit your needs. <b>It's your web, your way.</b></p>
-            <div class="btn">
+            <div class="btn download">
                <img src="./assets/download.svg" />
                <p>Install Extension</p>
             </div>
@@ -91,7 +90,7 @@
                </div>
                <h1>Benefits :</h1>
                <hr>
-               <div id="benefits">
+               <div id="benefits" style="margin: 50px 25px">
                   <div class="box">
                      <img src="./assets/benefits/productivity.png" alt="Productivity" />
                      <h2>Productivity</h2>
@@ -169,9 +168,6 @@
                <h1>Changelog :</h1>
                <hr>
                <div id="changelog">
-                  <ul>
-                     <li>Still under developement...<li>
-                  </ul>
                </div>
                <h1>Frequently Asked Questions (FAQ):</h1>
                <hr>
@@ -181,7 +177,9 @@
                        <h2>1. What is Zenify?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Zenify is a browser extension designed to empower you and personalize your web experience. It equips you with tools to block distractions, enhance privacy, and boost productivity. Take back control of your online journey and focus on what truly matters.</p>
+                    <div class="answer">
+                       <p>Zenify is a browser extension designed to empower you and personalize your web experience. It equips you with tools to block distractions, enhance privacy, and boost productivity. Take back control of your online journey and focus on what truly matters.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -189,7 +187,9 @@
                        <h2>2. How Does Zenify Work?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Zenify provides a variety of functionalities to customize your browsing experience. You can block unwanted elements like ads, videos, and images. It also allows you to edit the webpage itself by adding, deleting, or disabling HTML elements. For a more tailored aesthetic, you can fine-tune website styles with CSS or inject custom JavaScript.</p>
+                    <div class="answer">
+                       <p>Zenify provides a variety of functionalities to customize your browsing experience. You can block unwanted elements like ads, videos, and images. It also allows you to edit the webpage itself by adding, deleting, or disabling HTML elements. For a more tailored aesthetic, you can fine-tune website styles with CSS or inject custom JavaScript.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -197,7 +197,9 @@
                        <h2>3. How To Best Use Zenify?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>The beauty of Zenify lies in its customization. Identify what elements distract you the most and block or remove them. Experiment with different features to create a focused and streamlined browsing experience. Zenify also offers "Zen Mode" for a text-only view and "Grayscale Mode" to minimize visual clutter, further enhancing your concentration.</p>
+                    <div class="answer">
+                       <p>The beauty of Zenify lies in its customization. Identify what elements distract you the most and block or remove them. Experiment with different features to create a focused and streamlined browsing experience. Zenify also offers "Zen Mode" for a text-only view and "Grayscale Mode" to minimize visual clutter, further enhancing your concentration.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -205,7 +207,9 @@
                        <h2>4. Is Zenify Regularly Updated?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Yes! The Zenify team (me, in this case!) is committed to providing a constantly evolving and improving experience. Regular updates ensure compatibility with modern browsers, address potential security concerns, and introduce new features to better serve your needs.</p>
+                    <div class="answer">
+                       <p>Yes! The Zenify team (me, in this case!) is committed to providing a constantly evolving and improving experience. Regular updates ensure compatibility with modern browsers, address potential security concerns, and introduce new features to better serve your needs.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -213,7 +217,9 @@
                        <h2>5. Is Zenify Free?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Yes, Zenify is completely free and there is no intent to monetize it in the future. My goal is to empower everyone to have a more focused and enjoyable browsing experience.</p>
+                    <div class="answer">
+                       <p>Yes, Zenify is completely free and there is no intent to monetize it in the future. My goal is to empower everyone to have a more focused and enjoyable browsing experience.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -221,7 +227,9 @@
                        <h2>6. Is Zenify Open Source?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Yes, Zenify is open-source software! I believe in the power of Free and Open Source Software (FOSS) and its ability to foster collaboration and create better products. The code is publicly available, so anyone can contribute or learn from it.</p>
+                    <div class="answer">
+                       <p>Yes, Zenify is open-source software! I believe in the power of Free and Open Source Software (FOSS) and its ability to foster collaboration and create better products. The code is publicly available, so anyone can contribute or learn from it.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -229,7 +237,9 @@
                        <h2>7. Can You Contribute?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Absolutely! Even though I'm a single developer, contributions from the community are highly valued. You can contribute in various ways, such as reporting bugs, suggesting new features, helping with documentation, or even diving into the codebase itself.  Check out the contribution guidelines on the project's website (link to be added later) to learn more.</p>
+                    <div class="answer">
+                       <p>Absolutely! Even though I'm a single developer, contributions from the community are highly valued. You can contribute in various ways, such as reporting bugs, suggesting new features, helping with documentation, or even diving into the codebase itself.  Check out the contribution guidelines on the project's website (link to be added later) to learn more.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -237,7 +247,9 @@
                        <h2>8. What Is the License?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Zenify is distributed under the GPL-3 license. This license guarantees your freedoms to use, modify, and distribute Zenify, as long as you adhere to the terms of the GPL-3. This fosters transparency and encourages collaboration within the open-source community.</p>
+                    <div class="answer">
+                       <p>Zenify is distributed under the GPL-3 license. This license guarantees your freedoms to use, modify, and distribute Zenify, as long as you adhere to the terms of the GPL-3. This fosters transparency and encourages collaboration within the open-source community.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -245,7 +257,9 @@
                        <h2>9. Who Are We?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Zenify is currently being developed by me, a single anonymous developer. I am passionate about creating tools that empower users and improve the online experience.  While I work on it alone for now, I hope to see the project grow with the help of the community.</p>
+                    <div class="answer">
+                       <p>Zenify is currently being developed by me, a single anonymous developer. I am passionate about creating tools that empower users and improve the online experience.  While I work on it alone for now, I hope to see the project grow with the help of the community.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -253,7 +267,9 @@
                        <h2>10. Can We Spy on You?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Absolutely not! User privacy is a top priority for Zenify. The extension does not collect or track your browsing data or activity in any way. You have complete control over what information websites can access while using Zenify.</p>
+                    <div class="answer">
+                       <p>Absolutely not! User privacy is a top priority for Zenify. The extension does not collect or track your browsing data or activity in any way. You have complete control over what information websites can access while using Zenify.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -261,7 +277,9 @@
                        <h2>11. Why We Made This?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>I created Zenify because, like many others, I struggle with distractions and information overload online. I wanted a tool that would allow me to customize my browsing experience and focus on what truly matters.  Hopefully, Zenify can help you achieve the same.</p>
+                    <div class="answer">
+                       <p>I created Zenify because, like many others, I struggle with distractions and information overload online. I wanted a tool that would allow me to customize my browsing experience and focus on what truly matters.  Hopefully, Zenify can help you achieve the same.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -269,7 +287,9 @@
                        <h2>12. Which Browsers Do We Support?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Zenify is currently available for popular browsers like Chrome, Firefox, Edge, and Opera. I am always looking for ways to expand compatibility with other browsers in the future.</p>
+                    <div class="answer">
+                       <p>Zenify is currently available for popular browsers like Chrome, Firefox, Edge, and Opera. I am always looking for ways to expand compatibility with other browsers in the future.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -277,7 +297,9 @@
                        <h2>13. How Do We Improve Your Online Journey?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>Zenify empowers you to curate your online experience by providing a toolkit for customization and control. By blocking distractions and fine-tuning webpages, you can streamline your browsing, minimize wasted time, and enhance overall productivity. Zenify fosters a more focused and mindful approach to navigating the web, allowing you to achieve your goals with greater efficiency.</p>
+                    <div class="answer">
+                       <p>Zenify empowers you to curate your online experience by providing a toolkit for customization and control. By blocking distractions and fine-tuning webpages, you can streamline your browsing, minimize wasted time, and enhance overall productivity. Zenify fosters a more focused and mindful approach to navigating the web, allowing you to achieve your goals with greater efficiency.</p>
+                    </div>
                  </div>
                  <hr>
                  <div class="question">
@@ -285,7 +307,9 @@
                        <h2>14. What Are Our Recommendations To Further Improve Your Web Experience?</h2>
                        <h2 class="arrow">&#x27A4;</h2>
                     </div>
-                   <p>For a more secure and focused online journey, consider these tips: combine Zenify with privacy-focused extensions like uBlock Origin and Canvas Blocker, use a FOSS browser like Firefox, explore privacy-oriented search engines like DuckDuckGo, and cultivate mindful browsing habits by setting time limits and avoiding distractions. By taking a multi-pronged approach, you can significantly enhance your online experience.</p>
+                    <div class="answer">
+                       <p>For a more secure and focused online journey, consider these tips: combine Zenify with privacy-focused extensions like uBlock Origin and Canvas Blocker, use a FOSS browser like Firefox, explore privacy-oriented search engines like DuckDuckGo, and cultivate mindful browsing habits by setting time limits and avoiding distractions.</p>
+                    </div>
                   </div>
                </div>
                <footer>
@@ -294,6 +318,7 @@
             </div>
          </section>
       </main>
+      <script src="./script.js" async defer></script>
    </body>
 </html>
 
