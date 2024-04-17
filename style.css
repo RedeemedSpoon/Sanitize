@@ -5,19 +5,23 @@
    outline: none;
 }
 
+img {
+  user-select: none
+}
+
 a {
+  font-weight: 600;
   text-decoration: none;
   color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 li {
   list-style-type: none;
   margin: 15px 0;
-}
-
-hr {
-  border: 3px solid #7300FF;
-  border-radius: 50%;
 }
 
 h1 {
@@ -26,8 +30,9 @@ h1 {
   font-size: 30px;
 }
 
-img {
-  user-select: none
+hr {
+  border: 3px solid #7300FF;
+  border-radius: 50%;
 }
 
 @keyframes scroll {
@@ -46,13 +51,13 @@ body {
   background-position: center;
   background-size: contain;
   line-height: 35px;
-  color: #555;
+  color: #494949;
 }
 
 header {
   position: fixed;
-  top: 0;
   width: 100vw;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -68,7 +73,6 @@ header {
   color: #7300FF;
 }
 
-
 #controls > *:hover {
   transition: 0.5s ease;
   cursor: pointer;
@@ -81,14 +85,16 @@ footer {
 }
 
 #introduction {
-  width 100vw;
-  height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width 100vw;
+  height: 75vh;
   row-gap: 40px;
+  padding: 25px;
   color: #7300FF;
+  text-align: center;
   background: linear-gradient(to left top, rgba(175, 255, 80, 0.85) 25%, rgba(100, 180, 0, 0.90) 75%);
 }
 
@@ -97,7 +103,6 @@ footer {
 }
 
 #introduction p {
-  text-align: center;
   max-width: 600px;
   font-size: 23px;
 }
@@ -150,17 +155,19 @@ footer {
 
 .part {
   display: grid;
-  grid-template-columns: 400px 400px;
+  grid-template-columns: 35% 35%;
   grid-template-rows: 50px 260px;
-  justify-items: center;
-  column-gap: 100px;
+  justify-content: center;
+  column-gap: 7.5vw;
   row-gap: 50px;
 }
 
 .part img {
   grid-area:  1 / 2 / 2 / 2;
-  transform: rotate(7.5deg);
-  height: 11.5vw;
+  transform: rotate(5deg);
+  justify-self: center;
+  margin-top: 5vh;
+  height: 12.5rem;
 }
 
 .part h3 {
@@ -175,7 +182,7 @@ footer {
 
 .alt img {
   grid-area : 1 / 1 / 1 / 1;
-  transform: rotate(-7.5deg);
+  transform: rotate(-5deg);
 }
 
 .alt h3 {
@@ -190,9 +197,9 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 350px;
   text-align: center;
-  row-gap: 50px;
+  max-width: 350px;
+  row-gap: 35px;
 }
 
 .box img {
@@ -206,8 +213,8 @@ footer {
   column-gap: 10px;
   padding: 20px 14px;
   border-radius: 15px;
-  background-color: #7300FF;
   color : #f9f9f9;
+  background-color: #7300FF;
   transition: 0.5s ease;
   user-select: none;
 }
@@ -221,9 +228,10 @@ footer {
 }
 
 .btn:hover {
-  transition: 0.5s ease;
   cursor: pointer;
+  text-decoration: none;
   background-color: #5400be; 
+  transition: 0.5s ease;
 }
 
 #faq {
@@ -232,8 +240,12 @@ footer {
   display: flex;
   flex-direction: column;
   align-self: center;
-  border: #555 3px solid;
+  border: #494949 3px solid;
   border-radius: 25px;
+}
+
+#faq hr {
+  border: 2px solid #494949; 
 }
 
 .question {
@@ -245,10 +257,6 @@ footer {
   justify-content: space-between;
   align-items: baseline;
   user-select: none;
-}
-
-#faq hr {
-  border: 2px solid #555; 
 }
 
 .arrow {
@@ -269,11 +277,131 @@ footer {
 }
 
 .visible {
-  max-height: 12.5rem;
+  max-height: 14rem;
   transition: max-height 1s ease;
 }
 
 .active {
   transform: rotate(90deg);
   transition: transform 0.5s ease-in-out;
+}
+
+@media (max-width: 768px) {
+
+  body {
+    line-height: 25px;
+  }
+
+  header {
+    display: none;
+  }
+
+  #introduction h1 {
+    font-size: 30px;
+  }
+
+  #content {
+    margin: 0 7.5vw;
+  }
+
+  #content > div {
+    margin: 10px 15px;
+  }
+
+  .part {
+    grid-template-columns: 50% 50%;
+  }
+
+  .part img {
+    height: 25vw;
+  }
+
+  .part h3 {
+    font-size: 25px;
+  }
+
+  .part p {
+    font-size: 15px;
+  }
+
+  .box {
+    max-width: 500px;
+    row-gap: 25px;
+  }
+
+  #faq {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1025px) {
+
+  body {
+    line-height: 30px;
+  }
+
+  header {
+    display: none;
+  }
+
+  #content {
+    margin: 0 10vw;
+  }
+
+  .part {
+    grid-template-columns: 50% 50%;
+  }
+
+  .part img {
+    height: 20vw;
+  }
+
+  .box {
+    max-width: 500px;
+    row-gap: 25px;
+  }
+
+  #faq {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1488px) {
+
+  header {
+    display: none;
+  }
+
+  #content {
+    margin: 0 10vw;
+  }
+
+  .part {
+    grid-template-columns: 42.5% 42.5%;
+  }
+
+  .box {
+    row-gap: 25px;
+  }
+
+  #faq {
+    width: 70%;
+  }
+}
+
+@media only screen and (min-width: 1488px) and (max-width: 1740px) {
+
+  .part {
+    grid-template-columns: 40% 40%;
+  }
+  
+  #controls {
+    margin-right: 20px;
+    column-gap: 20px;
+  }
+
+  #faq {
+    width: 70%;
+  }
 }

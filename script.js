@@ -1,7 +1,7 @@
 const questions = document.querySelectorAll(".question");
 const downloadBtn = document.querySelector(".download");
-const upBtn = document.querySelector("#controls > a:nth-child(1)");
-const downBtn = document.querySelector("#controls > a:nth-child(2)");
+const upBtn = document.querySelector("#controls > p:nth-child(1)");
+const downBtn = document.querySelector("#controls > p:nth-child(2)");
 const main = document.querySelectorAll("#content > div");
 const start = document.querySelector("#introduction");
 const end = document.querySelector("footer");
