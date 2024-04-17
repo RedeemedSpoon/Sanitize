@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="3.852 -8.591 257.001 165.015" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient gradientUnits="userSpaceOnUse" x1="141.857" y1="22.171" x2="141.857" y2="150.839" id="gradient-0">
-      <stop offset="0" style="stop-color: rgb(45.098% 0% 100%)"/>
-      <stop offset="1" style="stop-color: rgb(26.91% 0% 72.22%)"/>
-    </linearGradient>
-    <linearGradient gradientUnits="userSpaceOnUse" x1="37.152" y1="42.25" x2="37.152" y2="134.5" id="gradient-1">
-      <stop offset="0" style="stop-color: rgb(45.098% 0% 100%)"/>
-      <stop offset="1" style="stop-color: rgb(26.91% 0% 72.22%)"/>
-    </linearGradient>
-    <linearGradient gradientUnits="userSpaceOnUse" x1="234.618" y1="28.166" x2="234.618" y2="120.166" id="gradient-2">
-      <stop offset="0" style="stop-color: rgb(45.098% 0% 100%)"/>
-      <stop offset="1" style="stop-color: rgb(26.91% 0% 72.22%)"/>
-    </linearGradient>
-    <linearGradient gradientUnits="userSpaceOnUse" x1="113.333" y1="111.424" x2="113.333" y2="156.424" id="gradient-3">
-      <stop offset="0" style="stop-color: rgb(45.098% 0% 100%)"/>
-      <stop offset="1" style="stop-color: rgb(26.91% 0% 72.22%)"/>
-    </linearGradient>
-  </defs>
-  <path style="opacity: 1; fill-rule: evenodd; fill: url('#gradient-0');" d="M95.174 131.121c16.756-35.342 49.241-108.95 49.908-108.95C159 28.795 174.459 36.13 188.541 42.839q-25.524 54.047-51 108c-13.213-6.44-42.108-18.457-42.367-19.718" transform="translate(1.763 -30.762)"/>
-  <path style="opacity: 1; fill-rule: evenodd; fill: url('#gradient-1');" d="M63.999 42.25s9.417 11.669 8.75 12.669C55.316 65.357 37.4 77.771 20.5 89A1366 1366 0 0 1 72 121.5c-.721 3.123-6.233 12.16-8 13a5664 5664 0 0 0-61.5-38Q.544 88.671 2.5 81c20.735-12.358 61.499-38.75 61.499-38.75" transform="translate(2.33 -11.727)"/>
-  <path style="opacity: 1; fill-rule: evenodd; fill: url('#gradient-2');" d="M206.609 28.166a3087 3087 0 0 1 63 39 33.2 33.2 0 0 1 .5 14 1526 1526 0 0 1-63 39c-3.553-3.877-6.312-7.961-8.5-12.5a2059 2059 0 0 0 52-33.5l-52-33c2.278-4.601 4.694-8.518 8-13" transform="translate(-9.773 1.955)"/>
-  <path style="opacity: 1; fill-rule: evenodd; fill: url('#gradient-3');" d="M 92.333 111.424 C 106.421 117.904 120.422 124.571 134.333 131.424 C 122.262 140.139 109.923 148.476 97.333 156.424 C 95.122 141.49 93.454 126.48 92.333 111.424"/>
+<!-- Generator: Adobe Illustrator 28.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 257 165" style="enable-background:new 0 0 257 165;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#7300FF;}
+</style>
+<g>
+	<path class="st0" d="M143,0c-0.7,0-33.2,73.6-49.9,109c0.3,1.3,29.2,13.3,42.4,19.7c17-36,34-72,51-108C172.4,14,156.9,6.6,143,0z"
+		/>
+	<path class="st0" d="M1,77.9C-0.3,83-0.3,88.1,1,93.4c20.6,12.5,41.1,25.2,61.5,38c1.8-0.8,7.3-9.9,8-13
+		C53.6,107.1,36.4,96.3,19,85.9c16.9-11.2,34.8-23.6,52.2-34.1c0.7-1-8.8-12.7-8.8-12.7S21.7,65.5,1,77.9z"/>
+	<path class="st0" d="M256,77.7c-20.8-13.3-41.8-26.3-63-39c-3.3,4.5-5.7,8.4-8,13l52,33c-17.2,11.4-34.5,22.6-52,33.5
+		c2.2,4.5,4.9,8.6,8.5,12.5c21.3-12.5,42.3-25.5,63-39C257.3,87.1,257.1,82.3,256,77.7z"/>
+	<path class="st0" d="M93.5,165c12.6-7.9,24.9-16.3,37-25c-13.9-6.9-27.9-13.5-42-20C89.6,135.1,91.3,150.1,93.5,165z"/>
+</g>
 </svg>
