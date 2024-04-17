@@ -16,7 +16,7 @@ li {
 }
 
 hr {
-  border: 3px solid #8CFF00;
+  border: 3px solid #7300FF;
   border-radius: 50%;
 }
 
@@ -45,6 +45,8 @@ body {
   animation: scroll linear infinite 30s;
   background-position: center;
   background-size: contain;
+  line-height: 35px;
+  color: #555;
 }
 
 header {
@@ -120,23 +122,23 @@ footer {
 #features,
 #installation,
 #FAQ {
+  scroll-margin-top: 17.5vh;
   display: flex;
   flex-direction : column;
   justify-content: center;
   align-items: center;
   row-gap: 75px;
-  scroll-margin-top: 17.5vh;
 }
 
 #benefits,
 #installation > div {
+  scroll-margin-top: 17.5vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   column-gap: 35px;
   row-gap: 50px;
-  scroll-margin-top: 17.5vh;
 }
 
 #utilization,
@@ -164,7 +166,6 @@ footer {
 .part h3 {
   grid-area 1 / 1 / 1 / 1;
   font-size: 30px;
-  color: #7300FF;
 }
 
 .part p {
@@ -231,7 +232,7 @@ footer {
   display: flex;
   flex-direction: column;
   align-self: center;
-  border: #1A1B26 3px solid;
+  border: #555 3px solid;
   border-radius: 25px;
 }
 
@@ -247,7 +248,7 @@ footer {
 }
 
 #faq hr {
-  border: 2px solid #111; 
+  border: 2px solid #555; 
 }
 
 .arrow {
@@ -268,7 +269,7 @@ footer {
 }
 
 .visible {
-  max-height: 8rem;
+  max-height: 12.5rem;
   transition: max-height 1s ease;
 }
 
