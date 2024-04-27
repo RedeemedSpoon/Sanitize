@@ -2,7 +2,7 @@
 
 ## Zenify: Craft Your Ideal Browsing Experience
 
-Feeling bombarded by online clutter and distractions? Does the internet, once a treasure trove of information, now seem more like a battlefield for attention and buzzwords? Well, we might have something very intresting for you.
+Feeling bombarded by online clutter and distractions? Does the internet, once a treasure trove of information, now seem more like a battlefield for attention and buzzwords? Well, we might have something very interesting for you.
 
 [Zenify](https://redeemedspoon.github.io/Zenify/) is a browser extension built with a simple philosophy: **give you the power to customize your browsing experience**. We believe in distraction-free focus and privacy. With Zenify, you can transform the chaotic web into a streamlined environment that prioritizes your needs and boosts your productivity.
 

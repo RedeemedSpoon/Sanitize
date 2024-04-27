@@ -1,8 +1,8 @@
 * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   outline: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
 }
 
 img {
@@ -39,6 +39,7 @@ hr {
   0% {
     background-position: 0px 0px;
   }
+
   100% {
     background-position: 0px 1250px;
   }
@@ -50,8 +51,10 @@ body {
   animation: scroll linear infinite 30s;
   background-position: center;
   background-size: contain;
+  overflow-x: hidden;
   line-height: 35px;
   color: #404040;
+  width: 100vw;
 }
 
 header {
@@ -73,7 +76,7 @@ header {
   color: #6F00FF;
 }
 
-#controls > *:hover {
+#controls>*:hover {
   transition: 0.5s ease;
   cursor: pointer;
 }
@@ -89,7 +92,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width 100vw;
+  width: 100vw;
   height: 75vh;
   row-gap: 40px;
   padding: 25px;
@@ -120,8 +123,8 @@ footer {
   row-gap: 25px;
 }
 
-#content > div {
-  margin : 35px 50px;
+#content>div {
+  margin: 35px 50px;
 }
 
 #features,
@@ -129,14 +132,14 @@ footer {
 #FAQ {
   scroll-margin-top: 17.5vh;
   display: flex;
-  flex-direction : column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   row-gap: 75px;
 }
 
 #benefits,
-#installation > div {
+#installation>div {
   scroll-margin-top: 17.5vh;
   display: flex;
   flex-wrap: wrap;
@@ -163,7 +166,7 @@ footer {
 }
 
 .part img {
-  grid-area:  1 / 2 / 2 / 2;
+  grid-area: 1 / 2 / 2 / 2;
   transform: rotate(5deg);
   justify-self: center;
   margin-top: 5vh;
@@ -171,26 +174,26 @@ footer {
 }
 
 .part h3 {
-  grid-area 1 / 1 / 1 / 1;
+  grid-area: 1 / 1 / 1 / 1;
   font-size: 30px;
 }
 
 .part p {
-  grid-area 2 / 1 / 2 / 1;
+  grid-area: 2 / 1 / 2 / 1;
   font-size: 20px;
 }
 
 .alt img {
-  grid-area : 1 / 1 / 1 / 1;
+  grid-area: 1 / 1 / 1 / 1;
   transform: rotate(-5deg);
 }
 
 .alt h3 {
-  grid-area : 1 / 2 / 1 / 2;
-} 
+  grid-area: 1 / 2 / 1 / 2;
+}
 
-.alt p{
-  grid-area : 2 / 2 / 2 / 2;
+.alt p {
+  grid-area: 2 / 2 / 2 / 2;
 }
 
 .box {
@@ -203,7 +206,7 @@ footer {
 }
 
 .box img {
-  height : 120px;
+  height: 120px;
 }
 
 .btn {
@@ -213,24 +216,24 @@ footer {
   column-gap: 10px;
   padding: 20px 14px;
   border-radius: 15px;
-  color : #f9f9f9;
+  color: #f9f9f9;
   background-color: #6F00FF;
   transition: 0.5s ease;
   user-select: none;
 }
 
-.btn > img {
-  height : 45px;
+.btn>img {
+  height: 45px;
 }
 
-.btn > p {
+.btn>p {
   font-size: 25px;
 }
 
 .btn:hover {
   cursor: pointer;
   text-decoration: none;
-  background-color: #5400be; 
+  background-color: #5400be;
   transition: 0.5s ease;
 }
 
@@ -245,14 +248,14 @@ footer {
 }
 
 #faq hr {
-  border: 2px solid #404040; 
+  border: 2px solid #404040;
 }
 
 .question {
   padding: 20px 10px;
 }
 
-.question > div {
+.question>div {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -304,7 +307,7 @@ footer {
     margin: 0 7.5vw;
   }
 
-  #content > div {
+  #content>div {
     margin: 10px 15px;
   }
 
@@ -395,7 +398,7 @@ footer {
   .part {
     grid-template-columns: 40% 40%;
   }
-  
+
   #controls {
     margin-right: 20px;
     column-gap: 20px;

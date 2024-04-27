@@ -1,0 +1,20 @@
+{
+  "Modes": {
+    "Zen": false,
+    "GreyScale": false
+  },
+  "Disable": {
+    "JavaScript": false,
+    "CSS": false
+  },
+  "Block": {
+    "Popups": false,
+    "Images": false,
+    "Videos": false,
+    "Audio": false,
+    "Links": false,
+    "Tables": false,
+    "Forms": false,
+    "Embeds": false
+  }
+}

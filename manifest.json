@@ -1,6 +1,41 @@
 {
-    "name": "Zenify",
-    "version": "1.0.0",
-    "author": "RedeemedSpoon (QustoTemmo@protonmail.com)",
-    "description": "An Extension That Tweak Websites & Customize Browsing Experience To Better Suit Your Needs."
+  "name": "Zenify",
+  "short_name": "Zenify",
+  "version": "1.0.0",
+  "author": "RedeemedSpoon (QustoTemmo@protonmail.com)",
+  "homepage_url": "https://github.com/RedeemedSpoon/Zenify",
+  "description": "An Extension That Tweak Websites & Customize Browsing Experience To Better Suit Your Needs.",
+  "manifest_version": 2,
+  "incognito": "spanning",
+  "icons": {
+    "32": "icons/icon_32.png",
+    "64": "icons/icon_64.png",
+    "96": "icons/icon_96.png"
+  },
+  "browser_action": {
+    "default_title": "Zenify",
+    "default_popup": "popup.html",
+    "default_area": "navbar",
+    "default_icon": {
+      "32": "icons/icon_32.png",
+      "64": "icons/icon_64.png",
+      "96": "icons/icon_96.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "main.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "activeTab"
+  ]
 }

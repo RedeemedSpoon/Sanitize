@@ -14,7 +14,7 @@ const goToChapter = (direction) => {
 
   if (newIndex !== index) {
     index = newIndex;
-    chapters[index].scrollIntoView({ behavior: 'smooth', block: 'start'});
+    chapters[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 };
 
@@ -22,7 +22,7 @@ upBtn.addEventListener("click", () => goToChapter("up"));
 downBtn.addEventListener("click", () => goToChapter());
 downloadBtn.addEventListener("click", () => {
   index = 3;
-  chapters[3].scrollIntoView({ behavior: 'smooth', block: 'start'});
+  chapters[3].scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
 document.addEventListener("keydown", (event) => {
@@ -36,8 +36,8 @@ document.addEventListener("keydown", (event) => {
 });
 
 questions.forEach((question) => {
-    question.addEventListener("click", () => {
-        question.querySelector(".arrow").classList.toggle("active");
-        question.querySelector(".answer").classList.toggle("visible");
-    });
+  question.addEventListener("click", () => {
+    question.querySelector(".arrow").classList.toggle("active");
+    question.querySelector(".answer").classList.toggle("visible");
+  });
 });
