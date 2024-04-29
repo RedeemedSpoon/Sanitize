@@ -6,7 +6,7 @@
 }
 
 img {
-  user-select: none
+  user-select: none;
 }
 
 a {
@@ -25,13 +25,13 @@ li {
 }
 
 h1 {
-  color: #6F00FF;
+  color: #6f00ff;
   font-weight: 700;
   font-size: 30px;
 }
 
 hr {
-  border: 3px solid #6F00FF;
+  border: 3px solid #6f00ff;
   border-radius: 50%;
 }
 
@@ -46,8 +46,8 @@ hr {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
-  background-image: url("./assets/background.jpg");
+  font-family: 'Open Sans', sans-serif;
+  background-image: url('./assets/background.jpg');
   animation: scroll linear infinite 30s;
   background-position: center;
   background-size: contain;
@@ -73,10 +73,10 @@ header {
   margin-right: 30px;
   column-gap: 40px;
   font-size: 24px;
-  color: #6F00FF;
+  color: #6f00ff;
 }
 
-#controls>*:hover {
+#controls > *:hover {
   transition: 0.5s ease;
   cursor: pointer;
 }
@@ -96,9 +96,9 @@ footer {
   height: 75vh;
   row-gap: 40px;
   padding: 25px;
-  color: #6F00FF;
+  color: #6f00ff;
   text-align: center;
-  background: linear-gradient(to top, rgba(170, 255, 59, 0.775) 15%, rgba(122, 216, 0, 0.90) 85%);
+  background: linear-gradient(to top, rgba(170, 255, 59, 0.775) 15%, rgba(122, 216, 0, 0.9) 85%);
 }
 
 #introduction h1 {
@@ -112,7 +112,7 @@ footer {
 
 #main {
   background-color: #f9f9f9;
-  z-index: 1
+  z-index: 1;
 }
 
 #content {
@@ -123,7 +123,7 @@ footer {
   row-gap: 25px;
 }
 
-#content>div {
+#content > div {
   margin: 35px 50px;
 }
 
@@ -139,7 +139,7 @@ footer {
 }
 
 #benefits,
-#installation>div {
+#installation > div {
   scroll-margin-top: 17.5vh;
   display: flex;
   flex-wrap: wrap;
@@ -217,16 +217,16 @@ footer {
   padding: 20px 14px;
   border-radius: 15px;
   color: #f9f9f9;
-  background-color: #6F00FF;
+  background-color: #6f00ff;
   transition: 0.5s ease;
   user-select: none;
 }
 
-.btn>img {
+.btn > img {
   height: 45px;
 }
 
-.btn>p {
+.btn > p {
   font-size: 25px;
 }
 
@@ -255,7 +255,7 @@ footer {
   padding: 20px 10px;
 }
 
-.question>div {
+.question > div {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -290,7 +290,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-
   body {
     line-height: 25px;
   }
@@ -307,7 +306,7 @@ footer {
     margin: 0 7.5vw;
   }
 
-  #content>div {
+  #content > div {
     margin: 10px 15px;
   }
 
@@ -339,7 +338,6 @@ footer {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1025px) {
-
   body {
     line-height: 30px;
   }
@@ -371,7 +369,6 @@ footer {
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1488px) {
-
   header {
     display: none;
   }
@@ -394,7 +391,6 @@ footer {
 }
 
 @media only screen and (min-width: 1488px) and (max-width: 1740px) {
-
   .part {
     grid-template-columns: 40% 40%;
   }
