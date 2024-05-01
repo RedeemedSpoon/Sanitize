@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Tweak Websites & Customize Browsing Experience To Better Suit Your Needs." />
+    <title>Zenify</title>
+    <link rel="icon" href="./icons/zenify.svg" />
+    <link rel="stylesheet" href="./popup.css" media="all" />
+  </head>
+  <body>
+    <header>
+      <audio><source src="./yay.mp3" type="audio/mpeg" /></audio>
+      <img src="icons/zenify.svg" alt="Zenify" height="28" title="Zenify Here To Boost Your Productivity" />
+      <div>
+        <img src="icons/theme.png" alt="Theme" width="24" height="24" style="margin-right: 5px" title="Toggle Theme" />
+        <img src="icons/toggle.png" alt="Toggle" width="24" height="24" title="Toggle Zenify On/Off" />
+      </div>
+    </header>
+    <main>
+      <form>
+        <fieldset id="settings">
+          <legend for="settings">
+            <button title="Settings on Here Will be Applied to All Websites" id="global" class="active">Global</button>
+            <button title="Settings on Here Will be Applied Only to This Specific Website" id="local">Local</button>
+          </legend>
+          <fieldset id="filter">
+            <legend for="filter">Filters</legend>
+            <div title="Add/Remove HTML Filters">
+              <input type="checkbox" id="html" />
+              <label for="html">HTML Filters</label>
+            </div>
+            <div title="Add/Remove CSS Filters">
+              <input type="checkbox" id="css" />
+              <label for="css">CSS Filters</label>
+            </div>
+            <div title="Add/Remove JS Filters">
+              <input type="checkbox" id="js" />
+              <label for="js">JS Filters</label>
+            </div>
+            <div style="margin-top: 10px">
+              <button title="Add/Remove Some Unwanted Filters" id="change">Add/Remove Filters</button>
+              <button title="View All Filters" id="view">View All Filters</button>
+            </div>
+          </fieldset>
+          <fieldset id="mode">
+            <legend for="mode">Modes</legend>
+            <div title="Toggle Zen Mode">
+              <input type="checkbox" id="zen" />
+              <label for="zen">Zen Mode</label>
+            </div>
+            <div title="Toggle Greyscale Mode">
+              <input type="checkbox" id="greyscale" />
+              <label for="greyscale">Greyscale Mode</label>
+            </div>
+          </fieldset>
+          <fieldset id="disable">
+            <legend for="disable">Dangerous</legend>
+            <div title="Toggle CSS (May Break Your Site)">
+              <input type="checkbox" id="rm-css" />
+              <label for="rm-css">Disable CSS</label>
+            </div>
+            <div title="Toggle JS (May Break Your Site)">
+              <input type="checkbox" id="rm-js" />
+              <label for="rm-js">Disable JS</label>
+            </div>
+          </fieldset>
+          <fieldset id="block">
+            <legend for="block">Block Annoyances</legend>
+            <div title="Toggle Popups">
+              <input type="checkbox" id="popup" />
+              <label for="popup">Popups</label>
+            </div>
+            <div title="Toggle Images">
+              <input type="checkbox" id="image" />
+              <label for="image">Images</label>
+            </div>
+            <div title="Toggle Videos">
+              <input type="checkbox" id="video" />
+              <label for="video">Videos</label>
+            </div>
+            <div title="Toggle Audios">
+              <input type="checkbox" id="audio" />
+              <label for="audio">Audios</label>
+            </div>
+            <div title="Toggle Tables">
+              <input type="checkbox" id="table" />
+              <label for="table">Tables</label>
+            </div>
+            <div title="Toggle Forms">
+              <input type="checkbox" id="form" />
+              <label for="form">Forms</label>
+            </div>
+            <div title="Toggle Embedded Objects">
+              <input type="checkbox" id="embed" />
+              <label for="embed">Embedded Objects</label>
+            </div>
+          </fieldset>
+          <div style="margin: 5px">
+            <button title="Export Current Settings" id="export">Export Settings</button>
+            <button title="Import Previous Settings" id="import">Import Settings</button>
+          </div>
+        </fieldset>
+      </form>
+    </main>
+    <footer>
+      <div>
+        <a href="https://github.com/RedeemedSpoon/Zenify" target="_blank" title="Zenify's GitHub Page">
+          <img src="icons/github.png" alt="GitHub" width="18" height="18" />
+          <p>GitHub</p>
+        </a>
+        <a href="https://RedeemedSpoon.github.io/Zenify" target="_blank" title="Zenify's Website">
+          <img src="icons/website.png" alt="Website" width="18" height="18" />
+          <p>Website</p>
+        </a>
+      </div>
+      <p>Version: 1.0.0</p>
+    </footer>
+    <script src="./popup.js"></script>
+  </body>
+</html>

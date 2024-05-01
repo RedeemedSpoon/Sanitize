@@ -1,20 +1,28 @@
 {
-  "Mode": {
+  "EnableExtension": true,
+  "DarkMode": false,
+  "ShowMessage": false,
+  "Modes": {
     "Zen": false,
     "GreyScale": false
   },
-  "Disable": {
+  "Dangerous": {
     "JavaScript": false,
     "CSS": false
   },
-  "Block": {
+  "Block Annoyances": {
     "Popups": false,
     "Images": false,
     "Videos": false,
-    "Audio": false,
-    "Links": false,
+    "Audios": false,
     "Tables": false,
     "Forms": false,
     "Embeds": false
-  }
+  },
+  "EnabledFilters": {
+    "HTML": true,
+    "CSS": true,
+    "JS": true
+  },
+  "Filters": []
 }

@@ -3,23 +3,28 @@
   "short_name": "Zenify",
   "version": "1.0.0",
   "author": "RedeemedSpoon (QustoTemmo@protonmail.com)",
-  "homepage_url": "https://github.com/RedeemedSpoon/Zenify",
+  "homepage_url": "https://RedeemedSpoon.github.io/Zenify/",
   "description": "An Extension That Tweak Websites & Customize Browsing Experience To Better Suit Your Needs.",
   "manifest_version": 2,
   "incognito": "spanning",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{5bd7bac5-f2c3-48b7-a271-9162955c53f9}"
+    }
+  },
   "icons": {
-    "32": "icons/icon_32.png",
-    "64": "icons/icon_64.png",
-    "96": "icons/icon_96.png"
+    "32": "src/icons/icon_32.png",
+    "64": "src/icons/icon_64.png",
+    "96": "src/icons/icon_96.png"
   },
   "browser_action": {
     "default_title": "Zenify",
-    "default_popup": "popup.html",
+    "default_popup": "src/popup.html",
     "default_area": "navbar",
     "default_icon": {
-      "32": "icons/icon_32.png",
-      "64": "icons/icon_64.png",
-      "96": "icons/icon_96.png"
+      "32": "src/icons/icon_32.png",
+      "64": "src/icons/icon_64.png",
+      "96": "src/icons/icon_96.png"
     }
   },
   "content_scripts": [
@@ -28,7 +33,7 @@
         "*://*/*"
       ],
       "js": [
-        "main.js"
+        "src/content.js"
       ],
       "all_frames": true,
       "match_about_blank": true,
@@ -36,6 +41,11 @@
     }
   ],
   "permissions": [
-    "activeTab"
+    "webRequestBlocking",
+    "webRequest",
+    "<all_urls>",
+    "storage",
+    "activeTab",
+    "tabs"
   ]
 }
