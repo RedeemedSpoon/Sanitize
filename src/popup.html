@@ -11,11 +11,12 @@
   </head>
   <body>
     <header>
-      <audio><source src="./yay.mp3" type="audio/mpeg" /></audio>
-      <img src="icons/zenify.svg" alt="Zenify" height="28" title="Zenify Here To Boost Your Productivity" />
+      <img src="icons/zenify.svg" alt="Zenify" height="28" title="Zenify Here To Boost Your Productivity" id="logo" />
       <div>
-        <img src="icons/theme.png" alt="Theme" width="24" height="24" style="margin-right: 5px" title="Toggle Theme" />
-        <img src="icons/toggle.png" alt="Toggle" width="24" height="24" title="Toggle Zenify On/Off" />
+        <img src="icons/theme.png" alt="Theme" title="Toggle Theme" class="optSetting" id="darkTheme" />
+        <img src="icons/info.png" alt="Info" title="Toggle Info on Blocked Objects" class="optSetting" id="showInfo" />
+        <img src="icons/reset.png" alt="Reset" title="Reset Settings" id="reset" />
+        <img src="icons/activate.png" alt="Activate" title="Toggle Zenify On/Off" class="optSetting" id="activateExt" />
       </div>
     </header>
     <main>
@@ -28,16 +29,16 @@
           <fieldset id="filter">
             <legend for="filter">Filters</legend>
             <div title="Add/Remove HTML Filters">
-              <input type="checkbox" id="html" />
-              <label for="html">HTML Filters</label>
+              <input type="checkbox" id="htmlFilter" />
+              <label for="htmlFilter">HTML Filters</label>
             </div>
             <div title="Add/Remove CSS Filters">
-              <input type="checkbox" id="css" />
-              <label for="css">CSS Filters</label>
+              <input type="checkbox" id="cssFilter" />
+              <label for="cssFilter">CSS Filters</label>
             </div>
             <div title="Add/Remove JS Filters">
-              <input type="checkbox" id="js" />
-              <label for="js">JS Filters</label>
+              <input type="checkbox" id="jsFilter" />
+              <label for="jsFilter">JS Filters</label>
             </div>
             <div style="margin-top: 10px">
               <button title="Add/Remove Some Unwanted Filters" id="change">Add/Remove Filters</button>
@@ -47,23 +48,23 @@
           <fieldset id="mode">
             <legend for="mode">Modes</legend>
             <div title="Toggle Zen Mode">
-              <input type="checkbox" id="zen" />
-              <label for="zen">Zen Mode</label>
+              <input type="checkbox" id="zenMode" />
+              <label for="zenMode">Zen Mode</label>
             </div>
             <div title="Toggle Greyscale Mode">
-              <input type="checkbox" id="greyscale" />
-              <label for="greyscale">Greyscale Mode</label>
+              <input type="checkbox" id="greyscaleMode" />
+              <label for="greyscaleMode">Greyscale Mode</label>
             </div>
           </fieldset>
           <fieldset id="disable">
             <legend for="disable">Dangerous</legend>
             <div title="Toggle CSS (May Break Your Site)">
-              <input type="checkbox" id="rm-css" />
-              <label for="rm-css">Disable CSS</label>
+              <input type="checkbox" id="cssDisable" />
+              <label for="cssDisable">Disable CSS</label>
             </div>
             <div title="Toggle JS (May Break Your Site)">
-              <input type="checkbox" id="rm-js" />
-              <label for="rm-js">Disable JS</label>
+              <input type="checkbox" id="jsDisable" />
+              <label for="jsDisable">Disable JS</label>
             </div>
           </fieldset>
           <fieldset id="block">
@@ -101,6 +102,7 @@
             <button title="Export Current Settings" id="export">Export Settings</button>
             <button title="Import Previous Settings" id="import">Import Settings</button>
           </div>
+          <p id="warning">*You need to reload the page for changes to take effect</p>
         </fieldset>
       </form>
     </main>
@@ -117,6 +119,6 @@
       </div>
       <p>Version: 1.0.0</p>
     </footer>
-    <script src="./popup.js"></script>
+    <script type="module" src="./popup.js"></script>
   </body>
 </html>

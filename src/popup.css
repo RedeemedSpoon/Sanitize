@@ -28,6 +28,11 @@ header {
   margin: 15px 10px;
 }
 
+header div img {
+  width: 24px;
+  height: 24px;
+}
+
 fieldset {
   width: 90%;
   display: flex;
@@ -66,6 +71,16 @@ button:hover {
 .active {
   background-color: #111 !important;
   color: #eee !important;
+}
+
+#warning {
+  display: none;
+  font-size: 10px;
+  margin: 0px;
+}
+
+#warning:hover {
+  cursor: pointer;
 }
 
 footer {

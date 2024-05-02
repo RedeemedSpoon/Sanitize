@@ -41,11 +41,8 @@
     }
   ],
   "permissions": [
-    "webRequestBlocking",
-    "webRequest",
-    "<all_urls>",
+    "tabs",
     "storage",
-    "activeTab",
-    "tabs"
+    "unlimitedStorage"
   ]
 }
