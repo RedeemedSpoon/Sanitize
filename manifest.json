@@ -1,9 +1,9 @@
 {
-  "name": "Zenify",
-  "short_name": "Zenify",
+  "name": "Sanitize",
+  "short_name": "Sanitize",
   "version": "1.0.0",
   "author": "RedeemedSpoon (QustoTemmo@protonmail.com)",
-  "homepage_url": "https://RedeemedSpoon.github.io/Zenify/",
+  "homepage_url": "https://RedeemedSpoon.github.io/Sanitize/",
   "description": "An Extension That Tweak Websites & Customize Browsing Experience To Better Suit Your Needs.",
   "manifest_version": 2,
   "incognito": "spanning",
@@ -13,18 +13,18 @@
     }
   },
   "icons": {
-    "32": "src/icons/icon_32.png",
-    "64": "src/icons/icon_64.png",
-    "96": "src/icons/icon_96.png"
+    "32": "src/icons/logo_32.png",
+    "64": "src/icons/logo_64.png",
+    "96": "src/icons/logo_96.png"
   },
   "browser_action": {
-    "default_title": "Zenify",
+    "default_title": "Sanitize",
     "default_popup": "src/popup.html",
     "default_area": "navbar",
     "default_icon": {
-      "32": "src/icons/icon_32.png",
-      "64": "src/icons/icon_64.png",
-      "96": "src/icons/icon_96.png"
+      "32": "src/icons/logo_32.png",
+      "64": "src/icons/logo_64.png",
+      "96": "src/icons/logo_96.png"
     }
   },
   "content_scripts": [

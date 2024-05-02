@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -25,13 +27,13 @@ li {
 }
 
 h1 {
-  color: #6f00ff;
-  font-weight: 700;
+  color: #8e1dff;
+  font-weight: 600;
   font-size: 30px;
 }
 
 hr {
-  border: 3px solid #6f00ff;
+  border: 3px solid #8e1dff;
   border-radius: 50%;
 }
 
@@ -53,7 +55,7 @@ body {
   background-size: contain;
   overflow-x: hidden;
   line-height: 35px;
-  color: #404040;
+  color: #353535;
   width: 100vw;
 }
 
@@ -73,7 +75,6 @@ header {
   margin-right: 30px;
   column-gap: 40px;
   font-size: 24px;
-  color: #6f00ff;
 }
 
 #controls > *:hover {
@@ -96,9 +97,9 @@ footer {
   height: 75vh;
   row-gap: 40px;
   padding: 25px;
-  color: #6f00ff;
+  color: #8e1dff;
   text-align: center;
-  background: linear-gradient(to top, rgba(170, 255, 59, 0.775) 15%, rgba(122, 216, 0, 0.9) 85%);
+  background: linear-gradient(to top, rgba(95, 255, 63, 0.80) 0%, rgba(37, 224, 0, 0.90) 100%);
 }
 
 #introduction h1 {
@@ -107,7 +108,7 @@ footer {
 
 #introduction p {
   max-width: 600px;
-  font-size: 23px;
+  font-size: 24px;
 }
 
 #main {
@@ -217,7 +218,7 @@ footer {
   padding: 20px 14px;
   border-radius: 15px;
   color: #f9f9f9;
-  background-color: #6f00ff;
+  background-color: #8e1dff;
   transition: 0.5s ease;
   user-select: none;
 }
@@ -233,7 +234,7 @@ footer {
 .btn:hover {
   cursor: pointer;
   text-decoration: none;
-  background-color: #5400be;
+  background-color: #6d00db;
   transition: 0.5s ease;
 }
 
@@ -243,12 +244,12 @@ footer {
   display: flex;
   flex-direction: column;
   align-self: center;
-  border: #404040 3px solid;
+  border: #333 3px solid;
   border-radius: 25px;
 }
 
 #faq hr {
-  border: 2px solid #404040;
+  border: 2px solid #333;
 }
 
 .question {
