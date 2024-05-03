@@ -1,4 +1,4 @@
-![Sanitize](./assets/sanitize.png)
+![Sanitize](./assets/markdown.png)
 
 ## Sanitize: Craft Your Ideal Browsing Experience
 

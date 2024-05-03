@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
 body {
   overflow: hidden;
   width: 22.5rem;
   margin: 5px 15px;
   user-select: none;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: sans-serif;
   background-color: #fcfcfc;
   color: #353535;
 }
@@ -102,4 +100,40 @@ footer a {
   display: flex;
   align-items: center;
   column-gap: 5px;
+}
+
+/* dark mode */
+
+body.dark {
+  background-color: #252525;
+  color: #fcfcfc;
+}
+
+fieldset.dark {
+  border: 1px solid #fcfcfc;
+}
+
+button.dark {
+  border: 1px solid #fcfcfc;
+  color: #fcfcfc;
+}
+
+button.dark:hover {
+  background-color: #ececec;
+  color: #444;
+}
+
+.active.dark {
+  background-color: #fcfcfc !important;
+  color: #252525 !important;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 1);
+  z-index: 1;
 }

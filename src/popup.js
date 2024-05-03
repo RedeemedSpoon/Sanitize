@@ -12,7 +12,6 @@ const logo = document.getElementById('logo');
 document.addEventListener('DOMContentLoaded', () => reloadSettings());
 logo.addEventListener('click', () => new Audio('./yay.mp3').play());
 
-// Top Right Buttons
 resetBtn.addEventListener('click', async () => {
   await resetSettings();
   window.location.reload();
@@ -44,7 +43,10 @@ allSettings.forEach((setting) =>
 );
 
 optSettings.forEach((optSetting) => {
-  optSetting.addEventListener('click', () => toggleOptSettings(optSetting.id));
+  optSetting.addEventListener('click', () => {
+    toggleOptSettings(optSetting.id);
+    window.location.reload();
+  });
 });
 
 warning.addEventListener('click', () => {
@@ -53,9 +55,18 @@ warning.addEventListener('click', () => {
 
 // Functions
 const reloadSettings = async () => {
-  await initOptSettings([...optSettings]);
+  const results = await initOptSettings([...optSettings]);
+  results['darkTheme'] && toggleTheme();
+
   const url = globalBtn.classList.contains('active') ? 'global' : await getUrl();
   allSettings.forEach(async (setting) => {
     setting.checked = await getSettings(url, setting.id);
   });
+};
+
+const toggleTheme = () => {
+  document.body.classList.add('dark');
+  document.querySelectorAll('button').forEach((btn) => btn.classList.add('dark'));
+  document.querySelectorAll('fieldset').forEach((fieldset) => fieldset.classList.add('dark'));
+  document.querySelectorAll('img').forEach((img) => (img.src = img.src.replace('light', 'dark')));
 };

@@ -11,11 +11,13 @@ const initOptSettings = async (optSettings) => {
   const settings = await browser.storage.local.get();
 
   optSettings.forEach(async (optSetting) => {
-    if (!settings[optSetting.id]) {
+    if (settings[optSetting.id] === undefined) {
       settings[optSetting.id] = optSetting.id === 'activateExt' ? true : false;
       await browser.storage.local.set(settings);
     }
   });
+
+  return settings;
 };
 
 const toggleOptSettings = async (settingId) => {

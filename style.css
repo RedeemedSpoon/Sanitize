@@ -136,7 +136,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 75px;
+  row-gap: 50px;
 }
 
 #benefits,
@@ -159,18 +159,17 @@ footer {
 
 .part {
   display: grid;
-  grid-template-columns: 35% 35%;
-  grid-template-rows: 50px 260px;
+  grid-template-columns: 30% 30%;
+  grid-template-rows: 50px 275px;
   justify-content: center;
-  column-gap: 7.5vw;
-  row-gap: 50px;
+  column-gap: 5vw;
+  row-gap: 35px;
 }
 
 .part img {
   grid-area: 1 / 2 / 2 / 2;
   transform: rotate(5deg);
   justify-self: center;
-  margin-top: 5vh;
   height: 12.5rem;
 }
 
