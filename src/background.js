@@ -17,6 +17,23 @@ browser.contextMenus.onClicked.addListener(() => {
 
 // Browser Action
 
+// Message Listener
+browser.runtime.onMessage.addListener((request) => {
+  if (request.type === 'imgBlock') {
+    console.log(request);
+    browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
+      await browser.tabs.insertCSS({
+        tabId: tabs[0].id,
+        code: '* { background-image: none !important; }',
+      });
+    });
+  } else if (request.type === 'audioBlock') {
+    browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
+      await browser.tabs.update(tabs[0].id, {muted: true});
+    });
+  }
+});
+
 // Web Requests
 browser.webRequest.onBeforeRequest.addListener(
   async (details) => {

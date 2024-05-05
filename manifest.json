@@ -37,7 +37,7 @@
       ],
       "all_frames": true,
       "match_about_blank": true,
-      "run_at": "document_start"
+      "run_at": "document_idle"
     }
   ],
   "background": {
@@ -52,7 +52,6 @@
     "storage",
     "unlimitedStorage",
     "contextMenus",
-    "scripting",
     "webRequest",
     "webRequestBlocking",
     "<all_urls>"
