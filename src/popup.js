@@ -38,7 +38,6 @@ allSettings.forEach((setting) =>
     const url = globalBtn.classList.contains('active') ? 'global' : await getUrl();
     await setSettings(url, setting.id, setting.checked);
     warning.style.display = 'block';
-    console.log(await browser.storage.local.get());
   }),
 );
 

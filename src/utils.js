@@ -1,3 +1,4 @@
+// Utility Function
 const getUrl = async () => {
   const tabs = await browser.tabs.query({active: true, currentWindow: true});
   return new URL(tabs[0].url).hostname;
@@ -48,4 +49,8 @@ const setSettings = async (scope, settingId, newValue) => {
   await browser.storage.local.set(settings);
 };
 
-export {setSettings, getSettings, getUrl, initOptSettings, toggleOptSettings, resetSettings};
+const checkSetting = async (setting, url) => {
+  return (await getSettings('global', setting)) || (await getSettings(url, setting));
+};
+
+export {setSettings, getSettings, getUrl, initOptSettings, toggleOptSettings, resetSettings, checkSetting};

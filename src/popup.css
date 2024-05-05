@@ -73,6 +73,11 @@ button:hover {
   color: #eee !important;
 }
 
+#filter {
+  justify-content: center;
+  column-gap: 15px;
+}
+
 #warning {
   display: none;
   font-size: 10px;

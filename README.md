@@ -22,7 +22,7 @@
 
 ### Installation & How to Use:
 
-Head over our [Website](https://redeemedspoon.github.io/Sanitize/) to install the extension on your brow and get started with our small guide to give you to a brief introduction. For more detailed information, please feel free to explore other parts of our site, such as the FAQ section or the changelog.
+Head over to our [Website](https://redeemedspoon.github.io/Sanitize/) to install the extension on your browser and get started with our small guide to give you to a brief introduction. For more detailed information, please feel free to explore other parts of our site, such as the FAQ section or the changelog.
 
 ### License:
 
