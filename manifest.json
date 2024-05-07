@@ -19,7 +19,7 @@
   },
   "browser_action": {
     "default_title": "Sanitize",
-    "default_popup": "src/popup.html",
+    "default_popup": "src/popup/popup.html",
     "default_area": "navbar",
     "default_icon": {
       "32": "src/icons/logo_32.png",
@@ -33,7 +33,7 @@
         "<all_urls>"
       ],
       "js": [
-        "src/content-script.js"
+        "src/content.js"
       ],
       "all_frames": true,
       "match_about_blank": true,
@@ -49,6 +49,7 @@
   },
   "permissions": [
     "tabs",
+    "alarms",
     "storage",
     "unlimitedStorage",
     "contextMenus",

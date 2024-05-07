@@ -2,11 +2,23 @@
   const utilsSrc = browser.runtime.getURL('./src/utils.js');
   const url = window.location.hostname;
   const utils = await import(utilsSrc);
-  const {checkSetting} = utils;
+  const {checkSetting, getContent} = utils;
 
   const observerSrc = browser.runtime.getURL('./src/observer.js');
   const observer = await import(observerSrc);
   const {addNewObserver} = observer;
+
+  if (!(await getContent('activateExt'))) {
+    return;
+  }
+
+  // Zen Mode
+  if (await checkSetting('zen', url)) {
+  }
+
+  // GreyScale Mode
+  if (await checkSetting('greyscale', url)) {
+  }
 
   // Disable Css
   if (await checkSetting('css', url)) {
@@ -56,7 +68,7 @@
     addNewObserver('js');
   }
 
-  // Block Images
+  //Block Images
   if (await checkSetting('image', url)) {
     const images = document.querySelectorAll('img, picture, svg, img source, area, map, image');
     images.forEach((image) => image.remove());
@@ -98,5 +110,17 @@
     const embeds = document.querySelectorAll('iframe, embed, object, slot, template, portal, frame, frameSet, shadow');
     embeds.forEach((embed) => embed.remove());
     addNewObserver('embed');
+  }
+
+  // HTML Filters
+  if (await checkSetting('htmlFilter', url)) {
+  }
+
+  // CSS Filters
+  if (await checkSetting('cssFilter', url)) {
+  }
+
+  // Js filters
+  if (await checkSetting('jsFilter', url)) {
   }
 })();

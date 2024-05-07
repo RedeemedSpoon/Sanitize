@@ -1,10 +1,19 @@
-import {getSettings, setSettings, getUrl, initOptSettings, toggleOptSettings, resetSettings} from './utils.js';
+import {getUrl, setSettings, getSettings, initOptSettings, toggleOptSettings, resetSettings} from '../utils.js';
 
 const allSettings = document.querySelectorAll('input');
-const optSettings = document.querySelectorAll('.optSetting');
+
+const themeBtn = document.getElementById('darkTheme');
+const infoBtn = document.getElementById('showInfo');
+const activateBtn = document.getElementById('activateExt');
 const resetBtn = document.getElementById('reset');
+const optSettings = [themeBtn, infoBtn, activateBtn];
+
 const globalBtn = document.getElementById('global');
 const localBtn = document.getElementById('local');
+
+const exportBtn = document.getElementById('export');
+const importBtn = document.getElementById('import');
+
 const warning = document.getElementById('warning');
 const logo = document.getElementById('logo');
 
@@ -12,9 +21,15 @@ const logo = document.getElementById('logo');
 document.addEventListener('DOMContentLoaded', () => reloadSettings());
 logo.addEventListener('click', () => new Audio('./yay.mp3').play());
 
-resetBtn.addEventListener('click', async () => {
-  await resetSettings();
-  window.location.reload();
+// Export & Import Buttons
+exportBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  browser.runtime.sendMessage({type: 'export'});
+});
+
+importBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  browser.runtime.sendMessage({type: 'import'});
 });
 
 // Scope Buttons
@@ -52,9 +67,14 @@ warning.addEventListener('click', () => {
   warning.style.display = 'none';
 });
 
+resetBtn.addEventListener('click', async () => {
+  await resetSettings();
+  window.location.reload();
+});
+
 // Functions
 const reloadSettings = async () => {
-  const results = await initOptSettings([...optSettings]);
+  const results = await initOptSettings([themeBtn.id, infoBtn.id, activateBtn.id]);
   results['darkTheme'] && toggleTheme();
 
   const url = globalBtn.classList.contains('active') ? 'global' : await getUrl();

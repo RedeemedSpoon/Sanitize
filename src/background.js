@@ -1,8 +1,9 @@
-import {checkSetting} from './utils.js';
+import {checkSetting, getContent} from './utils.js';
+// import {updateEasyList, isInEasyList} from './easylist.js';
 
 // Initialization
-browser.runtime.onInstalled.addListener(() => {
-  browser.tabs.create({url: 'https://RedeemedSpoon.github.io/Sanitize#usage'});
+browser.runtime.onInstalled.addListener(async () => {
+  // await updateEasyList();
   browser.contextMenus.create({
     id: 'sanitize',
     title: 'Sanitize Them All !',
@@ -17,27 +18,57 @@ browser.contextMenus.onClicked.addListener(() => {
 
 // Browser Action
 
+// Browser Shortcuts
+
+// Alarms
+browser.alarms.create('EasyList Update', {
+  delayInMinutes: 30,
+  periodInMinutes: 45,
+});
+
+browser.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === 'EasyList Update') {
+    // updateEasyList();
+  }
+});
+
 // Message Listener
 browser.runtime.onMessage.addListener((request) => {
-  if (request.type === 'imgBlock') {
-    console.log(request);
-    browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
-      await browser.tabs.insertCSS({
-        tabId: tabs[0].id,
-        code: '* { background-image: none !important; }',
+  switch (request.type) {
+    case 'imageBlock':
+      browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
+        await browser.tabs.insertCSS({
+          tabId: tabs[0].id,
+          code: '* { background-image: none !important; }',
+        });
       });
-    });
-  } else if (request.type === 'audioBlock') {
-    browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
-      await browser.tabs.update(tabs[0].id, {muted: true});
-    });
+      break;
+
+    case 'audioBlock':
+      browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
+        await browser.tabs.update(tabs[0].id, {muted: true});
+      });
+      break;
+
+    case 'export':
+      console.log('export');
+      break;
+
+    case 'import':
+      console.log('import');
+      break;
   }
 });
 
 // Web Requests
 browser.webRequest.onBeforeRequest.addListener(
   async (details) => {
+    if (!(await getContent('activateExt'))) {
+      return;
+    }
+
     const forbiddenElements = await getElementsToBlock();
+    // const inEasyList = await isInEasyList(details.url);
     if (forbiddenElements.includes(details.type)) {
       return {cancel: true};
     }
@@ -46,6 +77,7 @@ browser.webRequest.onBeforeRequest.addListener(
   ['blocking'],
 );
 
+// Functions
 const getElementsToBlock = async () => {
   const settingsName = ['css', 'js', 'image', 'video', 'audio', 'font', 'embed'];
   const result = [];

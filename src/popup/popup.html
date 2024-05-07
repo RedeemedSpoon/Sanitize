@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="Tweak Websites & Customize Browsing Experience To Better Suit Your Needs." />
     <title>Sanitize</title>
-    <link rel="icon" href="./icons/light/sanitize.png" />
+    <link rel="icon" href="./../icons/light/sanitize.png" />
     <link rel="stylesheet" href="./popup.css" media="all" />
   </head>
   <body>
     <header>
-      <img src="icons/light/sanitize.png" alt="Sanitize" height="28" title="Sanitize, Here To Boost Your Productivity" id="logo" />
+      <img src="../icons/light/sanitize.png" alt="Sanitize" height="28" title="Boost Your Productivity!" id="logo" />
       <div>
-        <img src="icons/light/theme.png" alt="Theme" title="Toggle Theme" class="optSetting" id="darkTheme" />
-        <img src="icons/light/info.png" alt="Info" title="Toggle Info on Blocked Objects" class="optSetting" id="showInfo" />
-        <img src="icons/light/reset.png" alt="Reset" title="Reset Settings" id="reset" />
-        <img src="icons/light/activate.png" alt="Activate" title="Toggle Sanitize On/Off" class="optSetting" id="activateExt" />
+        <img src="../icons/light/theme.png" alt="Theme" title="Toggle Theme" id="darkTheme" />
+        <img src="../icons/light/info.png" alt="Info" title="Toggle Info on Blocked Objects" id="showInfo" />
+        <img src="../icons/light/reset.png" alt="Reset" title="Reset Settings" id="reset" />
+        <img src="../icons/light/activate.png" alt="Activate" title="Toggle Sanitize On/Off" id="activateExt" />
       </div>
     </header>
     <main>
@@ -48,12 +48,12 @@
           <fieldset id="mode">
             <legend for="mode">Modes</legend>
             <div title="Toggle Zen Mode">
-              <input type="checkbox" id="zenMode" />
-              <label for="zenMode">Zen Mode</label>
+              <input type="checkbox" id="zen" />
+              <label for="zen">Zen Mode</label>
             </div>
             <div title="Toggle Greyscale Mode">
-              <input type="checkbox" id="greyscaleMode" />
-              <label for="greyscaleMode">Greyscale Mode</label>
+              <input type="checkbox" id="greyscale" />
+              <label for="greyscale">Greyscale Mode</label>
             </div>
           </fieldset>
           <fieldset id="disable">
@@ -110,7 +110,7 @@
               <label for="embed">Embedded Objects</label>
             </div>
           </fieldset>
-          <div style="margin: 5px">
+          <div id="sys">
             <button title="Export Current Settings" id="export">Export Settings</button>
             <button title="Import Previous Settings" id="import">Import Settings</button>
           </div>
@@ -121,11 +121,11 @@
     <footer>
       <div>
         <a href="https://github.com/RedeemedSpoon/Sanitize" target="_blank" title="Sanitize's GitHub Page">
-          <img src="icons/light/github.png" alt="GitHub" width="18" height="18" />
+          <img src="../icons/light/github.png" alt="GitHub" width="18" height="18" />
           <p>GitHub</p>
         </a>
         <a href="https://RedeemedSpoon.github.io/Sanitize" target="_blank" title="Sanitize's Website">
-          <img src="icons/light/website.png" alt="Website" width="18" height="18" />
+          <img src="../icons/light/website.png" alt="Website" width="18" height="18" />
           <p>Website</p>
         </a>
       </div>

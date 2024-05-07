@@ -1,3 +1,4 @@
+// Observers to Detect Change in The DOM
 const embedTags = ['IFRAME', 'EMBED', 'OBJECT', 'SLOT', 'TEMPLATE', 'PORTAL', 'FRAME', 'FRAMESET', 'SHADOW'];
 const formTags = ['FORM', 'INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'FIELDSET', 'LEGEND', 'LABEL', 'OUTPUT'];
 const tableTags = ['TABLE', 'THEAD', 'TBODY', 'TFOOT', 'TR', 'TH', 'TD', 'CAPTION', 'COL', 'COLGROUP'];
@@ -9,7 +10,9 @@ const addNewObserver = (type) => {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
-        mutation.addedNodes.forEach((node) => traverseNode(node, type));
+        mutation.addedNodes.forEach((node) => {
+          traverseNode(node, type);
+        });
       }
     });
   });
@@ -53,6 +56,12 @@ const checkObserver = (node, type) => {
 
     case 'embed':
       embedTags.includes(name) && node.remove();
+      break;
+
+    case 'greyscale':
+      break;
+
+    case 'zen':
       break;
 
     case 'css':
