@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Tweak Websites & Customize Browsing Experience To Better Suit Your Needs." />
+    <title>Sanitize</title>
+    <link rel="icon" href="../icons/logo_96.png" />
+    <link rel="stylesheet" href="./view.css" media="all" />
+  </head>
+  <body>
+    <header>
+      <img src="../icons/light/sanitize.png" alt="Sanitize" height="28" title="Boost Your Productivity!" id="logo" />
+      <div>
+        <button title="Export Current Settings" id="export">Export Settings</button>
+        <button title="Import Previous Settings" id="import">Import Settings</button>
+      </div>
+    </header>
+    <main>
+      <section id="sidebar">
+        <h1>Filters List</h1>
+        <div id="filters">
+          <ul>
+            <li>global</li>
+            <li>www.example.com</li>
+          </ul>
+        </div>
+      </section>
+      <div id="line"></div>
+      <section id="content">
+        <h1>Filters Content</h1>
+        <div id="content-container">
+          <div>
+            <div class="topbar read-bar">
+              <button class="html active">Html</button>
+              <button class="css">Css</button>
+              <button class="js">Js</button>
+            </div>
+            <textarea readonly placeholder="You use this panel to view filters" class="view container"></textarea>
+          </div>
+          <div>
+            <div class="topbar write-bar">
+              <button class="html active">Html</button>
+              <button class="css">Css</button>
+              <button class="js">Js</button>
+            </div>
+            <textarea placeholder="You use this panel to edit filters" class="edit container"></textarea>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <button title="Save MadeEdits" id="save">Save</button>
+    </footer>
+    <input type="file" id="file" accept="application/json" hidden/>
+    <script type="module" src="./view.js" ></script>
+  </body>
+</html>

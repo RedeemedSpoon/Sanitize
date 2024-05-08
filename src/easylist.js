@@ -61,7 +61,6 @@ const parseEasyList = async (text) => {
     cleanUrls.push(...filter3.split(','));
   }
 
-  console.log(cleanUrls);
   return cleanUrls;
 };
 

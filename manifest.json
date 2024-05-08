@@ -50,11 +50,11 @@
   "permissions": [
     "tabs",
     "alarms",
-    "storage",
-    "unlimitedStorage",
     "contextMenus",
     "webRequest",
     "webRequestBlocking",
+    "unlimitedStorage",
+    "storage",
     "<all_urls>"
   ]
 }

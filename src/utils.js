@@ -10,11 +10,6 @@ const resetSettings = async () => {
 
 const exportSettings = async () => {
   const settings = await browser.storage.local.get();
-
-  delete settings['easylist'];
-  delete settings['easyprivacy'];
-  delete settings['annoyance'];
-
   const jsonString = JSON.stringify(settings);
   return new Blob([jsonString], {type: 'application/json'});
 };
@@ -29,7 +24,8 @@ const importSettings = (file) => {
   reader.readAsText(file);
 };
 
-const initOptSettings = async (optSettings) => {
+const initOptSettings = async () => {
+  const optSettings = ['activateExt', 'darkTheme', 'showInfo'];
   const settings = await browser.storage.local.get();
 
   optSettings.forEach(async (optSetting) => {
@@ -38,6 +34,9 @@ const initOptSettings = async (optSettings) => {
       await browser.storage.local.set(settings);
     }
   });
+
+  settings['filters'] = settings['filters'] || {global: {}};
+  await browser.storage.local.set(settings);
 
   return settings;
 };

@@ -33,7 +33,7 @@ browser.alarms.onAlarm.addListener((alarm) => {
 });
 
 // Message Listener
-browser.runtime.onMessage.addListener((request) => {
+browser.runtime.onMessage.addListener(async (request) => {
   switch (request.type) {
     case 'imageBlock':
       browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
@@ -50,12 +50,8 @@ browser.runtime.onMessage.addListener((request) => {
       });
       break;
 
-    case 'export':
-      console.log('export');
-      break;
-
-    case 'import':
-      console.log('import');
+    case 'sync':
+      browser.tabs.create({url: await browser.runtime.getURL('src/filters/view.html')});
       break;
   }
 });

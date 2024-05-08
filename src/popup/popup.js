@@ -5,14 +5,13 @@ const allSettings = document.querySelectorAll('input');
 const themeBtn = document.getElementById('darkTheme');
 const infoBtn = document.getElementById('showInfo');
 const activateBtn = document.getElementById('activateExt');
-const resetBtn = document.getElementById('reset');
 const optSettings = [themeBtn, infoBtn, activateBtn];
 
 const globalBtn = document.getElementById('global');
 const localBtn = document.getElementById('local');
 
-const exportBtn = document.getElementById('export');
-const importBtn = document.getElementById('import');
+const syncBtn = document.getElementById('sync');
+const resetBtn = document.getElementById('reset');
 
 const warning = document.getElementById('warning');
 const logo = document.getElementById('logo');
@@ -20,17 +19,6 @@ const logo = document.getElementById('logo');
 // On Load
 document.addEventListener('DOMContentLoaded', () => reloadSettings());
 logo.addEventListener('click', () => new Audio('./yay.mp3').play());
-
-// Export & Import Buttons
-exportBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  browser.runtime.sendMessage({type: 'export'});
-});
-
-importBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  browser.runtime.sendMessage({type: 'import'});
-});
 
 // Scope Buttons
 globalBtn.addEventListener('click', (e) => {
@@ -72,9 +60,15 @@ resetBtn.addEventListener('click', async () => {
   window.location.reload();
 });
 
+syncBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  browser.runtime.sendMessage({type: 'sync'});
+  window.close();
+});
+
 // Functions
 const reloadSettings = async () => {
-  const results = await initOptSettings([themeBtn.id, infoBtn.id, activateBtn.id]);
+  const results = await initOptSettings();
   results['darkTheme'] && toggleTheme();
 
   const url = globalBtn.classList.contains('active') ? 'global' : await getUrl();
