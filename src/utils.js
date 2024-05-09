@@ -35,7 +35,7 @@ const initOptSettings = async () => {
     }
   });
 
-  settings['filters'] = settings['filters'] || {global: {}};
+  settings['filters'] = settings['filters'] || {global: {html: ['html basic'], css: ['css boring'], js: ['js bad']}};
   await browser.storage.local.set(settings);
 
   return settings;
