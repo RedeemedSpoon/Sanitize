@@ -2,11 +2,11 @@
   const utilsSrc = browser.runtime.getURL('./src/utils.js');
   const url = window.location.hostname;
   const utils = await import(utilsSrc);
-  const {checkSetting, getContent} = utils;
+  const {checkSetting, getContent, initOptSettings} = utils;
 
   const observerSrc = browser.runtime.getURL('./src/observer.js');
   const observer = await import(observerSrc);
-  const {addNewObserver} = observer;
+  const {addNewObserver, zen} = observer;
 
   if (!(await getContent('activateExt'))) {
     return;
@@ -14,14 +14,68 @@
 
   // Zen Mode
   if (await checkSetting('zen', url)) {
+    document.body.replaceWith(document.body.cloneNode(true));
+
+    document.querySelectorAll('link').forEach((cssLink) => {
+      cssLink.rel === 'stylesheet' && cssLink.remove();
+    });
+
+    const styleTags = document.querySelectorAll('style');
+    styleTags.forEach((styleTag) => styleTag.remove());
+
+    const scriptTags = document.querySelectorAll('script');
+    scriptTags.forEach((scriptTag) => scriptTag.remove());
+
+    let elements = document.querySelectorAll('*');
+    elements.forEach((element) => {
+      const name = element.tagName.toLowerCase();
+      zen.includes(name) && element.remove();
+
+      element.style.cssText = '';
+      for (const attribute of element.attributes) {
+        if (attribute.name.startsWith('on')) {
+          element.removeAttribute(attribute.name);
+        }
+      }
+    });
+
+    const allContent =
+      document.querySelector('article') ||
+      document.querySelector('main') ||
+      document.querySelector('#root') ||
+      document.querySelector('.root') ||
+      document.querySelector('#main') ||
+      document.querySelector('.main') ||
+      document.querySelector('#content') ||
+      document.querySelector('.content') ||
+      document.querySelector('#article') ||
+      document.querySelector('.article') ||
+      document.querySelector('#container') ||
+      document.querySelector('.container') ||
+      document.querySelector('body');
+
+    const styleSheet = document.createElement('style');
+    styleSheet.innerText =
+      'body {margin: 6.5% 28.5%; font-size: 20px} body.dark {background-color:#252525; color: #f9f9f9}';
+
+    const settings = await initOptSettings();
+    if (settings['darkTheme']) {
+      document.body.classList.add('dark');
+    }
+
+    document.body.innerHTML = allContent.innerHTML;
+    document.querySelector('head').append(styleSheet);
   }
 
   // GreyScale Mode
-  if (await checkSetting('greyscale', url)) {
+  if (await checkSetting('grayscale', url)) {
+    const page = document.querySelector('html');
+    page.style.filter = 'grayscale(100%)';
+    addNewObserver('grayscale');
   }
 
   // Disable Css
-  if (await checkSetting('css', url)) {
+  if ((await checkSetting('css', url)) && !(await checkSetting('zen', url))) {
     const cssLinks = document.querySelectorAll('link');
     cssLinks.forEach((cssLink) => {
       if (cssLink.rel === 'stylesheet') {
@@ -43,13 +97,8 @@
   }
 
   // Disable Js
-  if (await checkSetting('js', url)) {
+  if ((await checkSetting('js', url)) && !(await checkSetting('zen', url))) {
     document.querySelector('body').replaceWith(document.querySelector('body').cloneNode(true));
-
-    const jsLinks = document.querySelectorAll('link');
-    jsLinks.forEach((jsLink) => {
-      jsLink.src && jsLink.src.includes('.js') && jsLink.remove();
-    });
 
     const scriptTags = document.querySelectorAll('script');
     scriptTags.forEach((scriptTag) => {

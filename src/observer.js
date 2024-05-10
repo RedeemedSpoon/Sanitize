@@ -1,10 +1,12 @@
 // Observers to Detect Change in The DOM
-const embedTags = ['IFRAME', 'EMBED', 'OBJECT', 'SLOT', 'TEMPLATE', 'PORTAL', 'FRAME', 'FRAMESET', 'SHADOW'];
-const formTags = ['FORM', 'INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'FIELDSET', 'LEGEND', 'LABEL', 'OUTPUT'];
-const tableTags = ['TABLE', 'THEAD', 'TBODY', 'TFOOT', 'TR', 'TH', 'TD', 'CAPTION', 'COL', 'COLGROUP'];
-const imgTags = ['IMG', 'PICTURE', 'SVG', 'SOURCE', 'AREA', 'MAP', 'IMAGE'];
-const videoTags = ['VIDEO'];
-const audioTags = ['AUDIO'];
+const embedTags = ['iframe', 'embed', 'object', 'slot', 'template', 'portal', 'frame', 'frameset', 'shadow'];
+const formTags = ['form', 'input', 'textarea', 'select', 'button', 'fieldset', 'legend', 'label', 'output'];
+const tableTags = ['table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption', 'col', 'colgroup'];
+const imgTags = ['img', 'picture', 'svg', 'source', 'area', 'map', 'image'];
+const videoTags = ['video'];
+const audioTags = ['audio'];
+
+const zen = [...embedTags, ...formTags, ...imgTags, 'video', 'audio', 'track', 'script', 'style', 'link', 'dialog'];
 
 const addNewObserver = (type) => {
   const observer = new MutationObserver((mutations) => {
@@ -32,7 +34,7 @@ const traverseNode = (node, type) => {
 };
 
 const checkObserver = (node, type) => {
-  const name = node.nodeName.toUpperCase();
+  const name = node.nodeName.toLowerCase();
   switch (type) {
     case 'image':
       imgTags.includes(name) && node.remove();
@@ -58,21 +60,21 @@ const checkObserver = (node, type) => {
       embedTags.includes(name) && node.remove();
       break;
 
-    case 'greyscale':
+    case 'grayscale':
+      name === 'html' && (node.style.filter = 'grayscale(100%)');
       break;
 
     case 'zen':
       break;
 
     case 'css':
-      name === 'LINK' && node.rel === 'stylesheet' && node.remove();
-      name === 'STYLE' && node.remove();
+      name === 'link' && node.rel === 'stylesheet' && node.remove();
+      name === 'style' && node.remove();
       node.style && (node.style.cssText = '');
       break;
 
     case 'js':
-      name === 'LINK' && node.src && node.src.includes('.js') && node.remove();
-      name === 'SCRIPT' && node.remove();
+      name === 'script' && node.remove();
       node.replaceWith(node.cloneNode(true));
       node.attributes.forEach((attribute) => {
         if (attribute.name.startsWith('on')) {
@@ -83,4 +85,4 @@ const checkObserver = (node, type) => {
   }
 };
 
-export {addNewObserver};
+export {addNewObserver, zen};

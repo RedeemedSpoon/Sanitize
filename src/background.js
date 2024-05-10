@@ -51,7 +51,7 @@ browser.runtime.onMessage.addListener(async (request) => {
       break;
 
     case 'sync':
-      browser.tabs.create({url: await browser.runtime.getURL('src/filters/view.html')});
+      browser.tabs.create({url: await browser.runtime.getURL('src/view-filter/view.html')});
       break;
   }
 });
