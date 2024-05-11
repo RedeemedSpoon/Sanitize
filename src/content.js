@@ -74,6 +74,11 @@
     addNewObserver('grayscale');
   }
 
+  // FreezeMode
+  if (await checkSetting('freeze', url)) {
+    browser.runtime.sendMessage({type: 'freezeMode'});
+  }
+
   // Disable Css
   if ((await checkSetting('css', url)) && !(await checkSetting('zen', url))) {
     const cssLinks = document.querySelectorAll('link');

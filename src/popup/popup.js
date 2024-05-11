@@ -13,6 +13,9 @@ const localBtn = document.getElementById('local');
 const syncBtn = document.getElementById('sync');
 const resetBtn = document.getElementById('reset');
 
+const newBtn = document.getElementById('new');
+const viewBtn = document.getElementById('view');
+
 const warning = document.getElementById('warning');
 const logo = document.getElementById('logo');
 
@@ -35,7 +38,27 @@ localBtn.addEventListener('click', (e) => {
   reloadSettings();
 });
 
-// On Change / Click
+// On Button Click
+newBtn.addEventListener('click', () => {
+  browser.runtime.sendMessage({type: 'newFrame'});
+  window.close();
+});
+
+resetBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+  await resetSettings();
+  window.location.reload();
+});
+
+[syncBtn, viewBtn].forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    browser.runtime.sendMessage({type: 'syncTab'});
+    window.close();
+  });
+});
+
+// On Input Change
 allSettings.forEach((setting) =>
   setting.addEventListener('click', async () => {
     const url = globalBtn.classList.contains('active') ? 'global' : await getUrl();
@@ -53,17 +76,6 @@ optSettings.forEach((optSetting) => {
 
 warning.addEventListener('click', () => {
   warning.style.display = 'none';
-});
-
-resetBtn.addEventListener('click', async () => {
-  await resetSettings();
-  window.location.reload();
-});
-
-syncBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  browser.runtime.sendMessage({type: 'sync'});
-  window.close();
 });
 
 // Functions

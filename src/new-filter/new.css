@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #353535;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: fixed;
+  bottom: 3vh;
+  right: 2vw;
+  width: 30rem;
+  height: 27.5rem;
+  background-color: #ededed;
+  border: 1px solid #252525;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+main.minimized #selector,
+main.minimized #actions,
+main.minimized #content {
+  display: none;
+}
+
+main.minimized {
+  height: fit-content;
+}
+
+#controls {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+}
+
+#controls p {
+  cursor: pointer;
+  font-size: 1.75rem;
+  user-select: none;
+}
+
+#selector {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  margin: 15px 30px;
+}
+
+#selector div {
+  display: flex;
+  margin-left: 20px;
+}
+
+#selector button {
+  border-radius: 0;
+  font-size: 1rem;
+  padding: 5px 10px;
+  font-weight: 500;
+}
+
+#content {
+  height: 50%;
+  margin: 10px 20px;
+  padding: 10px;
+  color: #050505;
+  background-color: #fdfdfd;
+  border: 1px solid #353535;
+  border-radius: 5px;
+  overflow-y: auto;
+  resize: none;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+#actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #005500;
+  color: #fdfdfd;
+  cursor: pointer;
+  border: none; 
+}
+
+#selector button:hover,
+button:hover {
+  background-color: #004500;
+  color: #eee;
+}
+
+#selector button {
+  border: 1px solid #252525;
+  background-color: #fdfdfd;
+  color: #353535;
+}
+
+#selector button.selected {
+  background-color: #005500;
+  color: #eee;
+}

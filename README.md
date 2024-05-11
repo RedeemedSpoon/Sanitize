@@ -7,7 +7,8 @@
 ### Sanitize Features:
 
 - **Zen Mode :** Enter a distraction-free, text-only view of the web.
-- **Grayscale Mode :** Switch to grayscale mode for a more comfortable black and white experience.
+- **Freeze Mode :** Block completely all interaction with the website and its content.
+- **Grayscale Mode :** decolorize the website for a more comfortable black and white experience.
 - **Blockable Annoyances :** Strip away elements that steal your attention like videos, images, etc...
 - **Personal Filters :** Customize your browsing experience with Either HTML, CSS, or JavaScript filters.
 - **Global/Local Scope :** Change scopes to apply settings and filters to the entire web or the current website.

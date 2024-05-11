@@ -6,15 +6,13 @@ browser.runtime.onInstalled.addListener(async () => {
   // await updateEasyList();
   browser.contextMenus.create({
     id: 'sanitize',
-    title: 'Sanitize Them All !',
+    title: 'Add new Filter',
     contexts: ['all'],
   });
 });
 
 // Context Menu
-browser.contextMenus.onClicked.addListener(() => {
-  browser.tabs.create({url: 'https://RedeemedSpoon.github.io/Sanitize'});
-});
+browser.contextMenus.onClicked.addListener(() => showFrame());
 
 // Browser Action
 
@@ -50,8 +48,25 @@ browser.runtime.onMessage.addListener(async (request) => {
       });
       break;
 
-    case 'sync':
+    case 'freezeMode':
+      browser.tabs.executeScript(null, {
+        code:
+          'const overlay = document.createElement("div");' +
+          'overlay.style = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2147483647";' +
+          'document.querySelector("html").append(overlay)',
+      });
+      break;
+
+    case 'syncTab':
       browser.tabs.create({url: await browser.runtime.getURL('src/view-filter/view.html')});
+      break;
+
+    case 'newFrame':
+      showFrame();
+      break;
+
+    case 'closeFrame':
+      closeFrame();
       break;
   }
 });
@@ -108,4 +123,23 @@ const getElementsToBlock = async () => {
   }
 
   return result;
+};
+
+const showFrame = async () => {
+  closeFrame();
+  let source = await browser.runtime.getURL('src/new-filter/new.html');
+  browser.tabs.executeScript(null, {
+    code:
+      `var iframe = document.createElement('iframe');` +
+      `iframe.style = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2147483647';` +
+      `iframe.src = '${source}';` +
+      `iframe.id = 'sanitize';` +
+      `document.querySelector('html').append(iframe);`,
+  });
+};
+
+const closeFrame = () => {
+  browser.tabs.executeScript(null, {
+    code: 'var iframe = document.getElementById("sanitize"); iframe && iframe.remove();',
+  });
 };

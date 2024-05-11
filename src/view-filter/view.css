@@ -21,18 +21,19 @@ header {
 }
 
 button {
-  background-color: transparent;
-  border: 1px solid #353535;
+  color: #fdfdfd;
+  background-color: #005500;
   border-radius: 5px;
   font-size: 16px;
   font-weight: 400;
-  padding: 6px 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  border: none;
 }
 
 button:hover {
-  background-color: #353535;
+  background-color: #004500;
   color: #eee;
-  cursor: pointer;
 }
 
 main {
@@ -62,7 +63,7 @@ main {
   flex-direction: column;
   align-items: center;
   border: 1px solid #252525;
-  background-color: #eee;
+  background-color: #f5f5f5;
   border-radius: 15px;
   padding: 15px 15px;
   width: 100%;
@@ -116,13 +117,17 @@ li:hover {
 
 .container {
   resize: none;
-  background-color: #eee;
+  background-color: #f5f5f5;
   border: 1px solid #252525;
   border-radius: 0 0 15px 15px;
   padding: 10px 15px;
   font-size: 14px;
   width: 100%;
   height: 90%;
+}
+
+textarea:focus {
+  outline: none;
 }
 
 .topbar {
@@ -134,7 +139,11 @@ li:hover {
 
 .topbar button {
   width: 100%;
+  color: #252525;
+  background-color: #f5f5f5;
+  border: 1px solid #252525;
   border-radius: 0;
+  font-size: 20px;
 }
 
 .html {
@@ -158,42 +167,38 @@ footer button {
 
 .active {
   background-color: #151515 !important;
-  color: #eee !important;
+  color: #fafafa !important;
 }
 
 body.dark {
-  background-color: #252525;
-  color: #fcfcfc;
+  background-color: #2b2a33;
+  color: #eee;
 }
 
 #filters.dark {
-  border: 1px solid #fcfcfc;
-  background-color: #444;
-  color: #fcfcfc;
+  border: 1px solid #f5f5f5;
+  background-color: #464453;
+  color: #f5f5f5;
 }
 
 #filters.dark li {
-  border-bottom: 3px solid #fcfcfc;
+  border-bottom: 3px solid #f5f5f5;
 }
 
 #line.dark {
-  background-color: #fcfcfc;
+  background-color: #f5f5f5;
 }
 
 textarea.dark {
-  border: 1px solid #fcfcfc;
-  background-color: #444;
-  color: #fcfcfc;
+  border: 1px solid #f5f5f5;
+  background-color: #464453;
+  color: #f5f5f5;
 }
 
-button.dark {
-  border: 1px solid #fcfcfc;
+.topbar button.dark {
   color: #fcfcfc;
-}
-
-button.dark:hover {
-  background-color: #ececec;
-  color: #444;
+  background-color: #383743;
+  border: 1px solid #fcfcfc;
 }
 
 .active.dark {

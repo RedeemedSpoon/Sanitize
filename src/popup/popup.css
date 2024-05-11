@@ -54,7 +54,7 @@ button {
 }
 
 button:hover {
-  background-color: #353535;
+  background-color: #004500;
   color: #eee;
 }
 
@@ -68,8 +68,15 @@ button:hover {
   margin-left: -3px;
 }
 
+input {
+  accent-color: #005500;
+  margin-right: 5px;
+  width: 17px;
+  height: 17px;
+}
+
 .active {
-  background-color: #151515 !important;
+  background-color: #005500 !important;
   color: #eee !important;
 }
 
@@ -114,25 +121,15 @@ footer a {
 }
 
 body.dark {
-  background-color: #252525;
-  color: #fcfcfc;
+  background-color: #2b2a33;
+  color: #ccc;
 }
 
 fieldset.dark {
-  border: 1px solid #fcfcfc;
+  border: 1px solid #ccc;
 }
 
 button.dark {
-  border: 1px solid #fcfcfc;
-  color: #fcfcfc;
-}
-
-button.dark:hover {
-  background-color: #ececec;
-  color: #444;
-}
-
-.active.dark {
-  background-color: #fcfcfc !important;
-  color: #252525 !important;
+  border: 1px solid #ccc;
+  color: #ccc;
 }
