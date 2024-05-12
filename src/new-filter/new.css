@@ -20,7 +20,7 @@ main {
   bottom: 3vh;
   right: 2vw;
   width: 30rem;
-  height: 27.5rem;
+  height: 30rem;
   background-color: #ededed;
   border: 1px solid #252525;
   border-radius: 10px;
@@ -28,6 +28,7 @@ main {
 }
 
 main.minimized #selector,
+main.minimized #method,
 main.minimized #actions,
 main.minimized #content {
   display: none;
@@ -51,19 +52,22 @@ main.minimized {
   user-select: none;
 }
 
-#selector {
+#selector,
+#method {
   display: flex;
   align-items: center;
   height: 3rem;
-  margin: 15px 30px;
+  margin: 15px 25px;
 }
 
-#selector div {
+#selector div,
+#method div {
   display: flex;
   margin-left: 20px;
 }
 
-#selector button {
+#selector button,
+#method button {
   border-radius: 0;
   font-size: 1rem;
   padding: 5px 10px;
@@ -99,22 +103,34 @@ button {
   background-color: #005500;
   color: #fdfdfd;
   cursor: pointer;
-  border: none; 
+  border: none;
 }
 
-#selector button:hover,
 button:hover {
   background-color: #004500;
   color: #eee;
 }
 
-#selector button {
+#selector button,
+#method button {
   border: 1px solid #252525;
   background-color: #fdfdfd;
   color: #353535;
 }
 
-#selector button.selected {
+#selector button.selected,
+#method button.selected {
   background-color: #005500;
   color: #eee;
+}
+
+main.dark {
+  background-color: #383743;
+  color: #fdfdfd;
+}
+
+main.dark #content {
+  border: 1px solid #ccc;
+  background-color: #464453;
+  color: #fdfdfd;
 }

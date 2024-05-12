@@ -11,6 +11,7 @@ const saveBtn = document.getElementById('save');
 const exportBtn = document.getElementById('export');
 const importBtn = document.getElementById('import');
 const file = document.getElementById('file');
+const logo = document.querySelector('img');
 
 let buffer = {};
 let url = '';
@@ -18,8 +19,11 @@ let url = '';
 // Init Settings
 document.addEventListener('DOMContentLoaded', async () => {
   const settings = await initOptSettings();
-  settings['darkTheme'] && toggleTheme();
   loadFilters(settings['filters']);
+  if (settings['darkTheme']) {
+    document.body.classList.add('dark');
+    logo.src = logo.src.replace('light', 'dark');
+  }
 });
 
 // Export-Import Settings
@@ -60,15 +64,6 @@ writeBtns.forEach((btn) => {
 saveBtn.addEventListener('click', () => {});
 
 // Functions
-const toggleTheme = () => {
-  document.body.classList.add('dark');
-  document.querySelector('#filters').classList.add('dark');
-  document.querySelector('#line').classList.add('dark');
-  document.querySelectorAll('button').forEach((btn) => btn.classList.add('dark'));
-  document.querySelectorAll('textarea').forEach((area) => area.classList.add('dark'));
-  document.querySelector('img').src = document.querySelector('img').src.replace('light', 'dark');
-};
-
 const loadFilters = (filters) => {
   for (let filter in filters) {
     const line = document.createElement('li');

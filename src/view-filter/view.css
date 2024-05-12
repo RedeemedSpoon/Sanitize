@@ -175,33 +175,38 @@ body.dark {
   color: #eee;
 }
 
-#filters.dark {
+body.dark #filters {
   border: 1px solid #f5f5f5;
   background-color: #464453;
   color: #f5f5f5;
 }
 
-#filters.dark li {
+body.dark #filters li {
   border-bottom: 3px solid #f5f5f5;
 }
 
-#line.dark {
+body.dark #line {
   background-color: #f5f5f5;
 }
 
-textarea.dark {
+body.dark textarea {
   border: 1px solid #f5f5f5;
   background-color: #464453;
   color: #f5f5f5;
 }
 
-.topbar button.dark {
+body.dark .topbar button {
   color: #fcfcfc;
   background-color: #383743;
   border: 1px solid #fcfcfc;
 }
 
-.active.dark {
+body.dark li:hover {
+  background-color: #ddd;
+  color: #353535;
+}
+
+body.dark .active {
   background-color: #fcfcfc !important;
   color: #252525 !important;
 }

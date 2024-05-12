@@ -125,11 +125,11 @@ body.dark {
   color: #ccc;
 }
 
-fieldset.dark {
+body.dark fieldset {
   border: 1px solid #ccc;
 }
 
-button.dark {
+body.dark button {
   border: 1px solid #ccc;
   color: #ccc;
 }

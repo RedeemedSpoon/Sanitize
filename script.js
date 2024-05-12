@@ -1,28 +1,21 @@
 const questions = document.querySelectorAll('.question');
 const downloadBtn = document.querySelector('.download');
+
 const upBtn = document.querySelector('#controls > p:nth-child(1)');
 const downBtn = document.querySelector('#controls > p:nth-child(2)');
+
 const main = document.querySelectorAll('#content > div');
 const start = document.querySelector('#introduction');
 const end = document.querySelector('footer');
+
 const chapters = [start, ...main, end];
 let index = 0;
 
-const goToChapter = (direction) => {
-  const way = direction === 'up' ? 1 : -1;
-  const newIndex = Math.max(0, Math.min(chapters.length - 1, index + way));
-
-  if (newIndex !== index) {
-    index = newIndex;
-    chapters[index].scrollIntoView({behavior: 'smooth', block: 'start'});
-  }
-};
-
 upBtn.addEventListener('click', () => goToChapter('up'));
-downBtn.addEventListener('click', () => goToChapter());
+downBtn.addEventListener('click', () => goToChapter('down'));
 downloadBtn.addEventListener('click', () => {
-  index = 3;
   chapters[3].scrollIntoView({behavior: 'smooth', block: 'start'});
+  index = 3;
 });
 
 document.addEventListener('keydown', (event) => {
@@ -41,3 +34,13 @@ questions.forEach((question) => {
     question.querySelector('.answer').classList.toggle('visible');
   });
 });
+
+const goToChapter = (direction) => {
+  const way = direction === 'up' ? 1 : -1;
+  const newIndex = Math.max(0, Math.min(chapters.length - 1, index + way));
+
+  if (newIndex !== index) {
+    index = newIndex;
+    chapters[index].scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+};

@@ -2,10 +2,7 @@ import {getUrl, setSettings, getSettings, initOptSettings, toggleOptSettings, re
 
 const allSettings = document.querySelectorAll('input');
 
-const themeBtn = document.getElementById('darkTheme');
-const infoBtn = document.getElementById('showInfo');
-const activateBtn = document.getElementById('activateExt');
-const optSettings = [themeBtn, infoBtn, activateBtn];
+const optSettings = document.querySelectorAll('header div img');
 
 const globalBtn = document.getElementById('global');
 const localBtn = document.getElementById('local');
@@ -81,17 +78,15 @@ warning.addEventListener('click', () => {
 // Functions
 const reloadSettings = async () => {
   const results = await initOptSettings();
-  results['darkTheme'] && toggleTheme();
+  if (results['darkTheme']) {
+    document.body.classList.add('dark');
+    document.querySelectorAll('img').forEach((img) => {
+      img.src = img.src.replace('light', 'dark');
+    });
+  }
 
   const url = globalBtn.classList.contains('active') ? 'global' : await getUrl();
   allSettings.forEach(async (setting) => {
     setting.checked = await getSettings(url, setting.id);
   });
-};
-
-const toggleTheme = () => {
-  document.body.classList.add('dark');
-  document.querySelectorAll('button').forEach((btn) => btn.classList.add('dark'));
-  document.querySelectorAll('fieldset').forEach((fieldset) => fieldset.classList.add('dark'));
-  document.querySelectorAll('img').forEach((img) => (img.src = img.src.replace('light', 'dark')));
 };
