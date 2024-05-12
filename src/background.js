@@ -1,8 +1,9 @@
-import {checkSetting, getContent} from './utils.js';
+import {checkSetting, setSettings, getSettings, toggleOptSettings, getContent} from './utils.js';
 // import {updateEasyList, isInEasyList} from './easylist.js';
 
 // Initialization
 browser.runtime.onInstalled.addListener(async () => {
+  browser.tabs.create({url: 'https://RedeemedSpoon.github.io/Sanitize#installation'});
   // await updateEasyList();
   browser.contextMenus.create({
     id: 'sanitize',
@@ -14,9 +15,38 @@ browser.runtime.onInstalled.addListener(async () => {
 // Context Menu
 browser.contextMenus.onClicked.addListener(() => showFrame());
 
-// Browser Action
-
 // Browser Shortcuts
+browser.commands.onCommand.addListener(async (command) => {
+  switch (command) {
+    case 'disable_sanitize':
+      toggleOptSettings('activateExt');
+      window.location.reload();
+      break;
+
+    case 'add_filter':
+      showFrame();
+      break;
+
+    case 'view_filter':
+      browser.tabs.create({url: await browser.runtime.getURL('src/view-filter/view.html')});
+      break;
+
+    case 'toggle_zen_mode':
+      setSettings('global', 'zen', !(await getSettings('global', 'zen')));
+      window.location.reload();
+      break;
+
+    case 'toggle_freeze_mode':
+      setSettings('global', 'freeze', !(await getSettings('global', 'freeze')));
+      window.location.reload();
+      break;
+
+    case 'toggle_grayscale_mode':
+      setSettings('global', 'grayscale', !(await getSettings('global', 'grayscale')));
+      window.location.reload();
+      break;
+  }
+});
 
 // Alarms
 browser.alarms.create('EasyList Update', {

@@ -7,6 +7,50 @@
   "description": "An Extension That Tweak Websites & Customize Browsing Experience To Better Suit Your Needs.",
   "manifest_version": 2,
   "incognito": "spanning",
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+W"
+      },
+      "description": "Open Sanitize Popup"
+    },
+    "disable_sanitize": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+X"
+      },
+      "description": "Toggle Sanitize On/Off"
+    },
+    "add_filter": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+A"
+      },
+      "description": "Open Add Filter Tab"
+    },
+    "view_filter": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+V"
+      },
+      "description": "Open View All Filters Tab"
+    },
+    "toggle_zen_mode": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+Q"
+      },
+      "description": "Toggle Zen Mode"
+    },
+    "toggle_freeze_mode": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+E"
+      },
+      "description": "Toggle Freeze Mode"
+    },
+    "toggle_grayscale_mode": {
+      "suggested_key": {
+        "default": "Ctrl+Alt+C"
+      },
+      "description": "Toggle Grayscale Mode"
+    }
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "{5bd7bac5-f2c3-48b7-a271-9162955c53f9}"
@@ -29,19 +73,27 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["src/content.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content.js"
+      ],
       "run_at": "document_idle",
       "match_about_blank": true,
       "all_frames": true
     }
   ],
   "background": {
-    "scripts": ["src/background.js"],
+    "scripts": [
+      "src/background.js"
+    ],
     "persistent": false,
     "type": "module"
   },
-  "web_accessible_resources": ["src/new-filter/*"],
+  "web_accessible_resources": [
+    "src/new-filter/*"
+  ],
   "permissions": [
     "tabs",
     "alarms",
