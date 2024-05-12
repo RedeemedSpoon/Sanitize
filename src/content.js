@@ -3,10 +3,11 @@
   const url = window.location.hostname;
   const utils = await import(utilsSrc);
   const {checkSetting, getContent, initOptSettings} = utils;
+  const settings = await initOptSettings();
 
   const observerSrc = browser.runtime.getURL('./src/observer.js');
   const observer = await import(observerSrc);
-  const {addNewObserver, zen} = observer;
+  const {addNewObserver, dealwith, zen} = observer;
 
   if (!(await getContent('activateExt'))) {
     return;
@@ -58,7 +59,6 @@
     styleSheet.innerText =
       'body {margin: 6.5% 28.5%; font-size: 20px} body.dark {background-color:#252525; color: #f9f9f9}';
 
-    const settings = await initOptSettings();
     if (settings['darkTheme']) {
       document.body.classList.add('dark');
     }
@@ -125,7 +125,7 @@
   //Block Images
   if (await checkSetting('image', url)) {
     const images = document.querySelectorAll('img, picture, svg, img source, area, map, image');
-    images.forEach((image) => image.remove());
+    images.forEach((image) => dealwith(image, 'image'));
     browser.runtime.sendMessage({type: 'imageBlock'});
     addNewObserver('image');
   }
@@ -133,14 +133,14 @@
   // Block Videos
   if (await checkSetting('video', url)) {
     const videos = document.querySelectorAll('video, video source, track');
-    videos.forEach((video) => video.remove());
+    videos.forEach((video) => dealwith(video, 'video'));
     addNewObserver('video');
   }
 
   // Block Audios
   if (await checkSetting('audio', url)) {
     const audios = document.querySelectorAll('audio, audio source, track');
-    audios.forEach((audio) => audio.remove());
+    audios.forEach((audio) => dealwith(audio, 'audio'));
     browser.runtime.sendMessage({type: 'audioBlock'});
     addNewObserver('audio');
   }
@@ -148,21 +148,21 @@
   // Block Tables
   if (await checkSetting('table', url)) {
     const tables = document.querySelectorAll('table, thead, tbody, tfoot, tr, th, td, caption, col, colgroup');
-    tables.forEach((table) => table.remove());
+    tables.forEach((table) => dealwith(table, 'table'));
     addNewObserver('table');
   }
 
   // Block Forms
   if (await checkSetting('form', url)) {
     const forms = document.querySelectorAll('form, input, textarea, select, button, fieldset, legend, label, output');
-    forms.forEach((form) => form.remove());
+    forms.forEach((form) => dealwith(form, 'form'));
     addNewObserver('form');
   }
 
   // Block Embedded Objects
   if (await checkSetting('embed', url)) {
     const embeds = document.querySelectorAll('iframe, embed, object, slot, template, portal, frame, frameSet, shadow');
-    embeds.forEach((embed) => embed.remove());
+    embeds.forEach((embed) => dealwith(embed, 'embed'));
     addNewObserver('embed');
   }
 

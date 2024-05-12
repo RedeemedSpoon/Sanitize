@@ -1,4 +1,8 @@
 // Observers to Detect Change in The DOM
+import {initOptSettings} from './utils.js';
+
+const message = (await initOptSettings())['showInfo'] || false;
+
 const embedTags = ['iframe', 'embed', 'object', 'slot', 'template', 'portal', 'frame', 'frameset', 'shadow'];
 const formTags = ['form', 'input', 'textarea', 'select', 'button', 'fieldset', 'legend', 'label', 'output'];
 const tableTags = ['table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption', 'col', 'colgroup'];
@@ -37,27 +41,27 @@ const checkObserver = (node, type) => {
   const name = node.nodeName.toLowerCase();
   switch (type) {
     case 'image':
-      imgTags.includes(name) && node.remove();
+      imgTags.includes(name) && dealwith(node, name);
       break;
 
     case 'video':
-      videoTags.includes(name) && node.remove();
+      videoTags.includes(name) && dealwith(node, name);
       break;
 
     case 'audio':
-      audioTags.includes(name) && node.remove();
+      audioTags.includes(name) && dealwith(node, name);
       break;
 
     case 'table':
-      tableTags.includes(name) && node.remove();
+      tableTags.includes(name) && dealwith(node, name);
       break;
 
     case 'form':
-      formTags.includes(name) && node.remove();
+      formTags.includes(name) && dealwith(node, name);
       break;
 
     case 'embed':
-      embedTags.includes(name) && node.remove();
+      embedTags.includes(name) && dealwith(node, name);
       break;
 
     case 'grayscale':
@@ -65,6 +69,7 @@ const checkObserver = (node, type) => {
       break;
 
     case 'zen':
+      zen.includes(name) && node.remove();
       break;
 
     case 'css':
@@ -85,4 +90,16 @@ const checkObserver = (node, type) => {
   }
 };
 
-export {addNewObserver, zen};
+const dealwith = (node, type) => {
+  if (message) {
+    const div = document.createElement('div');
+    div.style.cssText =
+      'background-color: #f8d7da; color: #721c24; padding: 5px; border: 1px solid #721c24; width: fit-content !important;';
+    div.innerHTML = node.getBoundingClientRect().width > 50 ? `Blocked ${type}` : '🛇';
+    node.parentNode.insertBefore(div, node);
+  }
+
+  node.remove();
+};
+
+export {addNewObserver, dealwith, zen};
