@@ -91,9 +91,6 @@
     "persistent": false,
     "type": "module"
   },
-  "web_accessible_resources": [
-    "src/new-filter/*"
-  ],
   "permissions": [
     "tabs",
     "alarms",

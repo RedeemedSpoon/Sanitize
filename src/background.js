@@ -1,4 +1,4 @@
-import {checkSetting, setSettings, getSettings, toggleOptSettings, getContent} from './utils.js';
+import {checkSetting, setSettings, getSettings, toggleOptSettings, initOptSettings} from './utils.js';
 // import {updateEasyList, isInEasyList} from './easylist.js';
 
 // Initialization
@@ -20,7 +20,6 @@ browser.commands.onCommand.addListener(async (command) => {
   switch (command) {
     case 'disable_sanitize':
       toggleOptSettings('activateExt');
-      window.location.reload();
       break;
 
     case 'add_filter':
@@ -33,17 +32,14 @@ browser.commands.onCommand.addListener(async (command) => {
 
     case 'toggle_zen_mode':
       setSettings('global', 'zen', !(await getSettings('global', 'zen')));
-      window.location.reload();
       break;
 
     case 'toggle_freeze_mode':
       setSettings('global', 'freeze', !(await getSettings('global', 'freeze')));
-      window.location.reload();
       break;
 
     case 'toggle_grayscale_mode':
       setSettings('global', 'grayscale', !(await getSettings('global', 'grayscale')));
-      window.location.reload();
       break;
   }
 });
@@ -63,19 +59,17 @@ browser.alarms.onAlarm.addListener((alarm) => {
 // Message Listener
 browser.runtime.onMessage.addListener(async (request) => {
   switch (request.type) {
-    case 'imageBlock':
-      browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
-        await browser.tabs.insertCSS({
-          tabId: tabs[0].id,
-          code: '* { background-image: none !important; }',
-        });
+    case 'pickElement':
+      browser.tabs.insertCSS({
+        code:
+          '* { user-select: none !important; cursor: crosshair !important;}' +
+          '.sn-hover { position: absolute; background-color: #880000; border: 1px solid #550000; }' +
+          '.sn-selected { background-color: #770000 !important; border: 1px solid #440000 !important; }' +
+          '#sanitize {pointer-events: none }',
       });
-      break;
 
-    case 'audioBlock':
-      browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
-        await browser.tabs.update(tabs[0].id, {muted: true});
-      });
+      const tabs = await browser.tabs.query({active: true, currentWindow: true});
+      browser.tabs.sendMessage(tabs[0].id, {type: request.type});
       break;
 
     case 'freezeMode':
@@ -87,8 +81,19 @@ browser.runtime.onMessage.addListener(async (request) => {
       });
       break;
 
+    case 'imageBlock':
+      browser.tabs.insertCSS({code: '* { background-image: none !important; }'});
+      break;
+
+    case 'audioBlock':
+      browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
+        await browser.tabs.update(tabs[0].id, {muted: true});
+      });
+      break;
+
     case 'syncTab':
-      browser.tabs.create({url: await browser.runtime.getURL('src/view-filter/view.html')});
+      const file = await browser.runtime.getURL('src/view-filter/view.html');
+      browser.tabs.create({url: file});
       break;
 
     case 'newFrame':
@@ -104,7 +109,7 @@ browser.runtime.onMessage.addListener(async (request) => {
 // Web Requests
 browser.webRequest.onBeforeRequest.addListener(
   async (details) => {
-    if (!(await getContent('activateExt'))) {
+    if (!(await initOptSettings())['activateExt']) {
       return;
     }
 

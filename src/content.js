@@ -2,14 +2,14 @@
   const utilsSrc = browser.runtime.getURL('./src/utils.js');
   const url = window.location.hostname;
   const utils = await import(utilsSrc);
-  const {checkSetting, getContent, initOptSettings} = utils;
+  const {checkSetting, initOptSettings} = utils;
   const settings = await initOptSettings();
 
   const observerSrc = browser.runtime.getURL('./src/observer.js');
   const observer = await import(observerSrc);
   const {addNewObserver, dealwith, zen} = observer;
 
-  if (!(await getContent('activateExt'))) {
+  if (!settings['activateExt']) {
     return;
   }
 
@@ -103,7 +103,7 @@
 
   // Disable Js
   if ((await checkSetting('js', url)) && !(await checkSetting('zen', url))) {
-    document.querySelector('body').replaceWith(document.querySelector('body').cloneNode(true));
+    document.body.replaceWith(document.body.cloneNode(true));
 
     const scriptTags = document.querySelectorAll('script');
     scriptTags.forEach((scriptTag) => {
@@ -177,4 +177,67 @@
   // Js filters
   if (await checkSetting('jsFilter', url)) {
   }
+
+  // When Making New Filters
+  browser.runtime.onMessage.addListener(async (request) => {
+    if (request.type === 'pickElement') {
+      const drawing = document.createElement('div');
+      drawing.classList.add('sn-hover');
+      document.body.append(drawing);
+      console.log(drawing);
+
+      document.body.replaceWith(document.body.cloneNode(true));
+      document.querySelectorAll('body *').forEach((element) => {
+        for (const attribute of element.attributes) {
+          if (attribute.name.startsWith('on')) {
+            element.removeAttribute(attribute.name);
+          }
+        }
+
+        if (element.tagName.toLowerCase() === 'a') {
+          element.setAttribute('href', 'javascript:void(0)');
+        }
+
+        element.addEventListener('mouseover', () => createBox(element.getBoundingClientRect()));
+        element.addEventListener('click', () => getUniqueSelector(element));
+      });
+
+      const createBox = (res) => {
+        drawing.style.top = `${res.top}px`;
+        drawing.style.left = `${res.left}px`;
+        drawing.style.width = `${res.width}px`;
+        drawing.style.height = `${res.height}px`;
+      };
+
+      const getUniqueSelector = (element) => {
+        let selector = '';
+
+        if (element.id) {
+          return `#${element.id}`;
+        }
+
+        selector = element.tagName.toLowerCase();
+        const classes = element.classList;
+        for (let i = 0; i < classes.length; i++) {
+          const className = classes[i];
+          if (isUniqueClass(element, className)) {
+            selector += `.${className}`;
+            return selector;
+          }
+        }
+
+        const parent = element.parentNode;
+        const siblings = parent.querySelectorAll(selector);
+        const index = Array.prototype.indexOf.call(siblings, element);
+        selector += `:nth-child(${index + 1})`;
+
+        return selector;
+      };
+
+      const isUniqueClass = (element, className) => {
+        const unique = document.querySelectorAll(`${element.tagName}.${className}`);
+        return unique.length === 1;
+      };
+    }
+  });
 })();

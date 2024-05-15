@@ -35,7 +35,7 @@ const initOptSettings = async () => {
     }
   });
 
-  settings['filters'] = settings['filters'] || {global: {html: ['html basic'], css: ['css boring'], js: ['js bad']}};
+  settings['filters'] = settings['filters'] || {global: {}};
   await browser.storage.local.set(settings);
 
   return settings;
@@ -73,8 +73,19 @@ const checkSetting = async (setting, url) => {
   return (await getSettings('global', setting)) || (await getSettings(url, setting));
 };
 
-const getContent = async (settingId) => {
-  return (await browser.storage.local.get(settingId))[settingId];
+const getFilters = async (url, type) => {
+  const settings = await browser.storage.local.get();
+  if (settings['filters'][url] && settings['filters'][url][type]) {
+    return settings['filters'][url][type];
+  }
+};
+
+const createFilter = async (url, type, filter) => {
+  const settings = await browser.storage.local.get();
+  settings['filters'][url] = settings['filters'][url] || {};
+  settings['filters'][url][type] = settings['filters'][url][type] || [];
+  settings['filters'][url][type].push(filter);
+  await browser.storage.local.set(settings);
 };
 
 export {
@@ -87,5 +98,6 @@ export {
   exportSettings,
   importSettings,
   checkSetting,
-  getContent,
+  getFilters,
+  createFilter,
 };
