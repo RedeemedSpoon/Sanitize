@@ -62,10 +62,10 @@ browser.runtime.onMessage.addListener(async (request) => {
     case 'pickElement':
       browser.tabs.insertCSS({
         code:
-          '* { user-select: none !important; cursor: crosshair !important;}' +
-          '.sn-hover { position: absolute; background-color: #880000; border: 1px solid #550000; }' +
-          '.sn-selected { background-color: #770000 !important; border: 1px solid #440000 !important; }' +
-          '#sanitize {pointer-events: none }',
+          'body * { user-select: none !important; cursor: crosshair !important; }' +
+          '.sn-hover { position: absolute; background-color: rgba(200, 0, 0, 0.4); border: 3px solid rgba(100, 0, 0, 0.75); pointer-events: none; z-index: 2147483646; }' +
+          '.sn-selected { background-color: rgba(140, 0, 0, 0.4) !important; border: 3px solid rgba(80, 0, 0, 0.75) !important; }' +
+          '#sanitize { pointer-events: none; }',
       });
 
       const tabs = await browser.tabs.query({active: true, currentWindow: true});
@@ -166,7 +166,7 @@ const showFrame = async () => {
   browser.tabs.executeScript(null, {
     code:
       `var iframe = document.createElement('iframe');` +
-      `iframe.style = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2147483647';` +
+      `iframe.style = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2147483647; color-scheme: normal';` +
       `iframe.src = '${source}';` +
       `iframe.id = 'sanitize';` +
       `document.querySelector('html').append(iframe);`,

@@ -181,10 +181,10 @@
   // When Making New Filters
   browser.runtime.onMessage.addListener(async (request) => {
     if (request.type === 'pickElement') {
+      const webpage = document.querySelector('html');
       const drawing = document.createElement('div');
       drawing.classList.add('sn-hover');
-      document.body.append(drawing);
-      console.log(drawing);
+      webpage.append(drawing);
 
       document.body.replaceWith(document.body.cloneNode(true));
       document.querySelectorAll('body *').forEach((element) => {
@@ -194,50 +194,75 @@
           }
         }
 
-        if (element.tagName.toLowerCase() === 'a') {
+        if (element.nodeName === 'A') {
           element.setAttribute('href', 'javascript:void(0)');
         }
 
-        element.addEventListener('mouseover', () => createBox(element.getBoundingClientRect()));
-        element.addEventListener('click', () => getUniqueSelector(element));
-      });
+        element.addEventListener('mouseover', (e) => {
+          e.stopPropagation();
+          drawing.classList.remove('sn-selected');
+          createBox(element);
+        });
 
-      const createBox = (res) => {
-        drawing.style.top = `${res.top}px`;
-        drawing.style.left = `${res.left}px`;
-        drawing.style.width = `${res.width}px`;
-        drawing.style.height = `${res.height}px`;
-      };
+        element.addEventListener('click', (e) => {
+          e.stopPropagation();
+          drawing.classList.add('sn-selected');
 
-      const getUniqueSelector = (element) => {
-        let selector = '';
+          const selector = getSelector(element);
+          document.querySelectorAll('.sn-selected').forEach((element) => element.remove());
+          document.querySelectorAll(selector).forEach((element) => createBox(element, 'HighlightAll'));
 
-        if (element.id) {
-          return `#${element.id}`;
-        }
+          const iframe = document.querySelector('#sanitize');
+          const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-        selector = element.tagName.toLowerCase();
-        const classes = element.classList;
-        for (let i = 0; i < classes.length; i++) {
-          const className = classes[i];
-          if (isUniqueClass(element, className)) {
-            selector += `.${className}`;
+          const main = innerDoc.querySelector('main');
+          const textArea = innerDoc.querySelector('textarea');
+
+          main.classList.remove('minimized');
+          textArea.value = selector;
+        });
+
+        const createBox = (element, type) => {
+          const res = element.getBoundingClientRect();
+
+          drawing.style.top = `${res.top + window.scrollY}px`;
+          drawing.style.left = `${res.left + window.scrollX}px`;
+          drawing.style.width = `${res.width}px`;
+          drawing.style.height = `${res.height}px`;
+
+          if (type === 'HighlightAll') {
+            const clone = drawing.cloneNode();
+            webpage.append(clone);
+          }
+
+          webpage.append(drawing);
+        };
+
+        const getSelector = (element) => {
+          let selector = element.nodeName.toLowerCase();
+
+          if (document.querySelectorAll(selector).length === 1) {
             return selector;
           }
-        }
 
-        const parent = element.parentNode;
-        const siblings = parent.querySelectorAll(selector);
-        const index = Array.prototype.indexOf.call(siblings, element);
-        selector += `:nth-child(${index + 1})`;
+          if (element.id) {
+            return `#${element.id}`;
+          }
 
-        return selector;
-      };
+          if (element.classList.length > 0) {
+            element.classList.forEach((name) => (selector += `.${name}`));
+            if (document.querySelectorAll(selector).length === 1) {
+              return selector;
+            }
+          }
 
-      const isUniqueClass = (element, className) => {
-        const unique = document.querySelectorAll(`${element.tagName}.${className}`);
-        return unique.length === 1;
-      };
+          if (element.parentElement) {
+            return getSelector(element.parentElement) + ` > ${selector}`;
+          }
+
+          return selector;
+        };
+      });
     }
   });
 })();

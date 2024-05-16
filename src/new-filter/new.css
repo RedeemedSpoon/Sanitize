@@ -8,7 +8,7 @@
 body {
   box-sizing: border-box;
   font-family: sans-serif;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.45) !important;
   margin: 5px 15px;
   color: #353535;
 }
@@ -54,22 +54,19 @@ main.minimized {
   user-select: none;
 }
 
-#selector,
-#method {
+#selector {
   display: flex;
   align-items: center;
   height: 3rem;
   margin: 15px 25px;
 }
 
-#selector div,
-#method div {
+#selector div {
   display: flex;
   margin-left: 20px;
 }
 
-#selector button,
-#method button {
+#selector button {
   border-radius: 0;
   font-size: 1rem;
   padding: 5px 10px;
@@ -113,15 +110,13 @@ button:hover {
   color: #eee;
 }
 
-#selector button,
-#method button {
+#selector button {
   border: 1px solid #252525;
   background-color: #fdfdfd;
   color: #353535;
 }
 
-#selector button.selected,
-#method button.selected {
+#selector button.selected {
   background-color: #005500;
   color: #eee;
 }
