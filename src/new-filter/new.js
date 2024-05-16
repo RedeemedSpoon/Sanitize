@@ -20,12 +20,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Actions Buttons
 pickBtn.addEventListener('click', () => {
-  main.classList.add('minimized');
+  main.classList.toggle('minimized');
   document.body.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
   browser.runtime.sendMessage({type: 'pickElement'});
 });
 
-// Selector-Method Buttons
+previewBtn.addEventListener('click', () => {
+  if (textarea.value) {
+    browser.runtime.sendMessage({type: 'previewElement'});
+  }
+});
+
+// Selector Buttons
 selectorBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
     selectorBtns.forEach((btn) => {

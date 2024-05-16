@@ -77,7 +77,8 @@
         "<all_urls>"
       ],
       "js": [
-        "src/content.js"
+        "src/content.js",
+        "src/filters.js"
       ],
       "run_at": "document_idle",
       "match_about_blank": true,

@@ -60,16 +60,13 @@ browser.alarms.onAlarm.addListener((alarm) => {
 browser.runtime.onMessage.addListener(async (request) => {
   switch (request.type) {
     case 'pickElement':
-      browser.tabs.insertCSS({
-        code:
-          'body * { user-select: none !important; cursor: crosshair !important; }' +
-          '.sn-hover { position: absolute; background-color: rgba(200, 0, 0, 0.4); border: 3px solid rgba(100, 0, 0, 0.75); pointer-events: none; z-index: 2147483646; }' +
-          '.sn-selected { background-color: rgba(140, 0, 0, 0.4) !important; border: 3px solid rgba(80, 0, 0, 0.75) !important; }' +
-          '#sanitize { pointer-events: none; }',
-      });
+      let pickTabs = await browser.tabs.query({active: true, currentWindow: true});
+      browser.tabs.sendMessage(pickTabs[0].id, {type: request.type});
+      break;
 
-      const tabs = await browser.tabs.query({active: true, currentWindow: true});
-      browser.tabs.sendMessage(tabs[0].id, {type: request.type});
+    case 'previewElement':
+      let previewTabs = await browser.tabs.query({active: true, currentWindow: true});
+      browser.tabs.sendMessage(previewTabs[0].id, {type: request.type});
       break;
 
     case 'freezeMode':
@@ -175,6 +172,8 @@ const showFrame = async () => {
 
 const closeFrame = () => {
   browser.tabs.executeScript(null, {
-    code: 'var iframe = document.getElementById("sanitize"); iframe && iframe.remove();',
+    code:
+      'var iframe = document.getElementById("sanitize"); iframe && iframe.remove();' +
+      'var boxes = document.querySelectorAll(".sn-selected"); boxes && boxes.forEach((el) => el.remove());',
   });
 };
