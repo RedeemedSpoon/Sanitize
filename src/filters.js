@@ -1,46 +1,26 @@
 // When Making New Filters
 browser.runtime.onMessage.addListener(async (request) => {
   if (request.type === 'pickElement') {
-    if (document.querySelector('.sn-selected')) {
-      document.querySelectorAll('.sn-selected').forEach((element) => element.remove());
-    }
-
-    const webpage = document.querySelector('html');
-    const styleSheet = document.createElement('style');
-    const drawing = document.createElement('div');
+    clearSelection();
     let selectMode = true;
-
-    drawing.classList.add('sn-hover');
-    styleSheet.id = 'sn-style';
-    styleSheet.textContent =
-      'body * { user-select: none !important; cursor: crosshair !important; }' +
-      '.sn-hover { position: absolute; background-color: rgba(200, 0, 0, 0.4); border: 3px solid rgba(100, 0, 0, 0.75); pointer-events: none; z-index: 2147483646; }' +
-      '.sn-selected { background-color: rgba(140, 0, 0, 0.4) !important; border: 3px solid rgba(70, 0, 0, 0.75) !important; }' +
-      '#sanitize { pointer-events: none; }';
-
-    webpage.append(styleSheet);
-    webpage.append(drawing);
+    const {main, textArea, webpage, drawing, styleSheet} = init('select');
 
     document.body.replaceWith(document.body.cloneNode(true));
     document.querySelectorAll('body *').forEach((element) => {
+      element.nodeName === 'A' && element.removeAttribute('href');
+
       for (const attribute of element.attributes) {
         if (attribute.name.startsWith('on')) {
           element.removeAttribute(attribute.name);
         }
       }
 
-      if (element.nodeName === 'A') {
-        element.setAttribute('href', 'javascript:void(0)');
-      }
-
       element.addEventListener('mouseover', (e) => {
-        if (!selectMode) {
-          return;
+        if (selectMode) {
+          e.stopPropagation();
+          drawing.classList.remove('sn-selected');
+          createBox(element, drawing, webpage);
         }
-
-        e.stopPropagation();
-        drawing.classList.remove('sn-selected');
-        createBox(element, drawing, webpage);
       });
 
       element.addEventListener('click', (e) => {
@@ -55,23 +35,100 @@ browser.runtime.onMessage.addListener(async (request) => {
         styleSheet.textContent +=
           '#sanitize { pointer-events: auto; } body * { user-select: auto !important; cursor : auto !important; }';
 
+        clearSelection();
         const selector = getSelector(element);
-        document.querySelectorAll('.sn-selected').forEach((element) => element.remove());
-        document.querySelectorAll(selector).forEach((element) => createBox(element, drawing, webpage, 'HighlightAll'));
-
-        const iframe = document.querySelector('#sanitize');
-        const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-        const main = innerDoc.querySelector('main');
-        const textArea = innerDoc.querySelector('textarea');
+        document.querySelectorAll(selector).forEach((element) => {
+          createBox(element, drawing, webpage, 'HighlightAll');
+        });
 
         main.classList.remove('minimized');
         textArea.value = selector;
       });
     });
   } else if (request.type === 'previewElement') {
+    const {iframe, textArea, selectorBtns, webpage} = init();
+    const text = textArea.value.trim();
+    iframe.style.display = 'none';
+    clearSelection();
+
+    let callback;
+    const selectedType = [...selectorBtns].find((btn) => btn.classList.contains('selected'));
+
+    switch (selectedType.classList[0]) {
+      case 'html':
+        const selectors = document.querySelectorAll(text);
+        selectors.length === 0 && (textArea.value += `\n\n--- Error: Invalid selector ---`);
+        selectors.forEach((element) => previewElement(element, 'block'));
+
+        callback = () => {
+          selectors.forEach((element) => previewElement(element, 'none'));
+        };
+        break;
+      case 'css':
+        break;
+
+      case 'js':
+        break;
+    }
+
+    webpage.addEventListener('click', () => {
+      iframe.style.display = 'block';
+      callback();
+    });
+  } else if (request.type === 'getUrl') {
+    const {urlInput} = init();
+    const windowUrl = new URL(window.location.href);
+    urlInput.value = windowUrl.hostname;
   }
 });
+
+const init = (mode) => {
+  const webpage = document.querySelector('html');
+
+  const iframe = document.querySelector('#sanitize');
+  const innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+  const main = innerDoc.querySelector('main');
+  const textArea = innerDoc.querySelector('textarea');
+  const urlInput = innerDoc.querySelector('#url');
+  const selectorBtns = innerDoc.querySelectorAll('#selector button');
+
+  if (mode === 'select') {
+    const styleSheet = document.createElement('style');
+    const drawing = document.createElement('div');
+
+    drawing.classList.add('sn-hover');
+    styleSheet.classList.add('sn-style');
+    styleSheet.textContent =
+      'body * { user-select: none !important; cursor: crosshair !important; }' +
+      '.sn-hover { position: absolute; background-color: rgba(200, 0, 0, 0.4); border: 3px solid rgba(100, 0, 0, 0.75); pointer-events: none; z-index: 2147483646; }' +
+      '.sn-selected { background-color: rgba(140, 0, 0, 0.4) !important; border: 3px solid rgba(70, 0, 0, 0.75) !important; }' +
+      '#sanitize { pointer-events: none; }';
+
+    webpage.append(styleSheet);
+    webpage.append(drawing);
+
+    return {iframe, main, textArea, webpage, urlInput, selectorBtns, drawing, styleSheet};
+  }
+
+  return {iframe, main, textArea, urlInput, selectorBtns, webpage};
+};
+
+const clearSelection = () => {
+  if (document.querySelector('.sn-selected')) {
+    document.querySelectorAll('.sn-selected').forEach((element) => {
+      element.remove();
+    });
+  }
+};
+
+const previewElement = (element, method) => {
+  if (method === 'block') {
+    element.style.cssText = `${element.style.cssText}; display: none !important;`;
+  } else {
+    element.style.cssText = element.style.cssText.replace('display: none !important;', '');
+  }
+};
 
 const createBox = (element, drawing, webpage, type) => {
   const res = element.getBoundingClientRect();
@@ -102,7 +159,11 @@ const getSelector = (element) => {
   }
 
   if (element.classList.length > 0) {
-    element.classList.forEach((name) => (selector += `.${name}`));
+    element.classList.forEach((name) => {
+      if ([':', '&', '!', '[', ']', '#'].includes(name)) {
+        selector += `.${name}`;
+      }
+    });
     if (document.querySelectorAll(selector).length === 1) {
       return selector;
     }

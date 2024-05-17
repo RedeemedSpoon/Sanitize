@@ -71,10 +71,14 @@ const loadFilters = (filters) => {
     filterList.append(line);
 
     line.addEventListener('click', () => {
-      buffer[filter] = filters[filter];
-      url = filter;
+      const others = filterList.children;
+      for (let i = 0; i < others.length; i++) {
+        others[i].classList.remove('active');
+      }
 
-      line.classList.add('active');
+      buffer[filter] = url === filter ? null : filters[filter];
+      url = url === filter ? '' : filter;
+      url === filter ? line.classList.add('active') : line.classList.remove('active');
       changeBuffer(readPanel, readBtns);
       changeBuffer(writePanel, writeBtns);
     });
@@ -83,9 +87,11 @@ const loadFilters = (filters) => {
 
 const changeBuffer = (panel, btns) => {
   btns.forEach((btn) => {
-    if (btn.classList[1]) {
-      if (buffer[url]) {
-        panel.textContent = buffer[url][btn.classList[0]];
+    if (btn.classList.contains('active')) {
+      if (buffer[url] && buffer[url][btn.classList[0]]) {
+        panel.innerText = buffer[url][btn.classList[0]].join('\n\n');
+      } else {
+        panel.innerText = '';
       }
     }
   });

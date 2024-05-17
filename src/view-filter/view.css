@@ -53,9 +53,8 @@ main {
   flex-direction: column;
   align-items: center;
   row-gap: 1rem;
-  width: 15%;
+  width: 25rem;
   height: 100%;
-  overflow: hidden;
 }
 
 #filters {
@@ -73,7 +72,7 @@ main {
 ul {
   list-style: none;
   overflow: scroll;
-  width: 90%;
+  width: 95%;
 }
 
 li {

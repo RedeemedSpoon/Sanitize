@@ -23,7 +23,14 @@
           <button class="js">Js</button>
         </div>
       </section>
-      <textarea id="content" placeholder="Paste or type your filter here."></textarea>
+      <section id="scope" style="margin-top: 5px;">
+        <h1>Filter Scope :</h1>
+        <div>
+          <button class="global">Global</button>
+          <button class="local selected">Local</button>
+        </div>
+      </section>
+      <textarea id="content" placeholder="Paste or type your filter here." spellcheck="false"></textarea>
       <section id="actions">
         <div>
           <button title="Preview Filter" id="preview">Preview</button>
@@ -32,6 +39,7 @@
         <button title="Create Filter" id="create">Create</button>
       </section>
     </main>
+    <input hidden id="url" />
     <script type="module" src="./new.js"></script>
   </body>
 </html>

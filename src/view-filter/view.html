@@ -21,8 +21,7 @@
       <section id="sidebar">
         <h1>Filters List</h1>
         <div id="filters">
-          <ul>
-          </ul>
+          <ul></ul>
         </div>
       </section>
       <div id="line"></div>
@@ -35,7 +34,11 @@
               <button class="css">Css</button>
               <button class="js">Js</button>
             </div>
-            <textarea readonly placeholder="You use this panel to view filters" class="read container"></textarea>
+            <textarea
+              readonly
+              placeholder="Use this panel to view filters"
+              class="read container"
+              spellcheck="false"></textarea>
           </div>
           <div>
             <div class="topbar write-bar">
@@ -43,7 +46,10 @@
               <button class="css">Css</button>
               <button class="js">Js</button>
             </div>
-            <textarea placeholder="You use this panel to edit filters" class="write container"></textarea>
+            <textarea
+              placeholder="Use this panel to edit filters"
+              class="write container"
+              spellcheck="false"></textarea>
           </div>
         </div>
       </section>
@@ -51,7 +57,7 @@
     <footer>
       <button title="Save MadeEdits" id="save">Save</button>
     </footer>
-    <input type="file" id="file" accept="application/json" hidden/>
-    <script type="module" src="./view.js" ></script>
+    <input type="file" id="file" accept="application/json" hidden />
+    <script type="module" src="./view.js"></script>
   </body>
 </html>

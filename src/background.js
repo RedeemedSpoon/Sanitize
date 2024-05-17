@@ -69,6 +69,16 @@ browser.runtime.onMessage.addListener(async (request) => {
       browser.tabs.sendMessage(previewTabs[0].id, {type: request.type});
       break;
 
+    case 'getUrl':
+      let urlTabs = await browser.tabs.query({active: true, currentWindow: true});
+      browser.tabs.sendMessage(urlTabs[0].id, {type: request.type});
+      break;
+
+    case 'reloadPage':
+      let reloadTabs = await browser.tabs.query({active: true, currentWindow: true});
+      browser.tabs.reload(reloadTabs[0].id);
+      break;
+
     case 'freezeMode':
       browser.tabs.executeScript(null, {
         code:
@@ -174,6 +184,7 @@ const closeFrame = () => {
   browser.tabs.executeScript(null, {
     code:
       'var iframe = document.getElementById("sanitize"); iframe && iframe.remove();' +
+      'var boxes = document.querySelectorAll(".sn-style"); boxes && boxes.forEach((el) => el.remove());' +
       'var boxes = document.querySelectorAll(".sn-selected"); boxes && boxes.forEach((el) => el.remove());',
   });
 };
