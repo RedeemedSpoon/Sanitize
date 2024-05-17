@@ -80,11 +80,26 @@ const getFilters = async (url, type) => {
   }
 };
 
-const createFilter = async (url, type, filter) => {
+const createFilter = async (url, type, filters) => {
   const settings = await browser.storage.local.get();
   settings['filters'][url] = settings['filters'][url] || {};
   settings['filters'][url][type] = settings['filters'][url][type] || [];
-  settings['filters'][url][type].push(filter);
+
+  settings['filters'][url][type].push([...filters]);
+  await browser.storage.local.set(settings);
+};
+
+const updateFilter = async (url, type, filters) => {
+  const settings = await browser.storage.local.get();
+  delete settings['filters'][url][type];
+
+  settings['filters'][url][type] = filters;
+  await browser.storage.local.set(settings);
+};
+
+const deleteFilter = async (url) => {
+  const settings = await browser.storage.local.get();
+  delete settings['filters'][url];
   await browser.storage.local.set(settings);
 };
 
@@ -100,4 +115,6 @@ export {
   checkSetting,
   getFilters,
   createFilter,
+  updateFilter,
+  deleteFilter,
 };

@@ -68,9 +68,14 @@ previewBtn.addEventListener('click', () => {
 
 createBtn.addEventListener('click', async () => {
   if (textarea.value) {
-    await browser.runtime.sendMessage({type: 'getUrl'});
+    urlInput.value = '';
+    if (scopeBtns[1].classList.contains('selected')) {
+      await browser.runtime.sendMessage({type: 'getUrl'});
+    }
+
     const url = urlInput.value || 'global';
-    const filter = textarea.value;
+    const filter = textarea.value.trim().split('\n---\n');
+
     const type = selectorBtns[0].classList.contains('selected')
       ? 'html'
       : selectorBtns[1].classList.contains('selected')

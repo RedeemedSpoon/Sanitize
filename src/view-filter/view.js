@@ -1,10 +1,10 @@
-import {initOptSettings, exportSettings, importSettings} from '../utils.js';
+import {initOptSettings, exportSettings, importSettings, deleteFilter, createFilter, updateFilter} from '../utils.js';
 
 const readBtns = document.querySelectorAll('.read-bar button');
 const writeBtns = document.querySelectorAll('.write-bar button');
 
-const readPanel = document.getElementsByClassName('read')[0];
-const writePanel = document.getElementsByClassName('write')[0];
+const readPanel = document.getElementById('read');
+const writePanel = document.getElementById('write');
 const filterList = document.querySelector('ul');
 const saveBtn = document.getElementById('save');
 
@@ -14,7 +14,7 @@ const file = document.getElementById('file');
 const logo = document.querySelector('img');
 
 let buffer = {};
-let url = '';
+let url;
 
 // Init Settings
 document.addEventListener('DOMContentLoaded', async () => {
@@ -35,12 +35,9 @@ exportBtn.addEventListener('click', async () => {
   a.click();
 });
 
-importBtn.addEventListener('click', async () => {
-  file.click();
-  file.onchange = async (e) => {
-    const file = e.target.files[0];
-    importSettings(file);
-  };
+importBtn.addEventListener('click', async () => file.click());
+file.addEventListener('change', () => {
+  importSettings(file.files[0]);
 });
 
 // Read-Write Settings
@@ -61,38 +58,65 @@ writeBtns.forEach((btn) => {
 });
 
 // Save Button
-saveBtn.addEventListener('click', () => {});
+saveBtn.addEventListener('click', () => {
+  if (!url || !writePanel.value) return;
+
+  const type = getType(writeBtns);
+  const newCode = writePanel.value.trim().split('\n---\n');
+
+  const callback = buffer[type] ? updateFilter : createFilter;
+  callback(url, type, newCode);
+  buffer[type] = newCode;
+
+  saveBtn.innerText = 'Saved Successfully!';
+  setTimeout(() => (saveBtn.innerText = 'Save'), 2000);
+});
 
 // Functions
 const loadFilters = (filters) => {
   for (let filter in filters) {
     const line = document.createElement('li');
-    line.innerText = filter;
+    const hostname = document.createElement('p');
+    const deleteCross = document.createElement('p');
+
+    hostname.innerText = filter;
+    deleteCross.innerText = '×';
+
+    hostname.classList.add('hostname');
+    deleteCross.classList.add('delete');
+
+    line.append(hostname);
+    line.append(deleteCross);
     filterList.append(line);
 
+    deleteCross.addEventListener('click', (e) => {
+      e.stopPropagation();
+      deleteFilter(filter);
+      line.remove();
+    });
+
     line.addEventListener('click', () => {
-      const others = filterList.children;
-      for (let i = 0; i < others.length; i++) {
-        others[i].classList.remove('active');
+      for (let siblingline of filterList.children) {
+        siblingline.classList.remove('active');
       }
 
-      buffer[filter] = url === filter ? null : filters[filter];
-      url = url === filter ? '' : filter;
-      url === filter ? line.classList.add('active') : line.classList.remove('active');
+      line.classList.add('active');
+      buffer = filters[filter];
+      url = filter;
+
       changeBuffer(readPanel, readBtns);
       changeBuffer(writePanel, writeBtns);
     });
   }
 };
 
+const getType = (btns) => {
+  const result = [...btns].find((btn) => btn.classList.contains('active'));
+  return result.classList[0];
+};
+
 const changeBuffer = (panel, btns) => {
-  btns.forEach((btn) => {
-    if (btn.classList.contains('active')) {
-      if (buffer[url] && buffer[url][btn.classList[0]]) {
-        panel.innerText = buffer[url][btn.classList[0]].join('\n\n');
-      } else {
-        panel.innerText = '';
-      }
-    }
-  });
+  const type = getType(btns);
+  const condition = buffer && buffer[type];
+  panel.textContent = condition ? buffer[type].join('\n---\n') : '';
 };
