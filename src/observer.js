@@ -12,12 +12,12 @@ const audioTags = ['audio'];
 
 const zen = [...embedTags, ...formTags, ...imgTags, 'video', 'audio', 'track', 'script', 'style', 'link', 'dialog'];
 
-const addNewObserver = (type) => {
+const addNewObserver = (type, data) => {
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
         mutation.addedNodes.forEach((node) => {
-          traverseNode(node, type);
+          traverseNode(node, type, data);
         });
       }
     });
@@ -30,14 +30,14 @@ const addNewObserver = (type) => {
   });
 };
 
-const traverseNode = (node, type) => {
-  checkObserver(node, type);
+const traverseNode = (node, type, data) => {
+  checkObserver(node, type, data);
   node.childNodes.forEach((child) => {
-    traverseNode(child, type);
+    traverseNode(child, type, data);
   });
 };
 
-const checkObserver = (node, type) => {
+const checkObserver = (node, type, data) => {
   const name = node.nodeName.toLowerCase();
   switch (type) {
     case 'image':
@@ -70,6 +70,12 @@ const checkObserver = (node, type) => {
 
     case 'zen':
       zen.includes(name) && node.remove();
+      break;
+
+    case 'html':
+      data.forEach((filter) => {
+        node.matches(filter) && dealwith(node, 'Filters');
+      });
       break;
 
     case 'css':

@@ -65,9 +65,19 @@ browser.runtime.onMessage.addListener(async (request) => {
         };
         break;
       case 'css':
+        const tempStyle = document.createElement('style');
+        tempStyle.textContent = text;
+        webpage.append(tempStyle);
+
+        callback = () => tempStyle.remove();
         break;
 
       case 'js':
+        const tempScript = document.createElement('script');
+        tempScript.textContent = `(() => {${text}})();`;
+        webpage.append(tempScript);
+
+        callback = () => tempScript.remove();
         break;
     }
 

@@ -59,11 +59,11 @@ writeBtns.forEach((btn) => {
 
 // Save Button
 saveBtn.addEventListener('click', () => {
-  if (!url || !writePanel.value) return;
-
   const type = getType(writeBtns);
-  const newCode = writePanel.value.trim().split('\n---\n');
 
+  if (!url || (!writePanel.value && !buffer[type])) return;
+
+  const newCode = writePanel.value.trim().split('\n---\n');
   const callback = buffer[type] ? updateFilter : createFilter;
   callback(url, type, newCode);
   buffer[type] = newCode;

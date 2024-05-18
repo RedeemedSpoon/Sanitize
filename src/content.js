@@ -2,7 +2,7 @@
   const utilsSrc = browser.runtime.getURL('./src/utils.js');
   const url = window.location.hostname;
   const utils = await import(utilsSrc);
-  const {checkSetting, initOptSettings} = utils;
+  const {checkSetting, initOptSettings, getFilters} = utils;
   const settings = await initOptSettings();
 
   const observerSrc = browser.runtime.getURL('./src/observer.js');
@@ -168,13 +168,33 @@
 
   // HTML Filters
   if (await checkSetting('htmlFilter', url)) {
+    const filters = await getFilters(url, 'html');
+    filters.forEach((filter) => {
+      document.querySelectorAll(filter).forEach((element) => {
+        dealwith(element, 'Filters');
+      });
+    });
+
+    addNewObserver('html', filters);
   }
 
   // CSS Filters
   if (await checkSetting('cssFilter', url)) {
+    const filters = await getFilters(url, 'css');
+    filters.forEach((filter) => {
+      let styleSheet = document.createElement('style');
+      styleSheet.textContent = filter;
+      document.querySelector('head').append(styleSheet);
+    });
   }
 
   // Js filters
   if (await checkSetting('jsFilter', url)) {
+    const filters = await getFilters(url, 'js');
+    filters.forEach((filter) => {
+      let script = document.createElement('script');
+      script.textContent = filter;
+      document.querySelector('head').append(script);
+    });
   }
 })();

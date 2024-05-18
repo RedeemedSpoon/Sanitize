@@ -75,9 +75,19 @@ const checkSetting = async (setting, url) => {
 
 const getFilters = async (url, type) => {
   const settings = await browser.storage.local.get();
-  if (settings['filters'][url] && settings['filters'][url][type]) {
-    return settings['filters'][url][type];
+  const filters = settings['filters'];
+  let local = [];
+  let global = [];
+
+  if (filters[url] && filters[url][type]) {
+    local = filters[url][type];
   }
+
+  if (filters['global'] && filters['global'][type]) {
+    global = filters['global'][type];
+  }
+
+  return local.concat(global);
 };
 
 const createFilter = async (url, type, filters) => {
