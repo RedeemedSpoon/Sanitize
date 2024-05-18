@@ -8,13 +8,13 @@ const resetSettings = async () => {
   await browser.storage.local.clear();
 };
 
-const exportSettings = async () => {
+const exportConf = async () => {
   const settings = await browser.storage.local.get();
   const jsonString = JSON.stringify(settings);
   return new Blob([jsonString], {type: 'application/json'});
 };
 
-const importSettings = (file) => {
+const importConf = (file) => {
   const reader = new FileReader();
   reader.onload = async (e) => {
     const settings = JSON.parse(e.target.result);
@@ -24,7 +24,7 @@ const importSettings = (file) => {
   reader.readAsText(file);
 };
 
-const initOptSettings = async () => {
+const initOptConf = async () => {
   const optSettings = ['activateExt', 'darkTheme', 'showInfo'];
   const settings = await browser.storage.local.get();
 
@@ -41,7 +41,7 @@ const initOptSettings = async () => {
   return settings;
 };
 
-const toggleOptSettings = async (settingId) => {
+const toggleOptConf = async (settingId) => {
   const settings = await browser.storage.local.get();
   settings[settingId] = !settings[settingId];
   await browser.storage.local.set(settings);
@@ -73,21 +73,18 @@ const checkSetting = async (setting, url) => {
   return (await getSettings('global', setting)) || (await getSettings(url, setting));
 };
 
-const getFilters = async (url, type) => {
-  const settings = await browser.storage.local.get();
-  const filters = settings['filters'];
-  let local = [];
-  let global = [];
+const getFilters = async (url) => {
+  let settings = await browser.storage.local.get();
+  return settings['filters'][url] || {};
+};
 
-  if (filters[url] && filters[url][type]) {
-    local = filters[url][type];
-  }
+const getAllFilters = async (url, type) => {
+  let globalFilters = await getFilters('global');
+  let localFilters = await getFilters(url);
+  globalFilters = globalFilters && globalFilters[type] ? globalFilters[type] : [];
+  localFilters = localFilters && localFilters[type] ? localFilters[type] : [];
 
-  if (filters['global'] && filters['global'][type]) {
-    global = filters['global'][type];
-  }
-
-  return local.concat(global);
+  return globalFilters.concat(localFilters);
 };
 
 const createFilter = async (url, type, filters) => {
@@ -95,7 +92,7 @@ const createFilter = async (url, type, filters) => {
   settings['filters'][url] = settings['filters'][url] || {};
   settings['filters'][url][type] = settings['filters'][url][type] || [];
 
-  settings['filters'][url][type].push([...filters]);
+  settings['filters'][url][type].push(filters);
   await browser.storage.local.set(settings);
 };
 
@@ -115,15 +112,16 @@ const deleteFilter = async (url) => {
 
 export {
   getUrl,
+  checkSetting,
+  resetSettings,
   setSettings,
   getSettings,
-  initOptSettings,
-  toggleOptSettings,
-  resetSettings,
-  exportSettings,
-  importSettings,
-  checkSetting,
+  initOptConf,
+  toggleOptConf,
+  exportConf,
+  importConf,
   getFilters,
+  getAllFilters,
   createFilter,
   updateFilter,
   deleteFilter,

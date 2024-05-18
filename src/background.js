@@ -1,4 +1,4 @@
-import {checkSetting, setSettings, getSettings, toggleOptSettings, initOptSettings} from './utils.js';
+import {checkSetting, setSettings, getSettings, toggleOptConf, initOptConf} from './utils.js';
 // import {updateEasyList, isInEasyList} from './easylist.js';
 
 // Initialization
@@ -19,7 +19,7 @@ browser.contextMenus.onClicked.addListener(() => showFrame());
 browser.commands.onCommand.addListener(async (command) => {
   switch (command) {
     case 'disable_sanitize':
-      toggleOptSettings('activateExt');
+      toggleOptConf('activateExt');
       break;
 
     case 'add_filter':
@@ -116,7 +116,7 @@ browser.runtime.onMessage.addListener(async (request) => {
 // Web Requests
 browser.webRequest.onBeforeRequest.addListener(
   async (details) => {
-    if (!(await initOptSettings())['activateExt']) {
+    if (!(await initOptConf())['activateExt']) {
       return;
     }
 

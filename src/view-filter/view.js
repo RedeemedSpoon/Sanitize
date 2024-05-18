@@ -1,4 +1,4 @@
-import {initOptSettings, exportSettings, importSettings, deleteFilter, createFilter, updateFilter} from '../utils.js';
+import {initOptConf, exportConf, importConf, deleteFilter, createFilter, updateFilter, getFilters} from '../utils.js';
 
 const readBtns = document.querySelectorAll('.read-bar button');
 const writeBtns = document.querySelectorAll('.write-bar button');
@@ -13,12 +13,11 @@ const importBtn = document.getElementById('import');
 const file = document.getElementById('file');
 const logo = document.querySelector('img');
 
-let buffer = {};
 let url;
 
 // Init Settings
 document.addEventListener('DOMContentLoaded', async () => {
-  const settings = await initOptSettings();
+  const settings = await initOptConf();
   loadFilters(settings['filters']);
   if (settings['darkTheme']) {
     document.body.classList.add('dark');
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Export-Import Settings
 exportBtn.addEventListener('click', async () => {
-  const file = await exportSettings();
+  const file = await exportConf();
   const a = document.createElement('a');
   a.href = URL.createObjectURL(file);
   a.download = 'settings.json';
@@ -37,7 +36,7 @@ exportBtn.addEventListener('click', async () => {
 
 importBtn.addEventListener('click', async () => file.click());
 file.addEventListener('change', () => {
-  importSettings(file.files[0]);
+  importConf(file.files[0]);
 });
 
 // Read-Write Settings
@@ -58,16 +57,20 @@ writeBtns.forEach((btn) => {
 });
 
 // Save Button
-saveBtn.addEventListener('click', () => {
-  const type = getType(writeBtns);
+saveBtn.addEventListener('click', async () => {
+  const writeType = getType(writeBtns);
+  const readType = getType(readBtns);
+  const buffer = getFilters(url)[writeType] || [];
 
-  if (!url || (!writePanel.value && !buffer[type])) return;
+  if (!url || (!writePanel.value && !buffer)) return;
 
   const newCode = writePanel.value.trim().split('\n---\n');
-  const callback = buffer[type] ? updateFilter : createFilter;
-  callback(url, type, newCode);
-  buffer[type] = newCode;
 
+  !buffer
+    ? newCode.forEach(async (code) => await createFilter(url, writeType, code))
+    : await updateFilter(url, writeType, newCode);
+
+  readType === writeType && changeBuffer(readPanel, readBtns);
   saveBtn.innerText = 'Saved Successfully!';
   setTimeout(() => (saveBtn.innerText = 'Save'), 2000);
 });
@@ -100,10 +103,8 @@ const loadFilters = (filters) => {
         siblingline.classList.remove('active');
       }
 
-      line.classList.add('active');
-      buffer = filters[filter];
       url = filter;
-
+      line.classList.add('active');
       changeBuffer(readPanel, readBtns);
       changeBuffer(writePanel, writeBtns);
     });
@@ -115,8 +116,8 @@ const getType = (btns) => {
   return result.classList[0];
 };
 
-const changeBuffer = (panel, btns) => {
+const changeBuffer = async (panel, btns) => {
   const type = getType(btns);
-  const condition = buffer && buffer[type];
-  panel.textContent = condition ? buffer[type].join('\n---\n') : '';
+  const buffer = await getFilters(url);
+  panel.value = buffer && buffer[type] ? buffer[type].join('\n---\n') : '';
 };

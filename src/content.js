@@ -2,8 +2,8 @@
   const utilsSrc = browser.runtime.getURL('./src/utils.js');
   const url = window.location.hostname;
   const utils = await import(utilsSrc);
-  const {checkSetting, initOptSettings, getFilters} = utils;
-  const settings = await initOptSettings();
+  const {checkSetting, initOptConf, getAllFilters} = utils;
+  const settings = await initOptConf();
 
   const observerSrc = browser.runtime.getURL('./src/observer.js');
   const observer = await import(observerSrc);
@@ -168,7 +168,7 @@
 
   // HTML Filters
   if (await checkSetting('htmlFilter', url)) {
-    const filters = await getFilters(url, 'html');
+    const filters = await getAllFilters(url, 'html');
     filters.forEach((filter) => {
       document.querySelectorAll(filter).forEach((element) => {
         dealwith(element, 'Filters');
@@ -180,9 +180,9 @@
 
   // CSS Filters
   if (await checkSetting('cssFilter', url)) {
-    const filters = await getFilters(url, 'css');
+    const filters = await getAllFilters(url, 'css');
     filters.forEach((filter) => {
-      let styleSheet = document.createElement('style');
+      const styleSheet = document.createElement('style');
       styleSheet.textContent = filter;
       document.querySelector('head').append(styleSheet);
     });
@@ -190,9 +190,9 @@
 
   // Js filters
   if (await checkSetting('jsFilter', url)) {
-    const filters = await getFilters(url, 'js');
+    const filters = await getAllFilters(url, 'js');
     filters.forEach((filter) => {
-      let script = document.createElement('script');
+      const script = document.createElement('script');
       script.textContent = filter;
       document.querySelector('head').append(script);
     });

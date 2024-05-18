@@ -1,4 +1,4 @@
-import {getUrl, setSettings, getSettings, initOptSettings, toggleOptSettings, resetSettings} from '../utils.js';
+import {getUrl, setSettings, getSettings, initOptConf, toggleOptConf, resetSettings} from '../utils.js';
 
 const allSettings = document.querySelectorAll('input');
 
@@ -66,7 +66,7 @@ allSettings.forEach((setting) =>
 
 optSettings.forEach((optSetting) => {
   optSetting.addEventListener('click', () => {
-    toggleOptSettings(optSetting.id);
+    toggleOptConf(optSetting.id);
     window.location.reload();
   });
 });
@@ -77,7 +77,7 @@ warning.addEventListener('click', () => {
 
 // Functions
 const reloadSettings = async () => {
-  const results = await initOptSettings();
+  const results = await initOptConf();
   if (results['darkTheme']) {
     document.body.classList.add('dark');
     document.querySelectorAll('img').forEach((img) => {

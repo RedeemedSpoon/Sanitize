@@ -1,4 +1,4 @@
-import {createFilter, initOptSettings} from '../utils.js';
+import {createFilter, initOptConf} from '../utils.js';
 
 const main = document.querySelector('main');
 const textarea = document.getElementById('content');
@@ -16,7 +16,7 @@ const scopeBtns = document.querySelectorAll('#scope button');
 
 // Load
 document.addEventListener('DOMContentLoaded', async () => {
-  const settings = await initOptSettings();
+  const settings = await initOptConf();
   settings['darkTheme'] && main.classList.add('dark');
 });
 
@@ -74,7 +74,7 @@ createBtn.addEventListener('click', async () => {
     }
 
     const url = urlInput.value || 'global';
-    const filter = textarea.value.trim().split('\n---\n');
+    const filters = textarea.value.trim().split('\n---\n');
 
     const type = selectorBtns[0].classList.contains('selected')
       ? 'html'
@@ -82,7 +82,7 @@ createBtn.addEventListener('click', async () => {
         ? 'css'
         : 'js';
 
-    createFilter(url, type, filter);
+    filters.forEach((filter) => createFilter(url, type, filter));
     browser.runtime.sendMessage({type: 'reloadPage'});
   }
 });

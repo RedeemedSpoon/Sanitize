@@ -1,7 +1,7 @@
 // Observers to Detect Change in The DOM
-import {initOptSettings} from './utils.js';
+import {initOptConf} from './utils.js';
 
-const message = (await initOptSettings())['showInfo'] || false;
+const message = (await initOptConf())['showInfo'] || false;
 
 const embedTags = ['iframe', 'embed', 'object', 'slot', 'template', 'portal', 'frame', 'frameset', 'shadow'];
 const formTags = ['form', 'input', 'textarea', 'select', 'button', 'fieldset', 'legend', 'label', 'output'];
@@ -74,6 +74,7 @@ const checkObserver = (node, type, data) => {
 
     case 'html':
       data.forEach((filter) => {
+        if (node.nodeType === 2 || node.nodeType === 3) return;
         node.matches(filter) && dealwith(node, 'Filters');
       });
       break;
