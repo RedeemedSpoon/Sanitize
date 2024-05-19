@@ -3,41 +3,6 @@ import {initOptConf} from './utils.js';
 
 const message = (await initOptConf())['showInfo'] || false;
 
-const semanticTags = [
-  'abbr',
-  'acronym',
-  'b',
-  'bdi',
-  'bdo',
-  'big',
-  'cite',
-  'code',
-  'data',
-  'dfn',
-  'em',
-  'i',
-  'kbd',
-  'mark',
-  'q',
-  'rb',
-  'rp',
-  'rt',
-  'rtc',
-  'ruby',
-  's',
-  'samp',
-  'small',
-  'span',
-  'strike',
-  'strong',
-  'sub',
-  'sup',
-  'time',
-  'tt',
-  'u',
-  'var',
-  'wbr',
-];
 const embedTags = ['iframe', 'embed', 'object', 'slot', 'template', 'portal', 'frame', 'frameset', 'shadow'];
 const formTags = ['form', 'input', 'textarea', 'select', 'button', 'fieldset', 'legend', 'label', 'output'];
 const tableTags = ['table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption', 'col', 'colgroup'];
@@ -48,14 +13,13 @@ const audioTags = ['audio'];
 
 const zen = [...embedTags, ...formTags, ...imgTags, 'video', 'audio', 'track', 'script', 'style', 'link', 'dialog'];
 const allTags = {
-  semantic: semanticTags,
-  embed: embedTags,
-  form: formTags,
-  table: tableTags,
   image: imgTags,
-  list: listTags,
   video: videoTags,
   audio: audioTags,
+  form: formTags,
+  table: tableTags,
+  list: listTags,
+  embed: embedTags,
   zen: zen,
 };
 
@@ -111,10 +75,6 @@ const checkObserver = (node, type, data) => {
       listTags.includes(name) && dealwith(node, 'list');
       break;
 
-    case 'semantic':
-      semanticTags.includes(name) && dealwith(node, 'semantic');
-      break;
-
     case 'link':
       name === 'a' ? (node.href = 'javascript:void(0)') : null;
       break;
@@ -156,6 +116,7 @@ const checkObserver = (node, type, data) => {
   }
 };
 
+// Remove Element Or Replace By Message When Called 
 const dealwith = (node, type) => {
   if (message) {
     const div = document.createElement('div');

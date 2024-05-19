@@ -74,11 +74,7 @@ browser.runtime.onMessage.addListener(async (request) => {
       });
       break;
 
-    case 'imageBlock':
-      browser.tabs.insertCSS({code: '* { background-image: none !important; }'});
-      break;
-
-    case 'audioBlock':
+    case 'muteTab':
       browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
         await browser.tabs.update(tabs[0].id, {muted: true});
       });

@@ -14,7 +14,7 @@ const closeBtn = document.querySelector('#controls p:last-child');
 const selectorBtns = document.querySelectorAll('#selector button');
 const scopeBtns = document.querySelectorAll('#scope button');
 
-// Load
+// On Load
 document.addEventListener('DOMContentLoaded', async () => {
   const settings = await initOptConf();
   settings['darkTheme'] && main.classList.add('dark');

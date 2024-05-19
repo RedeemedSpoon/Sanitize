@@ -15,7 +15,7 @@ const logo = document.querySelector('img');
 
 let url;
 
-// Init Settings
+// On Load
 document.addEventListener('DOMContentLoaded', async () => {
   const settings = await initOptConf();
   loadFilters(settings['filters']);

@@ -1,5 +1,6 @@
-// When Making New Filters
+// Message Listener for New Filters
 browser.runtime.onMessage.addListener(async (request) => {
+  // Choose An Element
   if (request.type === 'pickElement') {
     clearSelection();
     let selectMode = true;
@@ -45,6 +46,7 @@ browser.runtime.onMessage.addListener(async (request) => {
         textArea.value = selector;
       });
     });
+    // Preview An Element
   } else if (request.type === 'previewElement') {
     const {iframe, textArea, selectorBtns, webpage} = init();
     const text = textArea.value.trim();
@@ -85,6 +87,7 @@ browser.runtime.onMessage.addListener(async (request) => {
       iframe.style.display = 'block';
       callback();
     });
+    // Retrieve URL
   } else if (request.type === 'getUrl') {
     const {urlInput} = init();
     const windowUrl = new URL(window.location.href);
@@ -92,6 +95,7 @@ browser.runtime.onMessage.addListener(async (request) => {
   }
 });
 
+// Functions
 const init = (mode) => {
   const webpage = document.querySelector('html');
 

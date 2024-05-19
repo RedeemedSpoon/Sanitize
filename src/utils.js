@@ -100,7 +100,7 @@ const updateFilter = async (url, type, filters) => {
   const settings = await browser.storage.local.get();
   delete settings['filters'][url][type];
 
-  settings['filters'][url][type] = filters;
+  filters[0] ? (settings['filters'][url][type] = filters) : null;
   await browser.storage.local.set(settings);
 };
 
