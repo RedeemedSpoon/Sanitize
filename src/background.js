@@ -1,10 +1,8 @@
 import {checkSetting, setSettings, getSettings, toggleOptConf, initOptConf} from './utils.js';
-// import {updateEasyList, isInEasyList} from './easylist.js';
 
 // Initialization
 browser.runtime.onInstalled.addListener(async () => {
   browser.tabs.create({url: 'https://RedeemedSpoon.github.io/Sanitize#installation'});
-  // await updateEasyList();
   browser.contextMenus.create({
     id: 'sanitize',
     title: 'Add new Filter',
@@ -41,18 +39,6 @@ browser.commands.onCommand.addListener(async (command) => {
     case 'toggle_grayscale_mode':
       setSettings('global', 'grayscale', !(await getSettings('global', 'grayscale')));
       break;
-  }
-});
-
-// Alarms
-browser.alarms.create('EasyList Update', {
-  delayInMinutes: 30,
-  periodInMinutes: 45,
-});
-
-browser.alarms.onAlarm.addListener((alarm) => {
-  if (alarm.name === 'EasyList Update') {
-    // updateEasyList();
   }
 });
 
@@ -121,7 +107,6 @@ browser.webRequest.onBeforeRequest.addListener(
     }
 
     const forbiddenElements = await getElementsToBlock();
-    // const inEasyList = await isInEasyList(details.url);
     if (forbiddenElements.includes(details.type)) {
       return {cancel: true};
     }

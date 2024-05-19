@@ -7,7 +7,7 @@
 
   const observerSrc = browser.runtime.getURL('./src/observer.js');
   const observer = await import(observerSrc);
-  const {addNewObserver, dealwith, zen} = observer;
+  const {addNewObserver, dealwith, allTags} = observer;
 
   if (!settings['activateExt']) {
     return;
@@ -30,7 +30,7 @@
     let elements = document.querySelectorAll('*');
     elements.forEach((element) => {
       const name = element.tagName.toLowerCase();
-      zen.includes(name) && element.remove();
+      allTags['zen'].includes(name) && element.remove();
 
       element.style.cssText = '';
       for (const attribute of element.attributes) {
@@ -124,7 +124,7 @@
 
   //Block Images
   if (await checkSetting('image', url)) {
-    const images = document.querySelectorAll('img, picture, svg, img source, area, map, image');
+    const images = document.querySelectorAll(allTags['image']);
     images.forEach((image) => dealwith(image, 'image'));
     browser.runtime.sendMessage({type: 'imageBlock'});
     addNewObserver('image');
@@ -132,14 +132,14 @@
 
   // Block Videos
   if (await checkSetting('video', url)) {
-    const videos = document.querySelectorAll('video, video source, track');
+    const videos = document.querySelectorAll(allTags['video']);
     videos.forEach((video) => dealwith(video, 'video'));
     addNewObserver('video');
   }
 
   // Block Audios
   if (await checkSetting('audio', url)) {
-    const audios = document.querySelectorAll('audio, audio source, track');
+    const audios = document.querySelectorAll(allTags['audio']);
     audios.forEach((audio) => dealwith(audio, 'audio'));
     browser.runtime.sendMessage({type: 'audioBlock'});
     addNewObserver('audio');
@@ -147,26 +147,47 @@
 
   // Block Tables
   if (await checkSetting('table', url)) {
-    const tables = document.querySelectorAll('table, thead, tbody, tfoot, tr, th, td, caption, col, colgroup');
+    const tables = document.querySelectorAll(allTags['table']);
     tables.forEach((table) => dealwith(table, 'table'));
     addNewObserver('table');
   }
 
   // Block Forms
   if (await checkSetting('form', url)) {
-    const forms = document.querySelectorAll('form, input, textarea, select, button, fieldset, legend, label, output');
+    const forms = document.querySelectorAll(allTags['form']);
     forms.forEach((form) => dealwith(form, 'form'));
     addNewObserver('form');
   }
 
+  // Block Lists
+  if (await checkSetting('list', url)) {
+    const lists = document.querySelectorAll(allTags['list']);
+    lists.forEach((list) => dealwith(list, 'list'));
+    addNewObserver('list');
+  }
+
+  // Block Text Semantics
+  if (await checkSetting('semantic', url)) {
+    const semantics = document.querySelectorAll(allTags['semantic']);
+    semantics.forEach((semantic) => dealwith(semantic, 'semantic'));
+    addNewObserver('semantic');
+  }
+
+  // Block Links
+  if (await checkSetting('link', url)) {
+    const links = document.querySelectorAll('a');
+    links.forEach((link) => (link.href = 'javascript:void(0)'));
+    addNewObserver('link');
+  }
+
   // Block Embedded Objects
   if (await checkSetting('embed', url)) {
-    const embeds = document.querySelectorAll('iframe, embed, object, slot, template, portal, frame, frameSet, shadow');
+    const embeds = document.querySelectorAll(allTags['embed']);
     embeds.forEach((embed) => dealwith(embed, 'embed'));
     addNewObserver('embed');
   }
 
-  // HTML Filters
+  // Html Filters
   if (await checkSetting('htmlFilter', url)) {
     const filters = await getAllFilters(url, 'html');
     filters.forEach((filter) => {
@@ -178,7 +199,7 @@
     addNewObserver('html', filters);
   }
 
-  // CSS Filters
+  // Css Filters
   if (await checkSetting('cssFilter', url)) {
     const filters = await getAllFilters(url, 'css');
     filters.forEach((filter) => {

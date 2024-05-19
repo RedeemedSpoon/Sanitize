@@ -24,6 +24,10 @@ const importConf = (file) => {
   reader.readAsText(file);
 };
 
+const checkSetting = async (setting, url) => {
+  return (await getSettings('global', setting)) || (await getSettings(url, setting));
+};
+
 const initOptConf = async () => {
   const optSettings = ['activateExt', 'darkTheme', 'showInfo'];
   const settings = await browser.storage.local.get();
@@ -69,10 +73,6 @@ const setSettings = async (scope, settingId, newValue) => {
   await browser.storage.local.set(settings);
 };
 
-const checkSetting = async (setting, url) => {
-  return (await getSettings('global', setting)) || (await getSettings(url, setting));
-};
-
 const getFilters = async (url) => {
   let settings = await browser.storage.local.get();
   return settings['filters'][url] || {};
@@ -114,12 +114,12 @@ export {
   getUrl,
   checkSetting,
   resetSettings,
+  exportConf,
+  importConf,
   setSettings,
   getSettings,
   initOptConf,
   toggleOptConf,
-  exportConf,
-  importConf,
   getFilters,
   getAllFilters,
   createFilter,

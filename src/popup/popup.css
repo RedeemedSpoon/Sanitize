@@ -80,6 +80,10 @@ input {
   color: #eee !important;
 }
 
+#block {
+  padding: 10px 20px;
+}
+
 #filter {
   justify-content: center;
   column-gap: 15px;

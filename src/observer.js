@@ -3,14 +3,61 @@ import {initOptConf} from './utils.js';
 
 const message = (await initOptConf())['showInfo'] || false;
 
+const semanticTags = [
+  'abbr',
+  'acronym',
+  'b',
+  'bdi',
+  'bdo',
+  'big',
+  'cite',
+  'code',
+  'data',
+  'dfn',
+  'em',
+  'i',
+  'kbd',
+  'mark',
+  'q',
+  'rb',
+  'rp',
+  'rt',
+  'rtc',
+  'ruby',
+  's',
+  'samp',
+  'small',
+  'span',
+  'strike',
+  'strong',
+  'sub',
+  'sup',
+  'time',
+  'tt',
+  'u',
+  'var',
+  'wbr',
+];
 const embedTags = ['iframe', 'embed', 'object', 'slot', 'template', 'portal', 'frame', 'frameset', 'shadow'];
 const formTags = ['form', 'input', 'textarea', 'select', 'button', 'fieldset', 'legend', 'label', 'output'];
 const tableTags = ['table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption', 'col', 'colgroup'];
 const imgTags = ['img', 'picture', 'svg', 'source', 'area', 'map', 'image'];
+const listTags = ['ul', 'ol', 'dl', 'li', 'dd', 'dt', 'menu'];
 const videoTags = ['video'];
 const audioTags = ['audio'];
 
 const zen = [...embedTags, ...formTags, ...imgTags, 'video', 'audio', 'track', 'script', 'style', 'link', 'dialog'];
+const allTags = {
+  semantic: semanticTags,
+  embed: embedTags,
+  form: formTags,
+  table: tableTags,
+  image: imgTags,
+  list: listTags,
+  video: videoTags,
+  audio: audioTags,
+  zen: zen,
+};
 
 const addNewObserver = (type, data) => {
   const observer = new MutationObserver((mutations) => {
@@ -41,27 +88,39 @@ const checkObserver = (node, type, data) => {
   const name = node.nodeName.toLowerCase();
   switch (type) {
     case 'image':
-      imgTags.includes(name) && dealwith(node, name);
+      imgTags.includes(name) && dealwith(node, 'image');
       break;
 
     case 'video':
-      videoTags.includes(name) && dealwith(node, name);
+      videoTags.includes(name) && dealwith(node, 'video');
       break;
 
     case 'audio':
-      audioTags.includes(name) && dealwith(node, name);
+      audioTags.includes(name) && dealwith(node, 'audio');
       break;
 
     case 'table':
-      tableTags.includes(name) && dealwith(node, name);
+      tableTags.includes(name) && dealwith(node, 'table');
       break;
 
     case 'form':
-      formTags.includes(name) && dealwith(node, name);
+      formTags.includes(name) && dealwith(node, 'form');
+      break;
+
+    case 'list':
+      listTags.includes(name) && dealwith(node, 'list');
+      break;
+
+    case 'semantic':
+      semanticTags.includes(name) && dealwith(node, 'semantic');
+      break;
+
+    case 'link':
+      name === 'a' ? (node.href = 'javascript:void(0)') : null;
       break;
 
     case 'embed':
-      embedTags.includes(name) && dealwith(node, name);
+      embedTags.includes(name) && dealwith(node, 'embed');
       break;
 
     case 'grayscale':
@@ -109,4 +168,4 @@ const dealwith = (node, type) => {
   node.remove();
 };
 
-export {addNewObserver, dealwith, zen};
+export {addNewObserver, dealwith, allTags};
