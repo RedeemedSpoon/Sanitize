@@ -1,12 +1,12 @@
 (async () => {
   const annoyances = ['image', 'video', 'audio', 'table', 'form', 'list', 'link', 'semantic', 'embed'];
-  const utilsSrc = browser.runtime.getURL('./src/utils.js');
+  const utilsSrc = browser.runtime.getURL('./utils.js');
   const url = window.location.hostname;
   const utils = await import(utilsSrc);
   const {checkSetting, initOptConf, getAllFilters} = utils;
   const settings = await initOptConf();
 
-  const observerSrc = browser.runtime.getURL('./src/observer.js');
+  const observerSrc = browser.runtime.getURL('./observer.js');
   const observer = await import(observerSrc);
   const {addNewObserver, dealwith, allTags} = observer;
 
@@ -16,8 +16,6 @@
 
   // Zen Mode
   if (await checkSetting('zen', url)) {
-    document.body.replaceWith(document.body.cloneNode(true));
-
     document.querySelectorAll('link').forEach((cssLink) => {
       cssLink.rel === 'stylesheet' && cssLink.remove();
     });
@@ -53,18 +51,15 @@
       document.querySelector('#article') ||
       document.querySelector('.article') ||
       document.querySelector('#container') ||
-      document.querySelector('.container') ||
-      document.querySelector('body');
+      document.querySelector('.container')
+
 
     const styleSheet = document.createElement('style');
     styleSheet.innerText =
       'body {margin: 6.5% 28.5%; font-size: 20px} body.dark {background-color:#252525; color: #f9f9f9}';
 
-    if (settings['darkTheme']) {
-      document.body.classList.add('dark');
-    }
-
-    document.body.innerHTML = allContent.innerHTML;
+    settings['darkTheme'] && document.body.classList.add('dark');
+    allContent && document.body.replaceChildren(allContent);
     document.querySelector('head').append(styleSheet);
   }
 

@@ -5,7 +5,7 @@ browser.runtime.onInstalled.addListener(async () => {
   browser.tabs.create({url: 'https://RedeemedSpoon.github.io/Sanitize#installation'});
   browser.contextMenus.create({
     id: 'sanitize',
-    title: 'Add new Filter',
+    title: 'Add New Filter',
     contexts: ['all'],
   });
 });
@@ -25,7 +25,7 @@ browser.commands.onCommand.addListener(async (command) => {
       break;
 
     case 'view_filter':
-      browser.tabs.create({url: await browser.runtime.getURL('src/view-filter/view.html')});
+      browser.tabs.create({url: await browser.runtime.getURL('view-filter/view.html')});
       break;
 
     case 'toggle_zen_mode':
@@ -81,7 +81,7 @@ browser.runtime.onMessage.addListener(async (request) => {
       break;
 
     case 'syncTab':
-      const file = await browser.runtime.getURL('src/view-filter/view.html');
+      const file = await browser.runtime.getURL('view-filter/view.html');
       browser.tabs.create({url: file});
       break;
 
@@ -150,7 +150,7 @@ const getElementsToBlock = async () => {
 
 const showFrame = async () => {
   closeFrame();
-  let source = await browser.runtime.getURL('src/new-filter/new.html');
+  let source = await browser.runtime.getURL('new-filter/new.html');
   browser.tabs.executeScript(null, {
     code:
       `var iframe = document.createElement('iframe');` +

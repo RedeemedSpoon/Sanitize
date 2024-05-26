@@ -57,18 +57,18 @@
     }
   },
   "icons": {
-    "32": "src/icons/logo_32.png",
-    "64": "src/icons/logo_64.png",
-    "96": "src/icons/logo_96.png"
+    "32": "icons/logo_32.png",
+    "64": "icons/logo_64.png",
+    "96": "icons/logo_96.png"
   },
   "browser_action": {
     "default_title": "Sanitize",
-    "default_popup": "src/popup/popup.html",
+    "default_popup": "popup/popup.html",
     "default_area": "navbar",
     "default_icon": {
-      "32": "src/icons/logo_32.png",
-      "64": "src/icons/logo_64.png",
-      "96": "src/icons/logo_96.png"
+      "32": "icons/logo_32.png",
+      "64": "icons/logo_64.png",
+      "96": "icons/logo_96.png"
     }
   },
   "content_scripts": [
@@ -77,8 +77,8 @@
         "<all_urls>"
       ],
       "js": [
-        "src/content.js",
-        "src/filters.js"
+        "content.js",
+        "filters.js"
       ],
       "run_at": "document_idle",
       "match_about_blank": true,
@@ -87,7 +87,7 @@
   ],
   "background": {
     "scripts": [
-      "src/background.js"
+      "background.js"
     ],
     "persistent": false,
     "type": "module"

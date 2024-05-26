@@ -1,8 +1,10 @@
 import {getUrl, setSettings, getSettings, initOptConf, toggleOptConf, resetSettings} from '../utils.js';
 
-const allSettings = document.querySelectorAll('input');
-
 const optSettings = document.querySelectorAll('header div img');
+const showInfo = document.getElementById('showInfo');
+const activateExt = document.getElementById('activateExt');
+
+const allSettings = document.querySelectorAll('input');
 
 const globalBtn = document.getElementById('global');
 const localBtn = document.getElementById('local');
@@ -12,8 +14,6 @@ const resetBtn = document.getElementById('reset');
 
 const newBtn = document.getElementById('new');
 const viewBtn = document.getElementById('view');
-
-const warning = document.getElementById('warning');
 const logo = document.getElementById('logo');
 
 // On Load
@@ -60,29 +60,31 @@ allSettings.forEach((setting) =>
   setting.addEventListener('click', async () => {
     const url = globalBtn.classList.contains('active') ? 'global' : await getUrl();
     await setSettings(url, setting.id, setting.checked);
-    warning.style.display = 'block';
   }),
 );
 
 optSettings.forEach((optSetting) => {
   optSetting.addEventListener('click', () => {
     toggleOptConf(optSetting.id);
-    window.location.reload();
+    if (optSetting.id === 'darkTheme') {
+      document.body.classList.toggle('dark');
+      logo.src = document.body.classList.contains('dark')
+        ? '../icons/sanitize_dark.png'
+        : '../icons/sanitize_light.png';
+    } else {
+      optSetting.classList.toggle('off');
+    }
   });
-});
-
-warning.addEventListener('click', () => {
-  warning.style.display = 'none';
 });
 
 // Functions
 const reloadSettings = async () => {
   const results = await initOptConf();
+  !results['showInfo'] && showInfo.classList.add('off');
+  !results['activateExt'] && activateExt.classList.add('off');
   if (results['darkTheme']) {
     document.body.classList.add('dark');
-    document.querySelectorAll('img').forEach((img) => {
-      img.src = img.src.replace('light', 'dark');
-    });
+    logo.src = '../icons/sanitize_dark.png';
   }
 
   const url = globalBtn.classList.contains('active') ? 'global' : await getUrl();

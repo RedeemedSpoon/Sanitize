@@ -5,14 +5,17 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
+  font-weight: 400 !important;
 }
 
 img {
   user-select: none;
 }
 
+b,
+h2,
 a {
-  font-weight: 600;
+  font-weight: 600 !important;
   text-decoration: none;
   color: inherit;
 }
@@ -27,19 +30,18 @@ li {
 }
 
 h1 {
-  color: #8e1dff;
-  font-weight: 600;
+  color: #8000ed;
   font-size: 30px;
 }
 
 hr {
-  border: 3px solid #8e1dff;
+  border: 3px solid #00aa00;
   border-radius: 50%;
 }
 
 @keyframes scroll {
   0% {
-    background-position: 0px 0px;
+    background-positin: 0px 0px;
   }
 
   100% {
@@ -50,7 +52,7 @@ hr {
 body {
   font-family: 'Open Sans', sans-serif;
   background-image: url('./assets/background.jpg');
-  animation: scroll linear infinite 30s;
+  animation: scroll linear infinite 60s;
   background-position: center;
   background-size: contain;
   overflow-x: hidden;
@@ -97,9 +99,9 @@ footer {
   height: 75vh;
   row-gap: 40px;
   padding: 25px;
-  color: #8e1dff;
+  color: #8000ed;
   text-align: center;
-  background: linear-gradient(to top, rgba(0, 280, 0, 0.8) 0%, rgba(0, 210, 0, 0.9) 100%);
+  background: linear-gradient(to top, rgba(60, 220, 40, 0.835) 0%, rgba(50, 190, 35, 0.9375) 100%);
 }
 
 #introduction h1 {
@@ -217,7 +219,7 @@ footer {
   padding: 20px 14px;
   border-radius: 15px;
   color: #f9f9f9;
-  background-color: #8e1dff;
+  background-color: #8000ed;
   transition: 0.5s ease;
   user-select: none;
 }
@@ -233,8 +235,28 @@ footer {
 .btn:hover {
   cursor: pointer;
   text-decoration: none;
-  background-color: #6d00db;
+  background-color: #6a00c7;
   transition: 0.5s ease;
+}
+
+#usage ol {
+  margin-left: 30px;
+}
+
+#usage div li,
+#issues li {
+  list-style-type: disc;
+}
+
+#usage h3 {
+  margin: 15px 0;
+  font-size: 20px;
+  font-weight: 600 !important;
+}
+
+#usage h2 {
+  font-size: 30px;
+  margin: 25px 0;
 }
 
 #faq {
@@ -253,6 +275,7 @@ footer {
 
 .question {
   padding: 20px 10px;
+  cursor: pointer;
 }
 
 .question > div {

@@ -2,13 +2,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-weight: 400;
 }
 
 body {
   overflow: hidden;
   box-sizing: border-box;
   font-family: sans-serif;
-  background-color: #fcfcfc;
+  background-color: #f5f5f5;
   color: #353535;
   margin: 5px 15px;
 }
@@ -20,20 +21,26 @@ header {
   margin: 15px 10px;
 }
 
+header div {
+  display: flex;
+  column-gap: 10px;
+  margin-right: 15px;
+}
+
 button {
-  color: #fdfdfd;
-  background-color: #005500;
+  padding: 8px 16px;
   border-radius: 5px;
-  font-size: 16px;
-  font-weight: 400;
-  padding: 8px 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #007a29;
+  color: #f5f5f5;
   cursor: pointer;
   border: none;
 }
 
 button:hover {
-  background-color: #004500;
-  color: #eee;
+  background-color: #00641e;
+  color: #f2f2f2;
 }
 
 main {
@@ -62,9 +69,9 @@ main {
   flex-direction: column;
   align-items: center;
   border: 1px solid #252525;
-  background-color: #f5f5f5;
+  background-color: #eaeaea;
   border-radius: 15px;
-  padding: 15px 15px;
+  padding: 20px 15px;
   width: 20rem;
   height: 90%;
 }
@@ -74,6 +81,7 @@ ul {
   list-style: none;
   overflow: hidden;
   width: 95%;
+  border-radius: 10px;
 }
 
 li {
@@ -99,7 +107,7 @@ li {
 }
 
 li:hover {
-  color: #eee;
+  color: #f2f2f2;
   background-color: #353535;
   user-select: none;
   cursor: pointer;
@@ -135,7 +143,7 @@ li:hover {
 #write {
   resize: none;
   overflow: scroll;
-  background-color: #f5f5f5;
+  background-color: #eaeaea;
   border: 1px solid #252525;
   border-radius: 0 0 15px 15px;
   padding: 10px 15px;
@@ -158,7 +166,7 @@ textarea:focus {
 .topbar button {
   width: 100%;
   color: #252525;
-  background-color: #f5f5f5;
+  background-color: #eee;
   border: 1px solid #252525;
   border-radius: 0;
   font-size: 20px;
@@ -184,13 +192,13 @@ footer button {
 }
 
 .active {
-  background-color: #151515 !important;
-  color: #fafafa !important;
+  background-color: #222 !important;
+  color: #f5f5f5 !important;
 }
 
 body.dark {
   background-color: #2b2a33;
-  color: #eee;
+  color: #f2f2f2;
 }
 
 body.dark #filters {
@@ -207,24 +215,34 @@ body.dark #line {
   background-color: #f5f5f5;
 }
 
+body.dark button {
+  background-color: #009833;
+  color: #f2f2f2;
+}
+
+body.dark button:hover {
+  background-color: #00b336;
+  color: #f2f2f2;
+}
+
 body.dark textarea {
-  border: 1px solid #f5f5f5;
-  background-color: #464453;
+  border: 1px solid #f5f5f5 !important;
+  background-color: #464453 !important;
   color: #f5f5f5;
 }
 
 body.dark .topbar button {
-  color: #fcfcfc;
+  color: #f5f5f5;
   background-color: #383743;
-  border: 1px solid #fcfcfc;
+  border: 1px solid #f5f5f5;
 }
 
 body.dark li:hover {
-  background-color: #ddd;
+  background-color: #e7e7e7;
   color: #353535;
 }
 
 body.dark .active {
-  background-color: #fcfcfc !important;
+  background-color: #f5f5f5 !important;
   color: #252525 !important;
 }

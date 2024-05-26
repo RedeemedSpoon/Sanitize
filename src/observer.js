@@ -122,7 +122,7 @@ const dealwith = (node, type) => {
     const div = document.createElement('div');
     div.style.cssText =
       'background-color: #f8d7da; color: #721c24; padding: 5px; border: 1px solid #721c24; width: fit-content !important;';
-    div.innerHTML = node.getBoundingClientRect().width > 50 ? `Blocked ${type}` : '🛇';
+    div.textContent = node.getBoundingClientRect().width > 50 ? `Blocked ${type}` : '🛇';
     node.parentNode.insertBefore(div, node);
   }
 
