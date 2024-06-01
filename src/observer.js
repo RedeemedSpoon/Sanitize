@@ -118,6 +118,10 @@ const checkObserver = (node, type, data) => {
 
 // Remove Element Or Replace By Message When Called 
 const dealwith = (node, type) => {
+  if (node.id === 'sanitize') {
+    return;
+  }
+
   if (message) {
     const div = document.createElement('div');
     div.style.cssText =
