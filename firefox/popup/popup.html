@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Tweak Websites & Customize Browsing Experience To Better Suit Your Needs." />
+    <title>Sanitize - Settings</title>
+    <link rel="icon" href="./../icons/sanitize.png" />
+    <link rel="stylesheet" href="./popup.css" media="all" />
+  </head>
+  <body>
+    <header>
+      <img src="../icons/sanitize_light.png" alt="Sanitize" height="28" title="Boost Your Productivity!" id="logo" />
+      <div>
+        <img src="../icons/theme.png" alt="Theme" title="Toggle Theme" id="darkTheme" />
+        <img src="../icons/info.png" alt="Info" title="Toggle Info on Blocked Objects" id="showInfo" />
+        <img src="../icons/activate.png" alt="Activate" title="Toggle Sanitize On/Off" id="activateExt" />
+      </div>
+    </header>
+    <main>
+      <form>
+        <fieldset id="settings">
+          <legend for="settings">
+            <button title="Settings on Here Will be Applied to All Websites" id="global" class="active">Global</button>
+            <button title="Settings on Here Will be Applied Only to This Specific Website" id="local">Local</button>
+          </legend>
+          <fieldset id="filter">
+            <legend for="filter">Filters</legend>
+            <label class="container" title="Toggle Html Filters"
+              >Html
+              <input type="checkbox" id="htmlFilter" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Toggle Css Filters"
+              >Css
+              <input type="checkbox" id="cssFilter" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Toggle Js Filters"
+              >Js
+              <input type="checkbox" id="jsFilter" />
+              <span class="checkmark"></span>
+            </label>
+            <div style="margin-top: 5px">
+              <button title="Add & Remove Some Unwanted Filters" id="new">New Filter</button>
+              <button title="View All Filters" id="view">View All Filters</button>
+            </div>
+          </fieldset>
+          <fieldset id="mode">
+            <legend for="mode">Modes</legend>
+            <label class="container" title="Toggle Zen Mode"
+              >Zen
+              <input type="checkbox" id="zen" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Toggle Freeze Mode"
+              >Freeze
+              <input type="checkbox" id="freeze" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Toggle Grayscale Mode"
+              >Grayscale
+              <input type="checkbox" id="grayscale" />
+              <span class="checkmark"></span>
+            </label>
+          </fieldset>
+          <fieldset id="disable">
+            <legend for="disable">Dangerous</legend>
+            <label class="container" title="Disable Css (May Break Your Site)"
+              >Disable Css
+              <input type="checkbox" id="css" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Disable Js (May Break Your Site)"
+              >Disable Js
+              <input type="checkbox" id="js" />
+              <span class="checkmark"></span>
+            </label>
+          </fieldset>
+          <fieldset id="block">
+            <legend for="block">Block Annoyances</legend>
+            <label class="container" title="Block Images & Canvas"
+              >Images
+              <input type="checkbox" id="image" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Block Media & Videos"
+              >Videos
+              <input type="checkbox" id="video" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Block Audios & Sound"
+              >Audios
+              <input type="checkbox" id="audio" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Block HTML Tables"
+              >Tables
+              <input type="checkbox" id="table" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Block Submit Forms"
+              >Forms
+              <input type="checkbox" id="form" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Block Lists"
+              >Lists
+              <input type="checkbox" id="list" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Block External Fonts"
+              >Fonts
+              <input type="checkbox" id="font" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Block All Links"
+              >Links
+              <input type="checkbox" id="link" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Block Text Semantics (bold, italics, etc...)"
+              >Semantics
+              <input type="checkbox" id="semantic" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="container" title="Block Embedded Objects (iframes etc...)"
+              >Embedded Objects
+              <input type="checkbox" id="embed" />
+              <span class="checkmark"></span>
+            </label>
+          </fieldset>
+          <div id="sys">
+            <button title="Export Or Import Settings" id="sync">Sync Settings</button>
+            <button title="Reset Current Settings" id="reset">Reset Settings</button>
+          </div>
+        </fieldset>
+      </form>
+    </main>
+    <footer>
+      <div>
+        <a href="https://github.com/RedeemedSpoon/Sanitize" target="_blank" title="Sanitize's GitHub Page">
+          <img src="../icons/github.png" alt="GitHub" width="18" height="18" />
+          <p>GitHub</p>
+        </a>
+        <a href="https://RedeemedSpoon.github.io/Sanitize" target="_blank" title="Sanitize's Website">
+          <img src="../icons/website.png" alt="Website" width="18" height="18" />
+          <p>Website</p>
+        </a>
+      </div>
+      <p>Version: 1.0.2</p>
+    </footer>
+    <script type="module" src="./popup.js"></script>
+  </body>
+</html>

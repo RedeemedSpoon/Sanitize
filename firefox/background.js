@@ -44,25 +44,22 @@ browser.commands.onCommand.addListener(async (command) => {
 
 // Message Listener
 browser.runtime.onMessage.addListener(async (request) => {
+  let tab = await browser.tabs.query({active: true, currentWindow: true});
   switch (request.type) {
     case 'pickElement':
-      let pickTabs = await browser.tabs.query({active: true, currentWindow: true});
-      browser.tabs.sendMessage(pickTabs[0].id, {type: request.type});
+      browser.tabs.sendMessage(tab[0].id, {type: request.type});
       break;
 
     case 'previewElement':
-      let previewTabs = await browser.tabs.query({active: true, currentWindow: true});
-      browser.tabs.sendMessage(previewTabs[0].id, {type: request.type});
+      browser.tabs.sendMessage(tab[0].id, {type: request.type});
       break;
 
     case 'getUrl':
-      let urlTabs = await browser.tabs.query({active: true, currentWindow: true});
-      browser.tabs.sendMessage(urlTabs[0].id, {type: request.type});
+      browser.tabs.sendMessage(tab[0].id, {type: request.type});
       break;
 
     case 'reloadPage':
-      let reloadTabs = await browser.tabs.query({active: true, currentWindow: true});
-      browser.tabs.reload(reloadTabs[0].id);
+      browser.tabs.reload(tab[0].id);
       break;
 
     case 'freezeMode':
@@ -75,9 +72,7 @@ browser.runtime.onMessage.addListener(async (request) => {
       break;
 
     case 'muteTab':
-      browser.tabs.query({active: true, currentWindow: true}).then(async (tabs) => {
-        await browser.tabs.update(tabs[0].id, {muted: true});
-      });
+      browser.tabs.update(tab[0].id, {muted: true});
       break;
 
     case 'syncTab':
@@ -149,8 +144,9 @@ const getElementsToBlock = async () => {
 };
 
 const showFrame = async () => {
-  closeFrame();
   let source = await browser.runtime.getURL('new-filter/new.html');
+  closeFrame();
+
   browser.tabs.executeScript(null, {
     code:
       `var iframe = document.createElement('iframe');` +

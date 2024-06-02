@@ -1,12 +1,12 @@
 (async () => {
   const annoyances = ['image', 'video', 'audio', 'table', 'form', 'list', 'link', 'semantic', 'embed'];
-  const utilsSrc = browser.runtime.getURL('./utils.js');
+  const utilsSrc = chrome.runtime.getURL('./utils.js');
   const url = window.location.hostname;
   const utils = await import(utilsSrc);
   const {checkSetting, initOptConf, getAllFilters} = utils;
   const settings = await initOptConf();
 
-  const observerSrc = browser.runtime.getURL('./observer.js');
+  const observerSrc = chrome.runtime.getURL('./observer.js');
   const observer = await import(observerSrc);
   const {addNewObserver, dealwith, allTags} = observer;
 
@@ -51,8 +51,7 @@
       document.querySelector('#article') ||
       document.querySelector('.article') ||
       document.querySelector('#container') ||
-      document.querySelector('.container')
-
+      document.querySelector('.container');
 
     const styleSheet = document.createElement('style');
     styleSheet.innerText =
@@ -72,7 +71,7 @@
 
   // FreezeMode
   if (await checkSetting('freeze', url)) {
-    browser.runtime.sendMessage({type: 'freezeMode'});
+    chrome.runtime.sendMessage({type: 'freezeMode'});
   }
 
   // Disable Css
@@ -135,7 +134,7 @@
           break;
 
         case 'audio':
-          browser.runtime.sendMessage({type: 'muteTab'});
+          chrome.runtime.sendMessage({type: 'muteTab'});
           break;
 
         case 'link':

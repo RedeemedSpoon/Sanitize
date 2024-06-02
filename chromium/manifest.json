@@ -1,0 +1,83 @@
+{
+  "name": "Sanitize",
+  "short_name": "Sanitize",
+  "version": "1.0.2",
+  "author": "RedeemedSpoon (QustoTemmo@protonmail.com)",
+  "homepage_url": "https://RedeemedSpoon.github.io/Sanitize/",
+  "description": "An Extension That Tweak Websites & Customize Browsing Experience To Better Suit Your Needs.",
+  "manifest_version": 3,
+  "incognito": "spanning",
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S"
+      },
+      "description": "Open Sanitize Popup"
+    },
+    "disable_sanitize": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+D"
+      },
+      "description": "Toggle Sanitize On/Off"
+    },
+    "add_filter": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A"
+      },
+      "description": "Open Add Filter Tab"
+    },
+    "view_filter": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+V"
+      },
+      "description": "Open View All Filters Tab"
+    }
+  },
+  "icons": {
+    "32": "icons/logo_32.png",
+    "64": "icons/logo_64.png",
+    "96": "icons/logo_96.png"
+  },
+  "action": {
+    "default_title": "Sanitize",
+    "default_popup": "popup/popup.html",
+    "default_area": "navbar",
+    "default_icon": {
+      "32": "icons/logo_32.png",
+      "64": "icons/logo_64.png",
+      "96": "icons/logo_96.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "content.js",
+        "filters.js"
+      ],
+      "run_at": "document_idle",
+      "match_about_blank": true,
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "host_permissions": ["<all_urls>"],
+  "permissions": [
+    "tabs",
+    "scripting",
+    "contextMenus",
+    "webRequest",
+    "declarativeNetRequest",
+    "unlimitedStorage",
+    "storage"
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": ["<all_urls>"],
+      "resources": ["*.js", "*/*"]
+    }
+  ]
+}

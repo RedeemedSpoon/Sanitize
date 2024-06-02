@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Tweak Websites & Customize Browsing Experience To Better Suit Your Needs." />
+    <title>Sanitize - New Filter</title>
+    <link rel="icon" href="../icons/logo_96.png" />
+    <link rel="stylesheet" href="./new.css" media="all" />
+  </head>
+  <body>
+    <main>
+      <section id="controls">
+        <p title="Minimize Window">&#8211;</p>
+        <p title="Close Window">&#215;</p>
+      </section>
+      <section id="selector">
+        <h1>Filter Type :</h1>
+        <div>
+          <button class="html selected">Html</button>
+          <button class="css">Css</button>
+          <button class="js">Js</button>
+        </div>
+      </section>
+      <section id="scope" style="margin-top: 5px">
+        <h1>Filter Scope :</h1>
+        <div>
+          <button class="global">Global</button>
+          <button class="local selected">Local</button>
+        </div>
+      </section>
+      <textarea id="content" placeholder="Paste or type your filter here." spellcheck="false"></textarea>
+      <section id="actions">
+        <div>
+          <button title="Preview Filter" id="preview">Preview</button>
+          <button title="Pick Filter" id="pick">Pick</button>
+        </div>
+        <button title="Create Filter" id="create">Create</button>
+      </section>
+    </main>
+    <input hidden id="url" />
+    <script type="module" src="./new.js"></script>
+  </body>
+</html>

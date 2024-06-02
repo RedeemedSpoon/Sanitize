@@ -8,7 +8,7 @@
 body {
   overflow: hidden;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #f5f5f5;
   color: #353535;
   margin: 5px 15px;
@@ -95,7 +95,7 @@ li {
 
 .hostname {
   width: 90%;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .delete {
