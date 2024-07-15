@@ -8,6 +8,15 @@ browser.runtime.onInstalled.addListener(async () => {
     title: 'Add New Filter',
     contexts: ['all'],
   });
+
+  // Default Settings
+  await setSettings('global', 'htmlFilter', true);
+  await setSettings('global', 'cssFilter', true);
+  await setSettings('global', 'jsFilter', true);
+
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    await toggleOptConf('darkTheme');
+  }
 });
 
 // Context Menu

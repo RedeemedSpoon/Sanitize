@@ -1,13 +1,22 @@
-import {checkSetting, toggleOptConf, initOptConf} from './utils.js';
+import {checkSetting, toggleOptConf, initOptConf, setSettings} from './utils.js';
 
 // Initialization
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener(async () => {
   chrome.tabs.create({url: 'https://RedeemedSpoon.github.io/Sanitize#installation'});
   chrome.contextMenus.create({
     id: 'sanitize',
     title: 'Add New Filter',
     contexts: ['all'],
   });
+
+  // Default Settings
+  await setSettings('global', 'htmlFilter', true);
+  await setSettings('global', 'cssFilter', true);
+  await setSettings('global', 'jsFilter', true);
+
+  if (window && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    await toggleOptConf('darkTheme');
+  }
 });
 
 // Context Menu

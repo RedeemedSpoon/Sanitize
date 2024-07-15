@@ -160,7 +160,9 @@
                 <img src="./assets/browsers/firefox.svg" />
                 <p>Firefox</p>
               </a>
-              <a href="https://microsoftedge.microsoft.com/addons/detail/sanitize/dcmjpmbnchkkijnpajcbfmiemimdpigg" class="btn">
+              <a
+                href="https://microsoftedge.microsoft.com/addons/detail/sanitize/dcmjpmbnchkkijnpajcbfmiemimdpigg"
+                class="btn">
                 <img src="./assets/browsers/edge.svg" />
                 <p>Edge</p>
               </a>
@@ -391,8 +393,10 @@
           <div id="issues">
             <ul>
               <li>
-                Due to the recent manifest 3 changes forced by Chromium, The Js Filters will no longer work at all on
-                Chrome, Edge, and Opera. Attempt to solve this issue is on my todo list.
+                Due to the recent manifest 3 changes forced by Google, The Js Filters will no longer work at all on
+                Chrome, Edge, and Opera. This is because of the CSP (Content Security Policy) that blocks inline
+                scripts. You can deactivate it for the JS filter to work but it is not recommended due to security
+                concerns. Or you can alternatively switch to Firefox :)
               </li>
               <li>
                 If you turn on image or video block, but some of the images or videos are still there, try to hard
@@ -472,6 +476,7 @@
           <hr />
           <div id="changelog">
             <ul>
+              <li><b>v1.0.4 :</b> Added default settings and tried fixing CSP issues</li>
               <li><b>v1.0.3 :</b> Fix concerning extension permissions</li>
               <li><b>v1.0.2 :</b> Sanitize now works on all chromium based browsers (Chrome, Edge, and Opera)</li>
               <li><b>v1.0.1 :</b> Very minor and unnoticeable change</li>
