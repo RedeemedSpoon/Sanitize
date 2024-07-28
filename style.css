@@ -52,7 +52,7 @@ hr {
 body {
   font-family: 'Open Sans', sans-serif;
   background-image: url('./assets/background.jpg');
-  animation: scroll linear infinite 60s;
+  animation: scroll linear infinite 125s;
   background-position: center;
   background-size: contain;
   overflow-x: hidden;
